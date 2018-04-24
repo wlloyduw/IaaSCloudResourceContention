@@ -1,0 +1,168 @@
+[1] 14:23:45 [SUCCESS] ubuntu@54.197.41.56:22
+sysbench 0.4.12:  multi-threaded system evaluation benchmark
+
+Running the test with following options:
+Number of threads: 2
+
+Doing CPU performance benchmark
+
+Threads started!
+Done.
+
+Maximum prime number checked in CPU test: 2000
+
+
+Test execution summary:
+    total time:                          1.2723s
+    total number of events:              10000
+    total time taken by event execution: 2.5385
+    per-request statistics:
+         min:                                  0.11ms
+         avg:                                  0.25ms
+         max:                                  8.16ms
+         approx.  95 percentile:               0.14ms
+
+Threads fairness:
+    events (avg/stddev):           5000.0000/5.00
+    execution time (avg/stddev):   1.2693/0.00
+
+[2] 14:23:45 [SUCCESS] ubuntu@54.167.144.23:22
+sysbench 0.4.12:  multi-threaded system evaluation benchmark
+
+Running the test with following options:
+Number of threads: 2
+
+Doing CPU performance benchmark
+
+Threads started!
+Done.
+
+Maximum prime number checked in CPU test: 2000
+
+
+Test execution summary:
+    total time:                          1.2747s
+    total number of events:              10000
+    total time taken by event execution: 2.5392
+    per-request statistics:
+         min:                                  0.11ms
+         avg:                                  0.25ms
+         max:                                  8.21ms
+         approx.  95 percentile:               0.16ms
+
+Threads fairness:
+    events (avg/stddev):           5000.0000/16.00
+    execution time (avg/stddev):   1.2696/0.00
+
+[3] 14:23:45 [SUCCESS] ubuntu@54.89.183.51:22
+sysbench 0.4.12:  multi-threaded system evaluation benchmark
+
+Running the test with following options:
+Number of threads: 2
+
+Doing CPU performance benchmark
+
+Threads started!
+Done.
+
+Maximum prime number checked in CPU test: 2000
+
+
+Test execution summary:
+    total time:                          1.2883s
+    total number of events:              10000
+    total time taken by event execution: 2.5681
+    per-request statistics:
+         min:                                  0.11ms
+         avg:                                  0.26ms
+         max:                                  8.16ms
+         approx.  95 percentile:               0.15ms
+
+Threads fairness:
+    events (avg/stddev):           5000.0000/3.00
+    execution time (avg/stddev):   1.2841/0.00
+
+[1] 14:42:16 [SUCCESS] ubuntu@54.197.41.56:22
+sysbench 0.4.12:  multi-threaded system evaluation benchmark
+
+Running the test with following options:
+Number of threads: 2
+
+Doing CPU performance benchmark
+
+Threads started!
+Done.
+
+Maximum prime number checked in CPU test: 20000
+
+
+Test execution summary:
+    total time:                          29.9727s
+    total number of events:              10000
+    total time taken by event execution: 59.9330
+    per-request statistics:
+         min:                                  2.74ms
+         avg:                                  5.99ms
+         max:                                 29.13ms
+         approx.  95 percentile:               7.06ms
+
+Threads fairness:
+    events (avg/stddev):           5000.0000/3.00
+    execution time (avg/stddev):   29.9665/0.00
+
+[2] 14:42:16 [SUCCESS] ubuntu@54.167.144.23:22
+sysbench 0.4.12:  multi-threaded system evaluation benchmark
+
+Running the test with following options:
+Number of threads: 2
+
+Doing CPU performance benchmark
+
+Threads started!
+Done.
+
+Maximum prime number checked in CPU test: 20000
+
+
+Test execution summary:
+    total time:                          30.2524s
+    total number of events:              10000
+    total time taken by event execution: 60.4950
+    per-request statistics:
+         min:                                  2.71ms
+         avg:                                  6.05ms
+         max:                                 36.91ms
+         approx.  95 percentile:               7.13ms
+
+Threads fairness:
+    events (avg/stddev):           5000.0000/3.00
+    execution time (avg/stddev):   30.2475/0.00
+
+[3] 14:42:16 [SUCCESS] ubuntu@54.89.183.51:22
+sysbench 0.4.12:  multi-threaded system evaluation benchmark
+
+Running the test with following options:
+Number of threads: 2
+
+Doing CPU performance benchmark
+
+Threads started!
+Done.
+
+Maximum prime number checked in CPU test: 20000
+
+
+Test execution summary:
+    total time:                          30.2411s
+    total number of events:              10000
+    total time taken by event execution: 60.4686
+    per-request statistics:
+         min:                                  2.74ms
+         avg:                                  6.05ms
+         max:                                 24.77ms
+         approx.  95 percentile:               7.13ms
+
+Threads fairness:
+    events (avg/stddev):           5000.0000/0.00
+    execution time (avg/stddev):   30.2343/0.00
+

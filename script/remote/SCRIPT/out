@@ -1,0 +1,467 @@
+[22;32my-cruncher v0.7.5 Build 9480[01;37m
+
+Detecting Environment...
+
+CPU Vendor:
+    AMD         = [01;31mNo[01;37m
+    Intel       = [01;32mYes[01;37m
+
+OS Features:
+  * 64-bit      = [01;32mYes[01;37m
+  * OS AVX      = [01;32mYes[01;37m
+  * OS AVX512   = [01;31mNo[01;37m
+
+Hardware Features:
+    MMX         = [01;32mYes[01;37m
+  * x64         = [01;32mYes[01;37m
+  * ABM         = [01;32mYes[01;37m
+    RDRAND      = [01;32mYes[01;37m
+    RDSEED      = [01;31mNo[01;37m
+    BMI1        = [01;32mYes[01;37m
+  * BMI2        = [01;32mYes[01;37m
+  * ADX         = [01;31mNo[01;37m
+    MPX         = [01;31mNo[01;37m
+    PREFETCHW   = [01;31mNo[01;37m
+    PREFETCHWT1 = [01;31mNo[01;37m
+
+SIMD: 128-bit
+  * SSE         = [01;32mYes[01;37m
+  * SSE2        = [01;32mYes[01;37m
+  * SSE3        = [01;32mYes[01;37m
+  * SSSE3       = [01;32mYes[01;37m
+    SSE4a       = [01;31mNo[01;37m
+  * SSE4.1      = [01;32mYes[01;37m
+  * SSE4.2      = [01;32mYes[01;37m
+    AES-NI      = [01;32mYes[01;37m
+    SHA         = [01;31mNo[01;37m
+
+SIMD: 256-bit
+  * AVX         = [01;32mYes[01;37m
+  * XOP         = [01;31mNo[01;37m
+  * FMA3        = [01;32mYes[01;37m
+  * FMA4        = [01;31mNo[01;37m
+  * AVX2        = [01;32mYes[01;37m
+
+SIMD: 512-bit
+  * AVX512-F         = [01;31mNo[01;37m
+    AVX512-CD        = [01;31mNo[01;37m
+    AVX512-PF        = [01;31mNo[01;37m
+    AVX512-ER        = [01;31mNo[01;37m
+  * AVX512-VL        = [01;31mNo[01;37m
+  * AVX512-BW        = [01;31mNo[01;37m
+  * AVX512-DQ        = [01;31mNo[01;37m
+  * AVX512-IFMA      = [01;31mNo[01;37m
+  * AVX512-VBMI      = [01;31mNo[01;37m
+
+Alright Intel, how many drinks have you had tonight?
+    AVX512-VPOPCNTDQ = [01;31mNo[01;37m
+    AVX512-4FMAPS    = [01;31mNo[01;37m
+    AVX512-4VNNIW    = [01;31mNo[01;37m
+    AVX512-VBMI2     = [01;31mNo[01;37m
+    AVX512-GFNI      = [01;31mNo[01;37m
+    AVX512-VAES      = [01;31mNo[01;37m
+    AVX512-VPCLMUL   = [01;31mNo[01;37m
+    AVX512-VNNI      = [01;31mNo[01;37m
+    AVX512-BITALG    = [01;31mNo[01;37m
+
+
+Auto-Selecting: 13-HSW ~ Airi
+
+/home/ubuntu/CPU_test/y-cruncher v0.7.5.9480-static/Binaries/13-HSW ~ Airi
+
+
+[01;33mLaunching y-cruncher...
+[22;32m================================================================
+
+[01;37m
+
+[01;31mInsufficient permissions to set thread priority. Please retry as root.
+[01;37m
+[01;31mFurther messages for this warning will be suppressed.
+[01;37m
+Checking processor/OS features...
+
+Required Features:
+[01;36m    x64, ABM, BMI1, BMI2,
+    SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2,
+    AVX, FMA3, AVX2
+
+[01;37m
+
+Parsing Core -> Handle Mappings...
+    Cores:  0 
+
+Parsing NUMA -> Core Mappings...
+    Node  0:  0 
+
+
+[22;32my-cruncher v0.7.5 Build 9480                ( www.numberworld.org )
+[22;36mCopyright 2008-2019 Alexander J. Yee      ( a-yee@u.northwestern.edu )
+
+[01;37mDistribute Freely - Please report any bugs.
+
+[01;37mTuning: [01;32m Linux/13-HSW ~ Airi[01;37m[01;37m  -  [01;35mHaswell (x64 AVX2)
+
+
+[01;36m  0         Benchmark Pi  (all in ram)
+  1         Component Stress Tester
+  2         Run I/O Performance Analysis
+
+[01;33m  3         Custom Compute a Constant
+                -   Compute other constants (e, Golden Ratio, etc...)
+                -   Choose your own settings (use disk for large computations)
+
+[01;32m  4         BBP Digit Extractor for Pi
+  5         Digit Viewer
+
+[22;36m  6         Advanced Options
+  7         About
+[01;37m
+Enter your choice:
+[01;37moption: [01;36m[01;37m[01;37m[01;37m
+[01;35mBenchmark Pi:
+
+[01;37m
+
+Available Memory:   [01;33m 681 MiB[01;37m
+
+Option      Decimal Digits          Approx. Memory Needed
+
+  1[01;32m             25,000,000                [01;33m 220 MiB
+[01;37m  2[01;32m             50,000,000                [01;33m 345 MiB
+[01;37m  3[01;32m            100,000,000                [01;33m 585 MiB
+[01;37m  4[22;32m            250,000,000                [22;33m1.28 GiB
+[01;37m  5[22;32m            500,000,000                [22;33m2.46 GiB
+[01;37m  6[22;32m          1,000,000,000                [22;33m4.81 GiB
+[01;37m  7[22;32m          2,500,000,000                [22;33m11.6 GiB
+[01;37m  8[22;32m          5,000,000,000                [22;33m23.1 GiB
+[01;37m  9[22;32m         10,000,000,000                [22;33m46.2 GiB
+[01;37m 10[22;32m         25,000,000,000                [22;33m 116 GiB
+[01;37m 11[22;32m         50,000,000,000                [22;33m 231 GiB
+[01;37m 12[22;32m        100,000,000,000                [22;33m 463 GiB
+[01;37m 13[22;32m        250,000,000,000                [22;33m1.13 TiB
+[01;37m 14[22;32m        500,000,000,000                [22;33m2.26 TiB
+[01;37m 15[22;32m      1,000,000,000,000                [22;33m4.72 TiB
+[01;37m 16[22;32m      2,500,000,000,000                [22;33m11.5 TiB
+[01;37m
+[01;37m  0     [01;36mI prefer SuperPi sizes... (1M, 2M, 4M...)[01;37m
+
+[01;37moption: [01;36m[01;37m[01;37m[01;37m
+[01;31mThis process does not have "CAP_IPC_LOCK". Page locking will not be possible.
+Please run y-cruncher with elevation to enable page locking.
+[01;37m
+[01;37mConstant:   [01;32mPi[01;37m
+[01;37mAlgorithm:  [01;33mChudnovsky Formula[01;37m
+
+[01;37mDecimal Digits:       [01;32m25,000,000[01;37m
+[01;37mHexadecimal Digits:   [22;32mDisabled[01;37m
+
+[01;37mComputation Mode:     [01;31mRam Only[01;37m
+Multi-Threading:      [01;36mNone (No Multi-threading)  ->  [01;33m1[01;33m / [01;33m?[01;37m
+
+[01;37mStart Time: [01;33mMon Apr 23 05:54:06 2018[01;37m
+
+Working Memory...  [01;32m 122 MiB[01;33m  (spread: ?[01;33m)
+[01;37mTwiddle Tables...  [01;32m 102 MiB[01;33m  (spread: ?[01;33m)
+[01;37m
+Begin Computation:
+
+Summing Series...  1,762,846 terms
+
+                                                                               
+[01;37mSumming: [01;32m0%[01;35m  [01;35m( 22 )[01;35m [01;34m -> [01;33m( 31,300 )[01;37m
+                                                                               
+[01;37mSumming: [01;32m17%[01;35m  [01;35m( 4 )[01;35m [01;34m -> [01;33m( 4,310,164 )[01;37m
+                                                                               
+[01;37mSumming: [01;32m24%[01;35m  [01;35m( 3 )[01;35m [01;33m( 6,083,272 )[01;37m
+                                                                               
+[01;37mSumming: [01;32m34%[01;35m  [01;35m( 2 )[01;35m [01;33m( 8,596,724 )[01;37m
+                                                                               
+[01;37mSumming: [01;32m48%[01;35m  [01;35m( 1 )[01;35m [01;32m-  [01;33m( 6,087,318 )[01;37m
+                                                                               
+[01;37mSumming: [01;32m69%[01;35m  [01;35m( 0 )[01;35m [01;32m1[01;34m -> [01;33m( 8,656,316 )[01;37m
+                                                                               
+[01;37mSumming: [01;32m69%[01;35m  [01;35m( 0 )[01;35m [01;33m( 17,312,703 )[01;37m
+                                                                               
+Time:    [01;36m7.881 seconds  ( 0.131 minutes )[01;37m
+Division...
+
+                                                                               
+Time:    [01;36m0.541 seconds  ( 0.009 minutes )[01;37m
+InvSqrt...
+
+                                                                               
+[01;37mIterating: [01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;36m - 0S - [01;33m( 116 )[01;37m
+                                                                               
+Time:    [01;36m0.310 seconds  ( 0.005 minutes )[01;37m
+Final Multiply...
+
+                                                                               
+Time:    [01;36m0.240 seconds  ( 0.004 minutes )[01;37m
+
+[01;32mPi:  [01;33m8.973 seconds  ( 0.150 minutes )[01;37m
+
+Base Converting:
+
+                                                                               
+Time:    [01;36m0.873 seconds  ( 0.015 minutes )[01;37m
+
+Writing Decimal Digits:   [01;37m25,000,000  digits written
+
+[01;37mStart Time: [01;33mMon Apr 23 05:54:06 2018[01;37m
+[01;37mEnd Time:   [01;33mMon Apr 23 05:54:16 2018[01;37m
+
+[01;32mTotal Computation Time:     [01;33m9.845 seconds  ( 0.164 minutes )[01;37m
+[01;32mStart-to-End Wall Time:     [01;33m10.013 seconds  ( 0.167 minutes )[01;37m
+[01;37m
+[01;37mCPU Utilization:        [01;33m   99.84 %[01;37m  +  [01;35m  0.00 % kernel overhead
+[01;37mMulti-core Efficiency:  [01;33m   99.84 %[01;37m  +  [01;35m  0.00 % kernel overhead
+[01;37m
+Last Digits:  [01;32mPi[01;37m
+[01;33m3803750790 9491563108 2381689226 7224175329 0045253446 [01;37m :  [01;32m24,999,950
+[01;33m0786411592 4597806944 2455112852 2554677483 6191884322 [01;37m :  [01;32m25,000,000
+[01;37m
+Spot Check: [01;32mGood through 25,000,000
+[01;37m
+[22;36mVersion:              0.7.5.9480 (Linux/13-HSW ~ Airi)
+Processor(s):         Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz
+Topology:             1 thread / 1 core / 1 socket / 1 NUMA node
+Usable Memory:        1,038,872,576 ( 991 MiB)
+CPU Base Frequency:   2,400,086,928[22;36m Hz
+[01;37m
+[01;32mValidation File: [01;35mPi - 20180423-055416.txt
+[01;37m[39;49m
+[39;49m[22;32my-cruncher v0.7.5 Build 9480[01;37m
+
+Detecting Environment...
+
+CPU Vendor:
+    AMD         = [01;31mNo[01;37m
+    Intel       = [01;32mYes[01;37m
+
+OS Features:
+  * 64-bit      = [01;32mYes[01;37m
+  * OS AVX      = [01;32mYes[01;37m
+  * OS AVX512   = [01;31mNo[01;37m
+
+Hardware Features:
+    MMX         = [01;32mYes[01;37m
+  * x64         = [01;32mYes[01;37m
+  * ABM         = [01;32mYes[01;37m
+    RDRAND      = [01;32mYes[01;37m
+    RDSEED      = [01;31mNo[01;37m
+    BMI1        = [01;32mYes[01;37m
+  * BMI2        = [01;32mYes[01;37m
+  * ADX         = [01;31mNo[01;37m
+    MPX         = [01;31mNo[01;37m
+    PREFETCHW   = [01;31mNo[01;37m
+    PREFETCHWT1 = [01;31mNo[01;37m
+
+SIMD: 128-bit
+  * SSE         = [01;32mYes[01;37m
+  * SSE2        = [01;32mYes[01;37m
+  * SSE3        = [01;32mYes[01;37m
+  * SSSE3       = [01;32mYes[01;37m
+    SSE4a       = [01;31mNo[01;37m
+  * SSE4.1      = [01;32mYes[01;37m
+  * SSE4.2      = [01;32mYes[01;37m
+    AES-NI      = [01;32mYes[01;37m
+    SHA         = [01;31mNo[01;37m
+
+SIMD: 256-bit
+  * AVX         = [01;32mYes[01;37m
+  * XOP         = [01;31mNo[01;37m
+  * FMA3        = [01;32mYes[01;37m
+  * FMA4        = [01;31mNo[01;37m
+  * AVX2        = [01;32mYes[01;37m
+
+SIMD: 512-bit
+  * AVX512-F         = [01;31mNo[01;37m
+    AVX512-CD        = [01;31mNo[01;37m
+    AVX512-PF        = [01;31mNo[01;37m
+    AVX512-ER        = [01;31mNo[01;37m
+  * AVX512-VL        = [01;31mNo[01;37m
+  * AVX512-BW        = [01;31mNo[01;37m
+  * AVX512-DQ        = [01;31mNo[01;37m
+  * AVX512-IFMA      = [01;31mNo[01;37m
+  * AVX512-VBMI      = [01;31mNo[01;37m
+
+Alright Intel, how many drinks have you had tonight?
+    AVX512-VPOPCNTDQ = [01;31mNo[01;37m
+    AVX512-4FMAPS    = [01;31mNo[01;37m
+    AVX512-4VNNIW    = [01;31mNo[01;37m
+    AVX512-VBMI2     = [01;31mNo[01;37m
+    AVX512-GFNI      = [01;31mNo[01;37m
+    AVX512-VAES      = [01;31mNo[01;37m
+    AVX512-VPCLMUL   = [01;31mNo[01;37m
+    AVX512-VNNI      = [01;31mNo[01;37m
+    AVX512-BITALG    = [01;31mNo[01;37m
+
+
+Auto-Selecting: 13-HSW ~ Airi
+
+/home/ubuntu/CPU_test/y-cruncher v0.7.5.9480-static/Binaries/13-HSW ~ Airi
+
+
+[01;33mLaunching y-cruncher...
+[22;32m================================================================
+
+[01;37m
+
+[01;31mInsufficient permissions to set thread priority. Please retry as root.
+[01;37m
+[01;31mFurther messages for this warning will be suppressed.
+[01;37m
+Checking processor/OS features...
+
+Required Features:
+[01;36m    x64, ABM, BMI1, BMI2,
+    SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2,
+    AVX, FMA3, AVX2
+
+[01;37m
+
+Parsing Core -> Handle Mappings...
+    Cores:  0 
+
+Parsing NUMA -> Core Mappings...
+    Node  0:  0 
+
+
+[22;32my-cruncher v0.7.5 Build 9480                ( www.numberworld.org )
+[22;36mCopyright 2008-2019 Alexander J. Yee      ( a-yee@u.northwestern.edu )
+
+[01;37mDistribute Freely - Please report any bugs.
+
+[01;37mTuning: [01;32m Linux/13-HSW ~ Airi[01;37m[01;37m  -  [01;35mHaswell (x64 AVX2)
+
+
+[01;36m  0         Benchmark Pi  (all in ram)
+  1         Component Stress Tester
+  2         Run I/O Performance Analysis
+
+[01;33m  3         Custom Compute a Constant
+                -   Compute other constants (e, Golden Ratio, etc...)
+                -   Choose your own settings (use disk for large computations)
+
+[01;32m  4         BBP Digit Extractor for Pi
+  5         Digit Viewer
+
+[22;36m  6         Advanced Options
+  7         About
+[01;37m
+Enter your choice:
+[01;37moption: [01;36m[01;37m[01;37m[01;37m
+[01;35mBenchmark Pi:
+
+[01;37m
+
+Available Memory:   [01;33m 673 MiB[01;37m
+
+Option      Decimal Digits          Approx. Memory Needed
+
+  1[01;32m             25,000,000                [01;33m 220 MiB
+[01;37m  2[01;32m             50,000,000                [01;33m 345 MiB
+[01;37m  3[01;32m            100,000,000                [01;33m 585 MiB
+[01;37m  4[22;32m            250,000,000                [22;33m1.28 GiB
+[01;37m  5[22;32m            500,000,000                [22;33m2.46 GiB
+[01;37m  6[22;32m          1,000,000,000                [22;33m4.81 GiB
+[01;37m  7[22;32m          2,500,000,000                [22;33m11.6 GiB
+[01;37m  8[22;32m          5,000,000,000                [22;33m23.1 GiB
+[01;37m  9[22;32m         10,000,000,000                [22;33m46.2 GiB
+[01;37m 10[22;32m         25,000,000,000                [22;33m 116 GiB
+[01;37m 11[22;32m         50,000,000,000                [22;33m 231 GiB
+[01;37m 12[22;32m        100,000,000,000                [22;33m 463 GiB
+[01;37m 13[22;32m        250,000,000,000                [22;33m1.13 TiB
+[01;37m 14[22;32m        500,000,000,000                [22;33m2.26 TiB
+[01;37m 15[22;32m      1,000,000,000,000                [22;33m4.72 TiB
+[01;37m 16[22;32m      2,500,000,000,000                [22;33m11.5 TiB
+[01;37m
+[01;37m  0     [01;36mI prefer SuperPi sizes... (1M, 2M, 4M...)[01;37m
+
+[01;37moption: [01;36m[01;37m[01;37m[01;37m
+[01;31mThis process does not have "CAP_IPC_LOCK". Page locking will not be possible.
+Please run y-cruncher with elevation to enable page locking.
+[01;37m
+[01;37mConstant:   [01;32mPi[01;37m
+[01;37mAlgorithm:  [01;33mChudnovsky Formula[01;37m
+
+[01;37mDecimal Digits:       [01;32m25,000,000[01;37m
+[01;37mHexadecimal Digits:   [22;32mDisabled[01;37m
+
+[01;37mComputation Mode:     [01;31mRam Only[01;37m
+Multi-Threading:      [01;36mNone (No Multi-threading)  ->  [01;33m1[01;33m / [01;33m?[01;37m
+
+[01;37mStart Time: [01;33mMon Apr 23 07:21:26 2018[01;37m
+
+Working Memory...  [01;32m 122 MiB[01;33m  (spread: ?[01;33m)
+[01;37mTwiddle Tables...  [01;32m 102 MiB[01;33m  (spread: ?[01;33m)
+[01;37m
+Begin Computation:
+
+Summing Series...  1,762,846 terms
+
+                                                                               
+[01;37mSumming: [01;32m0%[01;35m  [01;35m( 22 )[01;35m [01;34m -> [01;33m( 31,300 )[01;37m
+                                                                               
+[01;37mSumming: [01;32m17%[01;35m  [01;35m( 4 )[01;35m [01;34m -> [01;33m( 4,310,164 )[01;37m
+                                                                               
+[01;37mSumming: [01;32m24%[01;35m  [01;35m( 3 )[01;35m [01;33m( 6,083,272 )[01;37m
+                                                                               
+[01;37mSumming: [01;32m34%[01;35m  [01;35m( 2 )[01;35m [01;33m( 8,596,724 )[01;37m
+                                                                               
+[01;37mSumming: [01;32m48%[01;35m  [01;35m( 1 )[01;35m [01;32m-  [01;33m( 6,087,318 )[01;37m
+                                                                               
+[01;37mSumming: [01;32m69%[01;35m  [01;35m( 0 )[01;35m [01;32m1[01;34m -> [01;33m( 8,656,316 )[01;37m
+                                                                               
+[01;37mSumming: [01;32m69%[01;35m  [01;35m( 0 )[01;35m [01;33m( 17,312,703 )[01;37m
+                                                                               
+Time:    [01;36m7.894 seconds  ( 0.132 minutes )[01;37m
+Division...
+
+                                                                               
+Time:    [01;36m0.537 seconds  ( 0.009 minutes )[01;37m
+InvSqrt...
+
+                                                                               
+[01;37mIterating: [01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;32m0[01;36m - 0S - [01;33m( 116 )[01;37m
+                                                                               
+Time:    [01;36m0.309 seconds  ( 0.005 minutes )[01;37m
+Final Multiply...
+
+                                                                               
+Time:    [01;36m0.238 seconds  ( 0.004 minutes )[01;37m
+
+[01;32mPi:  [01;33m8.978 seconds  ( 0.150 minutes )[01;37m
+
+Base Converting:
+
+                                                                               
+Time:    [01;36m0.872 seconds  ( 0.015 minutes )[01;37m
+
+Writing Decimal Digits:   [01;37m25,000,000  digits written
+
+[01;37mStart Time: [01;33mMon Apr 23 07:21:26 2018[01;37m
+[01;37mEnd Time:   [01;33mMon Apr 23 07:21:36 2018[01;37m
+
+[01;32mTotal Computation Time:     [01;33m9.850 seconds  ( 0.164 minutes )[01;37m
+[01;32mStart-to-End Wall Time:     [01;33m10.019 seconds  ( 0.167 minutes )[01;37m
+[01;37m
+[01;37mCPU Utilization:        [01;33m   99.69 %[01;37m  +  [01;35m  0.00 % kernel overhead
+[01;37mMulti-core Efficiency:  [01;33m   99.69 %[01;37m  +  [01;35m  0.00 % kernel overhead
+[01;37m
+Last Digits:  [01;32mPi[01;37m
+[01;33m3803750790 9491563108 2381689226 7224175329 0045253446 [01;37m :  [01;32m24,999,950
+[01;33m0786411592 4597806944 2455112852 2554677483 6191884322 [01;37m :  [01;32m25,000,000
+[01;37m
+Spot Check: [01;32mGood through 25,000,000
+[01;37m
+[22;36mVersion:              0.7.5.9480 (Linux/13-HSW ~ Airi)
+Processor(s):         Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz
+Topology:             1 thread / 1 core / 1 socket / 1 NUMA node
+Usable Memory:        1,038,872,576 ( 991 MiB)
+CPU Base Frequency:   2,400,111,648[22;36m Hz
+[01;37m
+[01;32mValidation File: [01;35mPi - 20180423-072137.txt
+[01;37m[39;49m
+[39;49m
