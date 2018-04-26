@@ -82,7 +82,7 @@ class parser(object):
     def bandwidth(self):
         pass
     def mbw(self):
-		pass
+        pass
 
     def getfunc(self):
         return getattr(self,self.benchmark)
