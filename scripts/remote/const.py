@@ -22,10 +22,13 @@ import sys
 sys.modules[__name__] = _const()
 
 
-sys.modules[__name__].mbw='mbw'
-sys.modules[__name__].bandwidth='bandwidth'
-sys.modules[__name__].iperf3='iperf3'
-sys.modules[__name__].bonnie='bonnie'
-sys.modules[__name__].stress_ng='stress_ng'
-sys.modules[__name__].sysbench='sysbench'
-sys.modules[__name__].y_cruncher='y_cruncher'
+mbw=sys.modules[__name__].mbw='mbw'
+bandwidth=sys.modules[__name__].bandwidth='bandwidth'
+iperf3=sys.modules[__name__].iperf3='iperf3'
+bonnie=sys.modules[__name__].bonnie='bonnie'
+stress_ng=sys.modules[__name__].stress_ng='stress_ng'
+sysbench=sys.modules[__name__].sysbench='sysbench'
+y_cruncher=sys.modules[__name__].y_cruncher='y_cruncher'
+
+dic=sys.modules[__name__].command=dict()
+dic[y_cruncher]='~/CPU_test/y-cruncher\ v0.7.5.9480-static/y-cruncher <<'
