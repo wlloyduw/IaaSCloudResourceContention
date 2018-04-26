@@ -94,7 +94,7 @@ class Experiment(object):
 		self.cycle=int(cycle)
 		self.parameter=kw;
 	def run(self):
-		for i in range(cycle):
+		for i in range(self.cycle):
 			myParser=parser(self.benchmark,os.popen(const.command[self.benchmark]+self.parameter[self.benchmark]).read())
 			func=myParser.getfunc()
 			func()
