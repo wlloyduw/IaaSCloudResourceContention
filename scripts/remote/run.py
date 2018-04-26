@@ -14,12 +14,12 @@ def main(argv):
 	try:
 		opts, args = getopt.getopt(argv,"hc:i:")
 	except getopt.GetoptError:
-		print 'run.py -c <num of cycles> -i <exp_id>'
+		print('run.py -c <num of cycles> -i <exp_id>')
 		sys.exit(2)
 	for opt, arg in opts:
 		if opt == '-h':
-			print 'test.py -c <how many cycles per experiment run>\n\
-			 -i <ID should be unique by each time we run.py but shared amoung all instances>'
+			print('test.py -c <how many cycles per experiment run>\n\
+			 -i <ID should be unique by each time we run.py but shared amoung all instances>')
 			sys.exit()
 		elif opt in ("-i"):
 			ID = arg
