@@ -31,8 +31,8 @@ class parser(object):
             
             for line in self.string:
                 row['instanceID']=os.popen('curl --connect-timeout 1 http://169.254.169.254/latest/meta-data/public-hostname').read()
-                row['experimentID']=kw['experimentID']
-                row['testOption']=kw['testOption']
+                row['experimentID']=self.kw['experimentID']
+                row['testOption']=self.kw['testOption']
                 #todo instanceID experimentID testOption
                 if line.find('Multi-core Efficiency')!=-1:
                     obj = re.search(r'(\d*\.\d* %)',line)
@@ -89,13 +89,15 @@ class parser(object):
 
 
 class Experiment(object):
-	def __init__(self, benchmark,cycle,parameter):
+	def __init__(self, benchmark,cycle,parameter,experimentID):
 		self.benchmark = benchmark
 		self.cycle=int(cycle)
-		self.parameter=parameter;
+		self.parameter=parameter
+		self.experimentID=experimentID
 	def run(self):
 		for i in range(self.cycle):
-			myParser=parser(self.benchmark,os.popen(const.command[self.benchmark]+self.parameter[self.benchmark]).read())
+			myParser=parser(self.benchmark,os.popen(const.command[self.benchmark]+self.parameter[self.benchmark]).read(),\
+				'testOption'=self.parameter[self.benchmark],'experimentID'=self.experimentID)
 			func=myParser.getfunc()
 			func()
 		
