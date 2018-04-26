@@ -82,17 +82,17 @@ class parser(object):
     def bandwidth(self):
         pass
     def mbw(self):
-        pass
+		pass
 
     def getfunc(self):
         return getattr(self,self.benchmark)
 
 
 class Experiment(object):
-	def __init__(self, benchmark,cycle,*args,**kw):
+	def __init__(self, benchmark,cycle,parameter):
 		self.benchmark = benchmark
 		self.cycle=int(cycle)
-		self.parameter=kw;
+		self.parameter=parameter;
 	def run(self):
 		for i in range(self.cycle):
 			myParser=parser(self.benchmark,os.popen(const.command[self.benchmark]+self.parameter[self.benchmark]).read())
