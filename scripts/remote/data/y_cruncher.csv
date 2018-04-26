@@ -1,6 +1,0 @@
-instanceID,experimentID,testStartTime,memoryInfo,processorInfo,sysTopology,osVersion,testName,testOption,availableMemory,isMultiThread,cpuUtilization,multiCoreEfficiency,computationTime,wallTime
-,,Mon Apr 23 05:54:06 2018,991 MiB,Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz,1 thread / 1 core / 1 socket / 1 NUMA node,0.7.5.9480 (Linux/13-HSW ~ Airi),,,681 MiB,None,99.84 %,99.84 %,9.845,10.013
-0,,Mon Apr 23 05:54:06 2018,991 MiB,Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz,1 thread / 1 core / 1 socket / 1 NUMA node,0.7.5.9480 (Linux/13-HSW ~ Airi),,,681 MiB,None,99.84 %,99.84 %,9.845,10.013
-,,Mon Apr 23 05:54:06 2018,991 MiB,Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz,1 thread / 1 core / 1 socket / 1 NUMA node,0.7.5.9480 (Linux/13-HSW ~ Airi),,,681 MiB,None,99.84 %,99.84 %,9.845,10.013
-,,Mon Apr 23 05:54:06 2018,991 MiB,Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz,1 thread / 1 core / 1 socket / 1 NUMA node,0.7.5.9480 (Linux/13-HSW ~ Airi),,,681 MiB,None,99.84 %,99.84 %,9.845,10.013
-,,Mon Apr 23 05:54:06 2018,991 MiB,Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz,1 thread / 1 core / 1 socket / 1 NUMA node,0.7.5.9480 (Linux/13-HSW ~ Airi),,,681 MiB,None,99.84 %,99.84 %,9.845,10.013
