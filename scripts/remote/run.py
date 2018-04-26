@@ -13,7 +13,7 @@ def main(argv):
 	cycle='10'
 	try:
 		opts, args = getopt.getopt(argv,"hc:i:")
-   	except getopt.GetoptError:
+	except getopt.GetoptError:
 		print 'run.py -c <num of cycles> -i <exp_id>'
 		sys.exit(2)
 	for opt, arg in opts:
@@ -34,4 +34,4 @@ def main(argv):
 	e4=None
 
 if __name__ == "__main__":
-   main(sys.argv[1:])
+	main(sys.argv[1:])
