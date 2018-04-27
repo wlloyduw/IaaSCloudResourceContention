@@ -33,6 +33,8 @@ def main(argv):
 	e2=Experiment(const.y_cruncher,cycle,parameter,ID)
 	e3=None
 	e4=None
+	#clean up
+	os.system('rm Pi*')
 
 if __name__ == "__main__":
 	main(sys.argv[1:])
