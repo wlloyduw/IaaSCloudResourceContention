@@ -20,9 +20,9 @@ class parser(object):
 
     def y_cruncher(self):
         needHeader=False
-        if not os.path.isfile('./data/y_cruncher.csv'):
+        if not os.path.isfile(const.datadir+'y_cruncher.csv'):
             needHeader=True
-        with open('./data/y_cruncher.csv', 'a') as fout:
+        with open(const.datadir+'y_cruncher.csv', 'a') as fout:
             row=OrderedDict([('instanceID',None),('experimentID',None),('instanceType',None),\
                             ('memoryInfo',None),('processorInfo',None),('sysTopology',None),\
                              ('osVersion',None),('testStartTime',None),('testOption',None),('availableMemory',None),\
