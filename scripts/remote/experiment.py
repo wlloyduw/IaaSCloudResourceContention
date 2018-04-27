@@ -23,7 +23,7 @@ class parser(object):
         if not os.path.isfile('./data/y_cruncher.csv'):
             needHeader=True
         with open('./data/y_cruncher.csv', 'a') as fout:
-            row=OrderedDict([('instanceID',None),('experimentID',None),('instanceType',None)\
+            row=OrderedDict([('instanceID',None),('experimentID',None),('instanceType',None),\
                             ('memoryInfo',None),('processorInfo',None),('sysTopology',None),\
                              ('osVersion',None),('testStartTime',None),('testOption',None),('availableMemory',None),\
                             ('isMultiThread',None),('cpuUtilization',None),('multiCoreEfficiency',None),\
