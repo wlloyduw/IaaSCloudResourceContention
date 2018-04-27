@@ -1,0 +1,61 @@
+instanceID,experimentID,memoryInfo,processorInfo,sysTopology,osVersion,testStartTime,testOption,availableMemory,isMultiThread,cpuUtilization,multiCoreEfficiency,computationTime,wallTime
+ec2-34-203-13-231.compute-1.amazonaws.com,0,991 MiB,Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz,1 thread / 1 core / 1 socket / 1 NUMA node,0.7.5.9480 (Linux/13-HSW ~ Airi),Thu Apr 26 10:51:52 2018,"EOF
+0
+1
+1
+EOF
+",202 MiB,None,99.38 %,99.38 %,10.033,10.561
+ec2-34-203-13-231.compute-1.amazonaws.com,0,991 MiB,Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz,1 thread / 1 core / 1 socket / 1 NUMA node,0.7.5.9480 (Linux/13-HSW ~ Airi),Thu Apr 26 10:52:06 2018,"EOF
+0
+1
+1
+EOF
+",282 MiB,None,99.76 %,99.76 %,9.904,10.167
+ec2-34-203-13-231.compute-1.amazonaws.com,0,991 MiB,Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz,1 thread / 1 core / 1 socket / 1 NUMA node,0.7.5.9480 (Linux/13-HSW ~ Airi),Thu Apr 26 10:52:19 2018,"EOF
+0
+1
+1
+EOF
+",285 MiB,None,99.82 %,99.82 %,9.858,10.083
+ec2-34-203-13-231.compute-1.amazonaws.com,0,991 MiB,Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz,1 thread / 1 core / 1 socket / 1 NUMA node,0.7.5.9480 (Linux/13-HSW ~ Airi),Thu Apr 26 10:52:32 2018,"EOF
+0
+1
+1
+EOF
+",288 MiB,None,99.88 %,99.88 %,9.792,10.012
+ec2-34-203-13-231.compute-1.amazonaws.com,0,991 MiB,Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz,1 thread / 1 core / 1 socket / 1 NUMA node,0.7.5.9480 (Linux/13-HSW ~ Airi),Thu Apr 26 10:52:45 2018,"EOF
+0
+1
+1
+EOF
+",283 MiB,None,99.79 %,99.79 %,9.881,10.107
+ec2-34-203-13-231.compute-1.amazonaws.com,0,991 MiB,Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz,1 thread / 1 core / 1 socket / 1 NUMA node,0.7.5.9480 (Linux/13-HSW ~ Airi),Thu Apr 26 10:52:58 2018,"EOF
+0
+1
+1
+EOF
+",282 MiB,None,99.67 %,99.67 %,9.893,10.109
+ec2-34-203-13-231.compute-1.amazonaws.com,0,991 MiB,Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz,1 thread / 1 core / 1 socket / 1 NUMA node,0.7.5.9480 (Linux/13-HSW ~ Airi),Thu Apr 26 10:53:11 2018,"EOF
+0
+1
+1
+EOF
+",282 MiB,None,99.73 %,99.73 %,9.877,10.100
+ec2-34-203-13-231.compute-1.amazonaws.com,0,991 MiB,Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz,1 thread / 1 core / 1 socket / 1 NUMA node,0.7.5.9480 (Linux/13-HSW ~ Airi),Thu Apr 26 10:53:24 2018,"EOF
+0
+1
+1
+EOF
+",283 MiB,None,99.67 %,99.67 %,9.883,10.115
+ec2-34-203-13-231.compute-1.amazonaws.com,0,991 MiB,Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz,1 thread / 1 core / 1 socket / 1 NUMA node,0.7.5.9480 (Linux/13-HSW ~ Airi),Thu Apr 26 10:53:37 2018,"EOF
+0
+1
+1
+EOF
+",279 MiB,None,99.76 %,99.76 %,9.804,10.022
+ec2-34-203-13-231.compute-1.amazonaws.com,0,991 MiB,Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz,1 thread / 1 core / 1 socket / 1 NUMA node,0.7.5.9480 (Linux/13-HSW ~ Airi),Thu Apr 26 10:53:49 2018,"EOF
+0
+1
+1
+EOF
+",278 MiB,None,99.76 %,99.76 %,9.823,10.041

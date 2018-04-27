@@ -14,12 +14,16 @@ class parser(object):
         self.string=string.split('\n')
         self.benchmark=benchmark
         self.kw=kw
+        ec2metadata=os.popen('ec2metadata').read()
+        self.kw['instanceType']=re.search(r'instance-type: (\w*\.\w*)',ec2metadata)
+        self.kw['instanceID']=re.search(r'instance-id: (.*)\n',ec2metadata)
+
     def y_cruncher(self):
         needHeader=False
         if not os.path.isfile('./data/y_cruncher.csv'):
             needHeader=True
         with open('./data/y_cruncher.csv', 'a') as fout:
-            row=OrderedDict([('instanceID',None),('experimentID',None),\
+            row=OrderedDict([('instanceID',None),('experimentID',None),('instanceType',None)\
                             ('memoryInfo',None),('processorInfo',None),('sysTopology',None),\
                              ('osVersion',None),('testStartTime',None),('testOption',None),('availableMemory',None),\
                             ('isMultiThread',None),('cpuUtilization',None),('multiCoreEfficiency',None),\
@@ -28,12 +32,15 @@ class parser(object):
             writer = csv.DictWriter(fout,fieldnames=row)
             if needHeader:
                 writer.writeheader()
-            
-            for line in self.string:
-                row['instanceID']=os.popen('curl --connect-timeout 1 http://169.254.169.254/latest/meta-data/public-hostname').read()
-                row['experimentID']=self.kw['experimentID']
-                row['testOption']=self.kw['testOption']
+
+            row['instanceType']=self.kw['instanceType']
+            row['instanceID']=self.kw['instanceID']
+            row['experimentID']=self.kw['experimentID']
+            row['testOption']=self.kw['testOption']
+
                 #todo instanceID experimentID testOption
+            for line in self.string:
+
                 if line.find('Multi-core Efficiency')!=-1:
                     obj = re.search(r'(\d*\.\d* %)',line)
                     row['multiCoreEfficiency']=obj.group(1)
