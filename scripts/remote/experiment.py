@@ -32,12 +32,18 @@ class parser(object):
             writer = csv.DictWriter(fout,fieldnames=row)
             if needHeader:
                 writer.writeheader()
+<<<<<<< HEAD
 
             row['instanceType']=self.kw['instanceType']
             row['instanceID']=self.kw['instanceID']
             row['experimentID']=self.kw['experimentID']
             row['testOption']=self.kw['testOption']
 
+=======
+            row['instanceID']=os.popen('curl --connect-timeout 1 http://169.254.169.254/latest/meta-data/public-hostname').read()
+            row['experimentID']=self.kw['experimentID']
+            row['testOption']=self.kw['testOption']
+>>>>>>> ed6e564561c98dc778c9b85c8d7feb86eb91166f
                 #todo instanceID experimentID testOption
             for line in self.string:
 
