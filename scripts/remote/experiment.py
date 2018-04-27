@@ -50,7 +50,7 @@ class parser(object):
                     obj = re.search(r'\[01;36m(\w*)',line)
                     row['isMultiThread']=obj.group(1)
                 if line.find('Available Memory')!=-1:
-                    obj = re.search(r'(\d* MiB)',line)
+                    obj = re.search(r'(\d* \w*?B)',line)
                     row['availableMemory']=obj.group(1)
                 if line.find('Version')!=-1:
                     obj = re.search(r'(\s+)(.*)',line)
@@ -62,7 +62,7 @@ class parser(object):
                     obj = re.search(r'(\s+)(.*)',line)
                     row['processorInfo']=obj.group(2)
                 if line.find('Usable Memory')!=-1:
-                    obj = re.search(r'(\d* MiB)',line)
+                    obj = re.search(r'(\d* \w*?B)',line)
                     row['memoryInfo']=obj.group(1)
                 if line.find('Start Time')!=-1:
                     obj = re.search( r'Start Time: .*?(01;33m)(.*)(\[01;37m)', line)
