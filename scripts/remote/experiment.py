@@ -28,12 +28,12 @@ class parser(object):
             writer = csv.DictWriter(fout,fieldnames=row)
             if needHeader:
                 writer.writeheader()
-            
-            for line in self.string:
-                row['instanceID']=os.popen('curl --connect-timeout 1 http://169.254.169.254/latest/meta-data/public-hostname').read()
-                row['experimentID']=self.kw['experimentID']
-                row['testOption']=self.kw['testOption']
+            row['instanceID']=os.popen('curl --connect-timeout 1 http://169.254.169.254/latest/meta-data/public-hostname').read()
+            row['experimentID']=self.kw['experimentID']
+            row['testOption']=self.kw['testOption']
                 #todo instanceID experimentID testOption
+            for line in self.string:
+
                 if line.find('Multi-core Efficiency')!=-1:
                     obj = re.search(r'(\d*\.\d* %)',line)
                     row['multiCoreEfficiency']=obj.group(1)
