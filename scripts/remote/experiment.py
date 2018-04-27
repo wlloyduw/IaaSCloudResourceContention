@@ -15,8 +15,8 @@ class parser(object):
         self.benchmark=benchmark
         self.kw=kw
         ec2metadata=os.popen('ec2metadata').read()
-        self.kw['instanceType']=re.search(r'instance-type: (\w*\.\w*)',ec2metadata)
-        self.kw['instanceID']=re.search(r'instance-id: (.*)\n',ec2metadata)
+        self.kw['instanceType']=re.search(r'instance-type: (\w*\.\w*)',ec2metadata).group(1)
+        self.kw['instanceID']=re.search(r'instance-id: (.*)\n',ec2metadata).group(1)
 
     def y_cruncher(self):
         needHeader=False
