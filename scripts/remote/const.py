@@ -32,4 +32,4 @@ y_cruncher=sys.modules[__name__].y_cruncher='y_cruncher'
 
 dic=sys.modules[__name__].command=dict()
 dic[y_cruncher]='~/CPU_test/y-cruncher\ v0.7.5.9480-static/y-cruncher <<'
-sys.modules[__name__].datadir='~/SCRIPT/scripts/remote/data/'
+sys.modules[__name__].datadir='/home/ubuntu/SCRIPT/scripts/remote/data/'
