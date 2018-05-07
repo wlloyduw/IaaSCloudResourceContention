@@ -232,3 +232,11 @@ CPU Base Frequency:   2,400,086,928[22;36m Hz
 [01;32mValidation File: [01;35mPi - 20180423-055416.txt
 [01;37m[39;49m
 [39;49m
+
+
+
+###
+Computation Mode:     Ram Only
+Multi-Threading:      Push Pool  ->  2 / ?  (randomization on)
+
+Start Time: Sun May  6 08:28:58 2018
