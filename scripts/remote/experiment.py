@@ -22,6 +22,7 @@ class parser(object):
         needHeader=False
         if not os.path.isfile(const.datadir+'y_cruncher.csv'):
             needHeader=True
+        os.system("mkdir "+const.datadir)
         with open(const.datadir+'y_cruncher.csv', 'a') as fout:
             row=OrderedDict([('instanceID',None),('experimentID',None),('instanceType',None),\
                             ('memoryInfo',None),('processorInfo',None),('sysTopology',None),\
