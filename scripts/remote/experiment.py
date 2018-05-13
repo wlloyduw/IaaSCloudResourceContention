@@ -7,6 +7,7 @@ import re
 import csv
 import const
 import os
+import time
 from collections import OrderedDict
 class parser(object):
     #kw need experimentID testOption
@@ -18,6 +19,7 @@ class parser(object):
         self.kw['instanceType']=re.search(r'instance-type: (\w*\.\w*)',ec2metadata).group(1)
         self.kw['instanceID']=re.search(r'instance-id: (.*)\n',ec2metadata).group(1)
 
+
     def y_cruncher(self):
         needHeader=False
         if not os.path.isfile(const.datadir+'y_cruncher.csv'):
@@ -26,19 +28,21 @@ class parser(object):
         with open(const.datadir+'y_cruncher.csv', 'a') as fout:
             row=OrderedDict([('instanceID',None),('experimentID',None),('instanceType',None),\
                             ('memoryInfo',None),('processorInfo',None),('sysTopology',None),\
-                             ('osVersion',None),('testStartTime',None),('testOption',None),('availableMemory',None),\
+                             ('osVersion',None),('testStartTime',None),('availableMemory',None),\
                             ('isMultiThread',None),('cpuUtilization',None),('multiCoreEfficiency',None),\
-                            ('computationTime',None),('wallTime',None)\
+                            ('computationTime',None),('benchmarkTime',None),('benchmarkTime',None)\
                             ])
+            #benchmarkTime = computationTime + I/O operation overhead
             writer = csv.DictWriter(fout,fieldnames=row)
             if needHeader:
                 writer.writeheader()
             row['instanceType']=self.kw['instanceType']
             row['instanceID']=self.kw['instanceID']
             row['experimentID']=self.kw['experimentID']
-            row['testOption']=self.kw['testOption']
+            row['benchmarkTime']=self.kw['duration']
+            #row['testOption']=self.kw['testOption']
 
-                #todo instanceID experimentID testOption
+                
             for line in self.string:
 
                 if line.find('Multi-core Efficiency')!=-1:
@@ -51,7 +55,7 @@ class parser(object):
                     obj = re.search(r'\[01;36m(\w*)',line)
                     row['isMultiThread']=obj.group(1)
                 if line.find('Available Memory')!=-1:
-                    obj = re.search(r'(\d*.*? \w*?B)',line)
+                    obj = re.search(r'\[01;33m(*.*? \w*?B)',line)
                     row['availableMemory']=obj.group(1)
                 if line.find('Version')!=-1:
                     obj = re.search(r'(\s+)(.*)',line)
@@ -63,14 +67,14 @@ class parser(object):
                     obj = re.search(r'(\s+)(.*)',line)
                     row['processorInfo']=obj.group(2)
                 if line.find('Usable Memory')!=-1:
-                    obj = re.search(r'(\d*.*? \w*?B)',line)
+                    obj = re.search(r'\((*.*? \w*?B)',line)
                     row['memoryInfo']=obj.group(1)
                 if line.find('Start Time')!=-1:
                     obj = re.search( r'Start Time: .*?(01;33m)(.*)(\[01;37m)', line)
                     row['testStartTime']=obj.group(2)
                 if line.find('Wall Time')!=-1:
                     obj = re.search( r'(\d*\.\d*).*seconds', line)
-                    row['wallTime']=obj.group(1)
+                    row['benchmarkTime']=obj.group(1)
                 if line.find('Total Computation')!=-1:
                     obj = re.search( r'(\d*\.\d*).*seconds', line)
                     row['computationTime']=obj.group(1)
@@ -103,8 +107,12 @@ class Experiment(object):
 		self.experimentID=experimentID
 	def run(self):
 		for i in range(self.cycle):
-			myParser=parser(self.benchmark,os.popen(const.command[self.benchmark]+self.parameter[self.benchmark]).read(),\
-				testOption=self.parameter[self.benchmark],experimentID=self.experimentID)
+            time1=time.time()
+            result=os.popen(const.command[self.benchmark]+self.parameter[self.benchmark]).read()
+            time2=time.time()
+            duration=time2-time1 # unit in seconds
+			myParser=parser(self.benchmark,result,testOption=self.parameter[self.benchmark],\
+                duration=duration,experimentID=self.experimentID)
 			func=myParser.getfunc()
 			func()
 		

@@ -1,16 +1,26 @@
+#!/usr/local/bin/python3
+# -*- coding: utf-8 -*-
 import os
 import csv
+import threading
 def download():
 	with open('hostfile_pssh','r') as f:
 		hostlist=f.read()
 		hostlist=hostlist.strip().split('\n')
 	datadir=':~/SCRIPT/scripts/remote/data ../../cleandata/'
 	command ='scp -i as0.pem -r '
-
+	threadlist=[]
 	for host in hostlist:
 		wholecommand=command+host+datadir+host
-		os.system(wholecommand)
-
+		def func(i):
+			def run():
+				os.system(i)
+			return threading.Thread(target=run,name=i)
+		threadlist.append(func(wholecommand))
+	for threads in threadlist:
+		threads.start()
+	for threads in threadlist:
+		threads.join()
 
 def collecter(filename):
 	a=os.popen('ls ../../cleandata/./').read()

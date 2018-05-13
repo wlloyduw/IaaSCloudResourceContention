@@ -9,7 +9,7 @@ from experiment import Experiment
 #use ‘<<’ and delimiter play with interactive benchmark
 #Experiment(benchmark,cycle,parameter,experimentID):
 def main(argv):
-	parameter=dict([(const.y_cruncher,'EOF\n0\n1\n1\nEOF\n'),(const.sysbench,'')])
+	parameter=dict([(const.y_cruncher,const.y_cruncher_option),(const.sysbench,'')])
 	ID='0'
 	cycle='10'
 	try:

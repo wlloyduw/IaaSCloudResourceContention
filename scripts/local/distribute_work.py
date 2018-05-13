@@ -1,3 +1,5 @@
+#!/usr/local/bin/python3
+# -*- coding: utf-8 -*-
 import os
 import getopt
 import sys
@@ -27,7 +29,7 @@ def getPublicIpPool():
 
 
 def main(argv):
-	notice='#distribute_work.py# -t <minute:hour:day in UTC> -c <minutes count down>'
+	notice='#distribute_work.py# -t <minute:hour:day in UTC> -c <minutes count down> -n <num of works>'
 	if len(argv)==0:
 		print(notice)
 		sys.exit()
