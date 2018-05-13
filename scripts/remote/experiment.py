@@ -30,7 +30,7 @@ class parser(object):
                             ('memoryInfo',None),('processorInfo',None),('sysTopology',None),\
                              ('osVersion',None),('testStartTime',None),('availableMemory',None),\
                             ('isMultiThread',None),('cpuUtilization',None),('multiCoreEfficiency',None),\
-                            ('computationTime',None),('benchmarkTime',None),('benchmarkTime',None)\
+                            ('computationTime',None),('benchmarkTime',None),('wallTime',None)\
                             ])
             #benchmarkTime = computationTime + I/O operation overhead
             writer = csv.DictWriter(fout,fieldnames=row)
@@ -39,7 +39,7 @@ class parser(object):
             row['instanceType']=self.kw['instanceType']
             row['instanceID']=self.kw['instanceID']
             row['experimentID']=self.kw['experimentID']
-            row['benchmarkTime']=self.kw['duration']
+            row['wallTime']=self.kw['duration']
             #row['testOption']=self.kw['testOption']
 
                 
@@ -55,7 +55,7 @@ class parser(object):
                     obj = re.search(r'\[01;36m(\w*)',line)
                     row['isMultiThread']=obj.group(1)
                 if line.find('Available Memory')!=-1:
-                    obj = re.search(r'\[01;33m(*.*? \w*?B)',line)
+                    obj = re.search(r'1;33m(.*?B)',line)
                     row['availableMemory']=obj.group(1)
                 if line.find('Version')!=-1:
                     obj = re.search(r'(\s+)(.*)',line)
@@ -67,7 +67,7 @@ class parser(object):
                     obj = re.search(r'(\s+)(.*)',line)
                     row['processorInfo']=obj.group(2)
                 if line.find('Usable Memory')!=-1:
-                    obj = re.search(r'\((*.*? \w*?B)',line)
+                    obj = re.search(r'\((.*?B)',line)
                     row['memoryInfo']=obj.group(1)
                 if line.find('Start Time')!=-1:
                     obj = re.search( r'Start Time: .*?(01;33m)(.*)(\[01;37m)', line)
@@ -100,19 +100,19 @@ class parser(object):
 
 
 class Experiment(object):
-	def __init__(self, benchmark,cycle,parameter,experimentID):
-		self.benchmark = benchmark
-		self.cycle=int(cycle)
-		self.parameter=parameter
-		self.experimentID=experimentID
-	def run(self):
-		for i in range(self.cycle):
+    def __init__(self, benchmark,cycle,parameter,experimentID):
+        self.benchmark = benchmark
+        self.cycle=int(cycle)
+        self.parameter=parameter
+        self.experimentID=experimentID
+    def run(self):
+        for i in range(self.cycle):
             time1=time.time()
             result=os.popen(const.command[self.benchmark]+self.parameter[self.benchmark]).read()
             time2=time.time()
             duration=time2-time1 # unit in seconds
-			myParser=parser(self.benchmark,result,testOption=self.parameter[self.benchmark],\
+            myParser=parser(self.benchmark,result,testOption=self.parameter[self.benchmark],\
                 duration=duration,experimentID=self.experimentID)
-			func=myParser.getfunc()
-			func()
-		
+            func=myParser.getfunc()
+            func()
+        
