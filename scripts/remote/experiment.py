@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-'run.py a experiment.py  with parameter'
+'''
+run.py a experiment.py  with parameter; 
+data should be collect every run, otherwise it will be overwrite;
+'''
 
 import re
 import csv
