@@ -110,6 +110,9 @@ class Experiment(object):
         self.experimentID=experimentID
     def run(self):
         for i in range(self.cycle):
+        	#flush cache
+        	os.system("echo 3 > /proc/sys/vm/drop_caches")
+        	#time stamp that user percieved
             time1=time.time()
             result=os.popen(const.command[self.benchmark]+self.parameter[self.benchmark]).read()
             time2=time.time()
