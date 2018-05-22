@@ -35,4 +35,4 @@ dic=sys.modules[__name__].command=dict()
 dic[y_cruncher]='~/CPU_test/y-cruncher\ v0.7.5.9480-static/y-cruncher <<'
 sys.modules[__name__].datadir='/home/ubuntu/SCRIPT/scripts/remote/data/'
 ##the 3rd position decide the number of digits 1 - 25m, 2 - 50m, 3 - 100m, 4 - 250m
-sys.modules[__name__].y_cruncher_option='EOF\n0\n1\n1\nEOF\n' 
+sys.modules[__name__].y_cruncher_option='EOF\n0\n1\n7\nEOF\n' 
