@@ -7,7 +7,7 @@ import datetime
 from dateutil.relativedelta import relativedelta
 import threading
 
-def pssh(minute='*',hour='*',day='*',cycles='10',benchmark):
+def pssh(minute='*',hour='*',day='*',cycles='10',benchmark='pgbench'):
 	#chaos, legacy, hard to modify, but excute fast
 	#in some aspect, pssh=pssh_v2+cloneGitRepo
 	shellscript=r'''
@@ -21,7 +21,7 @@ def pssh(minute='*',hour='*',day='*',cycles='10',benchmark):
 	respond=os.popen(shellscript).read()
 	print(respond)
 
-def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5),cycles='10',interval=15,benchmark):
+def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5),cycles='10',interval=15,benchmark='pgbench'):
 	#override pssh when doing 1to16 dedicated host experiment
 	#copy each 'crontab' to its instance
 	os.system('cp crontab.bak crontab')
