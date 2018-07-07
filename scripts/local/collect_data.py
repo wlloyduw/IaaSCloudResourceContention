@@ -48,4 +48,4 @@ def collecter(filename):
 	os.system('rm -r ../../cleandata/ubuntu*')
 
 download()
-collecter('y_cruncher.csv')
+collecter('pgbench.csv')

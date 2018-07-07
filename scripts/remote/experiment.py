@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-run.py a experiment.py  with parameter; 
+run.py a experiment.py  with options; 
 data should be collect every run, otherwise it will be overwrite;
 '''
 
@@ -85,6 +85,48 @@ class parser(object):
         
             writer.writerow(row)
             
+    def pgbench(self):
+        needHeader=False
+        if not os.path.isfile(const.datadir+'pgbench.csv'):
+            needHeader=True
+        os.system("mkdir "+const.datadir)
+        with open(const.datadir+'pgbench.csv', 'a') as fout:
+            row=OrderedDict([('instanceID',None),('experimentID',None),('instanceType',None),('wallTime',None),\
+                            ('clients',None),('threads',None),('scaleFactor',None),('transactionsType',None),\
+                            ('queryMode',None),('duration',None),('transactions',None)\
+                            ])
+            writer = csv.DictWriter(fout,fieldnames=row)
+            if needHeader:
+                writer.writeheader()
+            row['instanceType']=self.kw['instanceType']
+            row['instanceID']=self.kw['instanceID']
+            row['experimentID']=self.kw['experimentID']
+            row['wallTime']=self.kw['duration']
+
+            for line in self.string:
+                if line.find('clients:')!=-1:
+                    obj = re.search(r'(\d*)',line)
+                    row['clients']=obj.group(1)
+                if line.find('threads:')!=-1:
+                    obj = re.search(r'(\d*)',line)
+                    row['threads']=obj.group(1)
+                if line.find('factor:')!=-1:
+                    obj = re.search(r'(\d*)',line)
+                    row['scaleFactor']=obj.group(1)
+                if line.find('type:')!=-1:
+                    obj = re.search(r': (.*)',line)
+                    row['transactionsType']=obj.group(1)
+                if line.find('mode:')!=-1:
+                    obj = re.search(r': (.*)',line)
+                    row['queryMode']=obj.group(1)
+                if line.find('duration:')!=-1:
+                    obj = re.search(r': (.*)',line)
+                    row['duration']=obj.group(1)
+                if line.find('processed:')!=-1:
+                    obj = re.search(r'(\d*)',line)
+                    row['transactions']=obj.group(1)
+            writer.writerow(row)
+        pass
     def sysbench(self):
         pass
     def stress_ng(self):
@@ -103,10 +145,10 @@ class parser(object):
 
 
 class Experiment(object):
-    def __init__(self, benchmark,cycle,parameter,experimentID):
+    def __init__(self, benchmark,cycle,options,experimentID):
         self.benchmark = benchmark
         self.cycle=int(cycle)
-        self.parameter=parameter
+        self.options=options
         self.experimentID=experimentID
     def run(self):
         for i in range(self.cycle):
@@ -114,10 +156,10 @@ class Experiment(object):
             os.popen("echo 3 | sudo tee /proc/sys/vm/drop_caches").read()
             #time stamp that user percieved
             time1=time.time()
-            result=os.popen(const.command[self.benchmark]+self.parameter[self.benchmark]).read()
+            result=os.popen(const.command[self.benchmark]+self.options[self.benchmark]).read()
             time2=time.time()
             duration=time2-time1 # unit in seconds
-            myParser=parser(self.benchmark,result,testOption=self.parameter[self.benchmark],\
+            myParser=parser(self.benchmark,result,testOption=self.options[self.benchmark],\
                 duration=duration,experimentID=self.experimentID)
             func=myParser.getfunc()
             func()

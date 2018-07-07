@@ -7,9 +7,9 @@ import const
 import getopt
 from experiment import Experiment
 #use ‘<<’ and delimiter play with interactive benchmark
-#Experiment(benchmark,cycle,parameter,experimentID):
+#Experiment(benchmark,cycle,options,experimentID):
 def main(argv):
-	parameter=dict([(const.y_cruncher,const.y_cruncher_option),(const.sysbench,'')])
+	options=dict([(const.y_cruncher,const.y_cruncher_option),(const.pgbench,const.pgbench_option)])
 	ID='0'
 	cycle='10'
 	try:
@@ -27,12 +27,11 @@ def main(argv):
 		elif opt in ("-c"):
 			cycle = arg
 
-
-	e1=Experiment(const.y_cruncher,cycle,parameter,ID)
-	e1.run()
-	e2=Experiment(const.y_cruncher,cycle,parameter,ID)
-	e3=None
-	e4=None
+	#do experiment HERE!!!
+	# e1=Experiment(const.y_cruncher,cycle,options,ID)
+	# e1.run()
+	e2=Experiment(const.pgbench,cycle,options,ID)
+	e2.run();
 	#clean up
 	os.system('rm Pi*')
 
