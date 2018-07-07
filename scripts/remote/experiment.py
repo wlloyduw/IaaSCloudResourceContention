@@ -105,13 +105,13 @@ class parser(object):
 
             for line in self.string:
                 if line.find('clients:')!=-1:
-                    obj = re.search(r'(\d*)',line)
+                    obj = re.search(r'(\d+)',line)
                     row['clients']=obj.group(1)
                 if line.find('threads:')!=-1:
-                    obj = re.search(r'(\d*)',line)
+                    obj = re.search(r'(\d+)',line)
                     row['threads']=obj.group(1)
                 if line.find('factor:')!=-1:
-                    obj = re.search(r'(\d*)',line)
+                    obj = re.search(r'(\d+)',line)
                     row['scaleFactor']=obj.group(1)
                 if line.find('type:')!=-1:
                     obj = re.search(r': (.*)',line)
@@ -123,7 +123,7 @@ class parser(object):
                     obj = re.search(r': (.*)',line)
                     row['duration']=obj.group(1)
                 if line.find('processed:')!=-1:
-                    obj = re.search(r'(\d*)',line)
+                    obj = re.search(r'(\d+)',line)
                     row['transactions']=obj.group(1)
             writer.writerow(row)
         pass

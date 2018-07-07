@@ -7,13 +7,13 @@ import datetime
 from dateutil.relativedelta import relativedelta
 import threading
 
-def pssh(minute='*',hour='*',day='*',cycles='10'):
+def pssh(minute='*',hour='*',day='*',cycles='10',benchmark):
 	#chaos, legacy, hard to modify, but excute fast
 	#in some aspect, pssh=pssh_v2+cloneGitRepo
 	shellscript=r'''
 	set -f
 	id=$(date -u +%s)
-	_task='''+"'"+minute+" "+hour+" "+day+''' * * ubuntu python3  ~/SCRIPT/scripts/remote/run.py -c '''+cycles+''' -i '$id
+	_task='''+"'"+minute+" "+hour+" "+day+''' * * ubuntu python3  ~/SCRIPT/scripts/remote/run.py -c '''+cycles+' -t '+benchmark+''' -i '$id
 	task=\\'$_task\\'
 	psshcommand='set -f && eval "$(ssh-agent -s)" && ssh-add -k ~/.ssh/git_capstone && rm -rf Capstone SCRIPT && git clone git@github.com:khaosminded/Capstone.git  && mv Capstone SCRIPT && cd ~/SCRIPT && cp /etc/crontab . && echo '$task' >> crontab && sudo mv crontab /etc/crontab && sudo chown root.root /etc/crontab && sudo service cron reload'
 	pssh -i -h hostfile_pssh -x "-i ~/.ssh/as0.pem" $psshcommand
@@ -21,7 +21,7 @@ def pssh(minute='*',hour='*',day='*',cycles='10'):
 	respond=os.popen(shellscript).read()
 	print(respond)
 
-def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5),cycles='10',interval=15):
+def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5),cycles='10',interval=15,benchmark):
 	#override pssh when doing 1to16 dedicated host experiment
 	#copy each 'crontab' to its instance
 	os.system('cp crontab.bak crontab')
@@ -29,7 +29,7 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5),cycl
 	def getPsshcommand(minute,hour,day,HOST_STRING):
 		return '''
 		set -f
-		psshcommand='set -f && echo "''' +minute+ " " +hour+ " " +day+ ''' * * ubuntu python3  ~/SCRIPT/scripts/remote/run.py -c ''' +cycles+ ' -i ' +exp_id+ '''" >> crontab'
+		psshcommand='set -f && echo "''' +minute+ " " +hour+ " " +day+ ''' * * ubuntu python3  ~/SCRIPT/scripts/remote/run.py -c ''' +cycles+' -t '+benchmark+ ' -i ' +exp_id+ '''" >> crontab'
 		pssh -i -H "''' +HOST_STRING+ '''" -x "-i ~/.ssh/as0.pem" $psshcommand
 		'''
 
@@ -102,6 +102,7 @@ def getPublicIpPool():
 def main(argv):
 	notice='''#distribute_work.py# 
 	-h : help
+	-b <choose a benchmark>
 	-t/c <minute:hour:day in UTC>/<minutes count down> 
 	-n <num of works> 
 	-d <dedicated host mode interval>'''
@@ -109,7 +110,7 @@ def main(argv):
 		print(notice)
 		sys.exit()
 	try:
-		opts, args = getopt.getopt(argv,"ht:c:n:d:")
+		opts, args = getopt.getopt(argv,"ht:c:n:d:b:")
 	except getopt.GetoptError:
 		print(notice)
 		sys.exit(2)
@@ -118,11 +119,20 @@ def main(argv):
 	minute,hour,day,cycles='0，15，30，45','*','*','10'
 	target_time=None
 	iterative_interval=15
+	benchmark=None
 	#CLI input handler
+	for opt,arg in opts:
+		if opt in ("-b"):
+			benchmark=arg
+	if benchmark not in ['y_cruncher','pgbench']:
+		print('illegal benchmark')
+		sys.exit()
+
 	for opt, arg in opts:
 		if opt == '-h':
 			print('help:\n '+notice)
 			sys.exit()
+
 		elif opt in ("-t"):
 			minute=arg.strip().split(':')[0]
 			hour=arg.strip().split(':')[1]
@@ -145,11 +155,11 @@ def main(argv):
 			iterative_interval=int(arg)
 			getPublicIpPool()
 			cloneGitRepo()
-			pssh_v2(target_time,cycles,iterative_interval)
+			pssh_v2(target_time,cycles,iterative_interval,benchmark)
 			sys.exit()
 
 	getPublicIpPool()
-	pssh(minute,hour,day,cycles)
+	pssh(minute,hour,day,cycles,benchmark)
 
 
 

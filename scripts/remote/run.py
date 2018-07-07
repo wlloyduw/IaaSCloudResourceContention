@@ -12,10 +12,11 @@ def main(argv):
 	options=dict([(const.y_cruncher,const.y_cruncher_option),(const.pgbench,const.pgbench_option)])
 	ID='0'
 	cycle='10'
+	benchmark=const.pgbench
 	try:
 		opts, args = getopt.getopt(argv,"hc:i:")
 	except getopt.GetoptError:
-		print('run.py -c <num of cycles> -i <exp_id>')
+		print('run.py -c <num of cycles> -i <exp_id> -t <exp_type>')
 		sys.exit(2)
 	for opt, arg in opts:
 		if opt == '-h':
@@ -26,14 +27,17 @@ def main(argv):
 			ID = arg
 		elif opt in ("-c"):
 			cycle = arg
-
+		elif opt in ("-t"):
+			if arg in options.keys():
+				benchmark=arg
 	#do experiment HERE!!!
 	# e1=Experiment(const.y_cruncher,cycle,options,ID)
 	# e1.run()
-	e2=Experiment(const.pgbench,cycle,options,ID)
+	e2=Experiment(benchmark,cycle,options,ID)
 	e2.run();
 	#clean up
-	os.system('rm Pi*')
+	if benchmark in (const.y_cruncher):
+		os.system('rm Pi*')
 
 if __name__ == "__main__":
 	main(sys.argv[1:])
