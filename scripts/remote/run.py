@@ -14,7 +14,7 @@ def main(argv):
 	cycle='10'
 	benchmark=const.pgbench
 	try:
-		opts, args = getopt.getopt(argv,"hc:i:")
+		opts, args = getopt.getopt(argv,"hc:i:t:")
 	except getopt.GetoptError:
 		print('run.py -c <num of cycles> -i <exp_id> -t <exp_type>')
 		sys.exit(2)

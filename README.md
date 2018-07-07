@@ -1,5 +1,5 @@
 ## Capstone Project
-Multi-dimensional Public Cloud Resource Contention Detection
+Multi-dimensional Public Cloud Resource Contention Detection<br>
 Edward Han@UWT
 
 ## Abstract
