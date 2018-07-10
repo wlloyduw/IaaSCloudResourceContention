@@ -26,15 +26,15 @@ def collecter(filename):
 	a=os.popen('ls ../../cleandata/./').read()
 	a=a.strip().split('\n')
 	needHeader=False
-	if not os.path.isfile('../../cleandata/data/'+filename):
+	if not os.path.isfile('../../cleandata/'+filename):
 		needHeader=True
-		os.system('mkdir ../../cleandata/data')
-	f=open('../../cleandata/data/'+filename,'a')
+	f=open('../../cleandata/'+filename,'a')
 	writer=csv.writer(f)
 	for eachdir in a:
 		if 'ubuntu' in eachdir:
 			#print(eachdir)
-			path='../../cleandata/'+eachdir+'/'+filename
+			path='../../cleandata/'+eachdir+'/'
+			path+=os.listdir(path)[0]
 			with open(path,'r') as f:
 				reader=csv.reader(f)
 				if needHeader is True:
@@ -48,4 +48,4 @@ def collecter(filename):
 	os.system('rm -r ../../cleandata/ubuntu*')
 
 download()
-collecter('pgbench.csv')
+collecter('newdata.csv')

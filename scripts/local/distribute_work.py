@@ -125,7 +125,7 @@ def main(argv):
 		if opt in ("-b"):
 			benchmark=arg
 	if benchmark not in ['y_cruncher','pgbench']:
-		print('illegal benchmark')
+		print('illegal benchmark\n'+notice)
 		sys.exit()
 
 	for opt, arg in opts:
