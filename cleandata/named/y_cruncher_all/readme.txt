@@ -11,10 +11,11 @@ data index of iteration experiment on c4 dedicated host:
 
 Note:
 VMs involved
-		|VM15|
-		 ...
-      |VM1| ... |VM1|
-|VM0| |VM0| ... |VM0|
+
+|VM1 |		
+ ...   |VM2 |	
+|VM15|  ... 
+|VM16| |VM16| ... |VM16|
 --------------------------> Time line
 exp1  exp2  ... exp16.      Experiment name 
 
@@ -27,10 +28,10 @@ exp1  exp2  ... exp16.      Experiment name
 
 Note:
 VMs involved
-		|VM15|
-		 ...
-      |VM1| ... |VM1|
-|VM0| |VM0| ... |VM0|
+		  |VM1 |
+		   ...
+       |VM15| ... |VM15|
+|VM16| |VM16| ... |VM16|
 --------------------------> Time line
 exp1  exp2  ... exp16.      Experiment name   
 
