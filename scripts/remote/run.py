@@ -33,7 +33,7 @@ def main(argv):
 	#do experiment HERE!!!
 	# e1=Experiment(const.y_cruncher,cycle,options,ID)
 	# e1.run()
-	if benchmark == 'pgbench':
+	if benchmark in (const.pgbench):
 		os.system('bash init_pg_on_localdisk.bash')
 	e2=Experiment(benchmark,cycle,options,ID)
 	e2.run();
