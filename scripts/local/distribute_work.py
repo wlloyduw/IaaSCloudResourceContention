@@ -81,6 +81,15 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5),cycl
 	'''
 	respond=os.popen(shell).read()
 
+	if benchmark in ('pgbench'):
+		init_data_dir=r'''
+		psshcommand='sudo bash /home/ubuntu/SCRIPT/scripts/remote/init_pg_on_localdisk.bash'
+
+		pssh -i -h hostfile_pssh -x "-i ~/.ssh/as0.pem" $psshcommand
+		'''
+		respond=os.popen(init_data_dir).read()
+		
+		print(respond)
 def cloneGitRepo():
 	shell=r'''
 	psshcommand='eval "$(ssh-agent -s)" && ssh-add -k ~/.ssh/git_capstone && rm -rf Capstone SCRIPT &&
