@@ -21,7 +21,7 @@ def pssh(minute='*',hour='*',day='*',cycles='10',benchmark='pgbench'):
 	respond=os.popen(shellscript).read()
 	print(respond)
 
-def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5),cycles='10',interval=15,benchmark='pgbench'):
+def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5),cycles='10',interval=15,benchmark='pgbench',reverseFlag=False):
 	#override pssh when doing 1to16 dedicated host experiment
 	#copy each 'crontab' to its instance
 	os.system('cp crontab.bak crontab')
@@ -58,11 +58,12 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5),cycl
 	# No.1 instance has exactly 1 work, No.2 has 2 ... No.16 has 16 newline in crontab
 	for i in range(len(hostlist)):
 		HOST_STRING=''
-		
-		#for host in hostlist[:i+1]:#reverse 1VM->16VMs
-		#	HOST_STRING+=host+' '
-		for host in hostlist[i:]:
-			HOST_STRING+=host+' ' #positive 16VMs->1VM
+		if reverseFlag == True:
+			for host in hostlist[:i+1]:#reverse 1VM->16VMs
+				HOST_STRING+=host+' '
+		else:
+			for host in hostlist[i:]:
+				HOST_STRING+=host+' ' #positive 16VMs->1VM
 
 		shell=getPsshcommand(str(target_time.minute),str(target_time.hour),str(target_time.day),HOST_STRING)
 		tmp=os.popen(shell).read()
@@ -104,15 +105,17 @@ def getPublicIpPool():
 def main(argv):
 	notice='''#distribute_work.py# 
 	-h : help
+	-r :dedicated host reverse_mode 1to16 (16to1 by default)
 	-b <choose a benchmark>
 	-t/c <minute:hour:day in UTC>/<minutes count down> 
 	-n <num of works> 
-	-d <dedicated host mode interval>'''
+	-d <dedicated host mode interval>
+	'''
 	if len(argv)==0:
 		print(notice)
 		sys.exit()
 	try:
-		opts, args = getopt.getopt(argv,"ht:c:n:d:b:")
+		opts, args = getopt.getopt(argv,"hrt:c:n:d:b:")
 	except getopt.GetoptError:
 		print(notice)
 		sys.exit(2)
@@ -122,10 +125,13 @@ def main(argv):
 	target_time=None
 	iterative_interval=15
 	benchmark=None
+	reverseFlag=False
 	#CLI input handler
 	for opt,arg in opts:
 		if opt in ("-b"):
 			benchmark=arg
+		if opt in ("-r"):
+			reverseFlag=True
 	if benchmark not in ['y_cruncher','pgbench']:
 		print('illegal benchmark\n'+notice)
 		sys.exit()
@@ -157,7 +163,7 @@ def main(argv):
 			iterative_interval=int(arg)
 			getPublicIpPool()
 			cloneGitRepo()
-			pssh_v2(target_time,cycles,iterative_interval,benchmark)
+			pssh_v2(target_time,cycles,iterative_interval,benchmark,reverseFlag)
 			sys.exit()
 
 	getPublicIpPool()

@@ -28,6 +28,7 @@ run.py<br>
 
 distribute_work.py<br>
 	-h : help<br>
+	-r :dedicated host reverse_mode 1to16 (16to1 by default)<br>
 	-t/c [minute:hour:day in UTC]/[minutes count down]<br>
 	-n [num of works]<br>
 	-d [dedicated host mode interval]<br>
