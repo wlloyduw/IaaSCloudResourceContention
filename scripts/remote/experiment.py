@@ -93,7 +93,7 @@ class parser(object):
         with open(const.datadir+'pgbench.csv', 'a') as fout:
             row=OrderedDict([('instanceID',None),('experimentID',None),('instanceType',None),('wallTime',None),\
                             ('clients',None),('threads',None),('scaleFactor',None),('transactionsType',None),\
-                            ('queryMode',None),('duration',None),('transactions',None)\
+                            ('queryMode',None),('duration',None),('transactions',None),('mountPoint',None)\
                             ])
             writer = csv.DictWriter(fout,fieldnames=row)
             if needHeader:
@@ -102,7 +102,9 @@ class parser(object):
             row['instanceID']=self.kw['instanceID']
             row['experimentID']=self.kw['experimentID']
             row['wallTime']=self.kw['duration']
-
+            
+            mountPoint = os.popen('sed -n "s/^data_directory/data_directory/p" /etc/postgresql/9.5/main/postgresql.conf').read()
+            row['mountPoint']=mountPoint;
             for line in self.string:
                 if line.find('clients:')!=-1:
                     obj = re.search(r'(\d+)',line)
