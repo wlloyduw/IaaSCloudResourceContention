@@ -2,7 +2,7 @@
 
 #Stop the Postgres server:
 sudo service postgresql stop
-sleep 50
+sleep 30
 #Move the database files to the new data disk:
 sudo mv /var/lib/postgresql/9.5/main /mnt/postgres-data9.5
 sleep 10
