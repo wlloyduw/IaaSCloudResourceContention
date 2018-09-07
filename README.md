@@ -32,3 +32,5 @@ distribute_work.py<br>
 	-t/c [minute:hour:day in UTC]/[minutes count down]<br>
 	-n [num of works]<br>
 	-d [dedicated host mode interval]<br>
+
+Add a init script for pgbench experiment  - July 22. 2018
