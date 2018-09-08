@@ -3,7 +3,7 @@ Multi-dimensional Public Cloud Resource Contention Detection<br>
 Edward Han@UWT
 
 ## Abstract
-This repo are used to purposely create Resource Contention on AWS.
+This repo is used to purposely create Resource Contention on AWS.
 Main idea is to run a sort of benchmarks simultaneously on Dedicated host.
 
 ## How to do experiment
