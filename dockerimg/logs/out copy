@@ -1,0 +1,108 @@
+
+  0         Benchmark Pi  (all in ram)
+  1         Component Stress Tester
+  2         Run I/O Performance Analysis
+
+  3         Custom Compute a Constant
+                -   Compute other constants (e, Golden Ratio, etc...)
+                -   Choose your own settings (use disk for large computations)
+
+  4         BBP Digit Extractor for Pi
+  5         Digit Viewer
+
+  6         Advanced Options
+  7         About
+
+Enter your choice:
+option: 0
+
+Benchmark Pi:
+
+Select a Benchmark Type:
+
+  0     Single-Threaded
+  1     Multi-Threaded
+
+option: 1
+
+
+Available Memory:   14.3 GiB
+
+Option      Decimal Digits          Approx. Memory Needed
+
+  1             25,000,000                 271 MiB
+  2             50,000,000                 384 MiB
+  3            100,000,000                 604 MiB
+  4            250,000,000                1.29 GiB
+  5            500,000,000                2.46 GiB
+  6          1,000,000,000                4.82 GiB
+  7          2,500,000,000                11.6 GiB
+  8          5,000,000,000                23.1 GiB
+  9         10,000,000,000                46.2 GiB
+ 10         25,000,000,000                 116 GiB
+ 11         50,000,000,000                 231 GiB
+ 12        100,000,000,000                 463 GiB
+ 13        250,000,000,000                1.13 TiB
+ 14        500,000,000,000                2.26 TiB
+ 15      1,000,000,000,000                4.72 TiB
+ 16      2,500,000,000,000                11.5 TiB
+
+  0     I prefer SuperPi sizes... (1M, 2M, 4M...)
+
+option: 7
+
+This process does not have "CAP_IPC_LOCK". Page locking will not be possible.
+Please run y-cruncher with elevation to enable page locking.
+
+Constant:   Pi
+Algorithm:  Chudnovsky Formula
+
+Decimal Digits:       2,500,000,000
+Hexadecimal Digits:   Disabled
+
+Computation Mode:     Ram Only
+Multi-Threading:      Push Pool  ->  8 / ?  (randomization on)
+
+Start Time: Tue May 22 04:45:40 2018
+
+Working Memory...  11.5 GiB  (spread: ?)
+Twiddle Tables...   108 MiB  (spread: ?)
+
+Begin Computation:
+
+Summing Series...  176,284,177 terms
+Time:    327.382 seconds  ( 5.456 minutes )                                    
+Division...
+Time:    13.354 seconds  ( 0.223 minutes )                                     
+InvSqrt...
+Time:    7.819 seconds  ( 0.130 minutes )                                      
+Final Multiply...
+Time:    5.729 seconds  ( 0.095 minutes )                                      
+
+Pi:  354.283 seconds  ( 5.905 minutes )
+
+Base Converting:
+Time:    25.462 seconds  ( 0.424 minutes )                                     
+
+Writing Decimal Digits:   2,500,000,000  digits written
+
+Start Time: Tue May 22 04:45:40 2018
+End Time:   Tue May 22 04:53:21 2018
+
+Total Computation Time:     379.746 seconds  ( 6.329 minutes )
+Start-to-End Wall Time:     460.709 seconds  ( 7.678 minutes )
+
+CPU Utilization:          784.32 %  +    0.07 % kernel overhead
+Multi-core Efficiency:     98.04 %  +    0.01 % kernel overhead
+
+Last Digits:  Pi
+0917027898 3554136437 7123165188 3528593128 0032489094  :  2,499,999,950
+9228502005 4677489552 2459688725 5242233502 7255998083  :  2,500,000,000
+
+Spot Check: Good through 2,500,000,000
+
+Version:              0.7.5.9480 (Linux/13-HSW ~ Airi)
+Processor(s):         Intel(R) Xeon(R) CPU E5-2666 v3 @ 2.90GHz
+Topology:             8 threads / 4 cores / 1 socket / 1 NUMA node
+Usable Memory:        15,768,772,608 (14.7 GiB)
+CPU Base Frequency:   2,900,080,224 Hz

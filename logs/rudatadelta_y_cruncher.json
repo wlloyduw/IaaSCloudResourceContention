@@ -1,0 +1,53 @@
+{
+  "timeDiffSeconds": 16,
+  "cpuTimeDiff": 30006878699,
+  "processorStats": [ 
+  {"CPU0TimeDiff": 14895737632}, 
+  {"CPU1TimeDiff": 15113222448}, 
+  {"numProcessors": 2} 
+  ], 
+  "cpuTimeUserDiff": 2970,
+  "cpuTimeKernelDiff": 24,
+  "diskSectorIODiff": 0,
+  "diskReadDiff": 4968448,
+  "diskWriteDiff": 8192,
+  "networkRecvdDiff": 0,
+  "networkSentDiff": 0,
+  "memUsedDiff": 30158848,
+  "memoryMaxUsedDiff": 307187712,
+  "cpuType": "Intel(R) Xeon(R) CPU E5-2680 v2 @ 2.80GHz",
+  "cpuMhz": 2800.114,
+  "containerId": "f3b7c0678e5e",
+  "numCurrentProcesses": 3,
+  "numProcessesDiff": 0,
+  "processes": [
+  {
+  "pid": 1, 
+  "numThreadsDiff": 0, 
+  "cpuTimeUserDiff": 0, 
+  "cpuTimeKernelDiff": 0, 
+  "childrenUserDiff": 0, 
+  "childrenKernelDiff": 0, 
+  "voluntaryContextSwitchesDiff": 0,
+  "nonVoluntaryContextSwitchesDiff": 0,
+  "blkIODelaysDiff": 0,
+  "virtualMemoryDiff": 0,
+  "residentSetSizeDiff": 0
+  }, 
+  {
+  "pid": 15, 
+  "numThreadsDiff": 0, 
+  "cpuTimeUserDiff": 1, 
+  "cpuTimeKernelDiff": 1, 
+  "childrenUserDiff": 2960, 
+  "childrenKernelDiff": 17, 
+  "voluntaryContextSwitchesDiff": 135,
+  "nonVoluntaryContextSwitchesDiff": 4,
+  "blkIODelaysDiff": 1,
+  "virtualMemoryDiff": 536576,
+  "residentSetSizeDiff": 236
+  }, 
+  {"numOverlappingProc": 2 } 
+  ] 
+} 
+
