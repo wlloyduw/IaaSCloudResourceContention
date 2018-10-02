@@ -39,3 +39,4 @@ Thumbs.db
 #*.csv
 *.pem
 .ipynb_checkpoints
+dockerimg
