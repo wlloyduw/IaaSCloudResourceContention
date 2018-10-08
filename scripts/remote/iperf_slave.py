@@ -45,7 +45,7 @@ class IperfEntry:
             r'instance-type: (\w*\.\w*)', ec2metadata).group(1)
         self.row["instanceID"] = re.search(
             r'instance-id: (.*)\n', ec2metadata).group(1)
-        self.row["experimentId"] = experimentID
+        self.row["experimentID"] = experimentID
         self.row["cmd"] = cmd
 
     def setBandwidthUpload(self, bandwidthUpload):
