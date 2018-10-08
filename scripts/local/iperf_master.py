@@ -16,8 +16,8 @@ from shutil import copyfile
 ### PATHS ###
 PEM_PATH = "~/.ssh/as0.pem"
 ### CUSTOM CONFIGURATIONs ###
-LAUNCH_DELAY = 5  # after LAUNCH_DELAY then start experiment on slave nodes, in minutes
-SETS_INTERVAL = 15  # sleep time between each set within a experiment, in minutes
+LAUNCH_DELAY = 3  # after LAUNCH_DELAY then start experiment on slave nodes, in minutes
+SETS_INTERVAL = 1  # sleep time between each set within a experiment, in minutes
 CYCLES_PER_SET = 3  # k cycles per set
 DURATION_PER_CYCLE = 15  # limit max time per cycle if applicable, in seconds
 REVERSE_FLAG = False  # False : do experiment incrementally; TRUE: decremental
@@ -63,7 +63,7 @@ def createIperfPair():
 # set up IperfServer through pssh
 def launchIperfServer():
     print("\nlaunchIperfServer()")
-    cmd = "iperf -s --daemon"
+    cmd = "iperf -s --daemon &"
     print(psshExcute('iperfServers', cmd))
 
 
@@ -111,8 +111,8 @@ def configurIperfClient(C2S_MAP):
             f.write("\n".join(cmdList))
         # copy crontab to slave nodes
         print("Sending crontab to IP:%s" % (clientAddr))
-        os.popen("scp -i %s crontab %s:~/" %
-                 (PEM_PATH, "ubuntu@" + clientAddr))
+        print(os.popen("scp -i %s crontab %s:~/" %
+                       (PEM_PATH, "ubuntu@" + clientAddr)).read())
 
     # for all clients, simultaneously
     # CHANGE initiation method here, if neeeded

@@ -6,15 +6,14 @@ import re
 import sys
 import csv
 import getopt
-from experiment import Experiment
 from collections import OrderedDict
-import const
+
 # multiple slave node will be called by their own crontab at same time
 # synchronization is support with combination of crontab and NTP
 # schedule running of iperf
 # parse iperf output into scratch sheet
 
-# cli input will be like: -c 3 -i 1538867113 -x 'iperf -c 35.170.79.70 --dualtest --window 416k --time 15 '
+# cli input will be like: iperf_slave.py -c 3 -i 1538867113 -x 'iperf -c 35.170.79.70 --dualtest --window 416k --time 15 ' -s 1 -v 1
 
 
 class IperfEntry:
@@ -30,6 +29,7 @@ class IperfEntry:
         # mkdir, create file, write header
         if not os.path.isfile(IperfEntry.DATA_PATH + 'iperf.csv'):
             needHeader = True
+            print("creating header...")
             os.system("mkdir %s" % IperfEntry.DATA_PATH)
 
         with open(IperfEntry.DATA_PATH + 'iperf.csv', 'a') as fout:
@@ -69,7 +69,7 @@ class IperfEntry:
         return self
 
     def appendToFile(self):
-        with open(IperfEntry.DATA_PATH, 'a') as fout:
+        with open(IperfEntry.DATA_PATH + 'iperf.csv', 'a') as fout:
             writer = csv.DictWriter(fout, fieldnames=self.row)
             writer.writerow(self.row)
 
@@ -98,12 +98,13 @@ def main(argv):
             vmId = arg
     entry = IperfEntry(expId, cmd)
 
-    for i in range(cycle):
+    for i in range(int(cycle)):
+        print("running cycle %s" % (i + 1))
         result = os.popen(cmd).read()
         entry.setSetId(setId).setVmId(vmId)
 
         # CHANGE parsing logic here, if needed
-        result.split('\n')
+        result = result.strip().split('\n')
         result = result[-2:]
         try:
             upload = re.search(r'-(.*?sec)\s*(.*?Bytes)\s*(.*?sec)', result[0])
