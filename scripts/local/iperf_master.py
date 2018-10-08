@@ -19,7 +19,7 @@ PEM_PATH = "~/.ssh/as0.pem"
 LAUNCH_DELAY = 3  # after LAUNCH_DELAY then start experiment on slave nodes, in minutes
 SETS_INTERVAL = 1  # sleep time between each set within a experiment, in minutes
 CYCLES_PER_SET = 3  # k cycles per set
-DURATION_PER_CYCLE = 15  # limit max time per cycle if applicable, in seconds
+CYCLE_DURATION = 15  # limit max time per cycle if applicable, in seconds
 REVERSE_FLAG = False  # False : do experiment incrementally; TRUE: decremental
 EXPERIMENT_ID = int(datetime.timestamp(datetime.now()))
 
@@ -73,7 +73,7 @@ def cronBuilder(serverAddr, clientSeq, total):
     def cronHelper(time):
         # CHANGE iperf-client config here, if needed
         benchmarkCmd = "iperf -c %s --dualtest --window 416k --time %s " % (
-            serverAddr, DURATION_PER_CYCLE)
+            serverAddr, CYCLE_DURATION)
         # CHANGE crontab lines here, if needed
         crontabCmd = "%s %s %s * * ubuntu python3  ~/SCRIPT/scripts/remote/iperf_slave.py -c %s -i %s -x '%s' -s %s -v %s\n" % (
             str(time.minute), str(time.hour), str(time.day),
@@ -122,6 +122,7 @@ def configurIperfClient(C2S_MAP):
         git clone git@github.com:khaosminded/Capstone.git && mv Capstone SCRIPT' '''
     print(psshExcute("iperfClients", cmd)
           )  # git clone, slave nodes needed to have git-hub private key
+    return seq
 
 
 def psshExcute(addrfile, command):
@@ -132,7 +133,13 @@ def psshExcute(addrfile, command):
 def main(argv):
     C2S_MAP = createIperfPair()
     launchIperfServer()
-    configurIperfClient(C2S_MAP)
+    setsTotal = configurIperfClient(C2S_MAP)
+
+    endTimeCounter = LAUNCH_DELAY + setsTotal * CYCLES_PER_SET * \
+        CYCLE_DURATION / 60 + (setsTotal - 1) * SETS_INTERVAL  # in minutes
+    endTime = datetime.now() + delta(minutes=int(endTimeCounter))
+    print("\nExperiment will end at :" + datetime.ctime(endTime))
+    print("\nuse collect_data.py to collect data at that time")
 
 
 if __name__ == "__main__":
