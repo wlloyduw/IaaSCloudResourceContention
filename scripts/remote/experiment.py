@@ -162,9 +162,9 @@ class parser(object):
             row['testOption'] = self.kw['testOption']
 
             i = 0
-            for line in result:
+            for line in self.string:
                 if line.find('per-request statistics:') != -1:
-                    target = result[i + 2]
+                    target = self.string[i + 2]
                     avg = re.search(r'avg:\s*(.*)', target).group(1)
                     row['per-request-avg-time'] = avg
                 if line.find('total time:') != -1:
