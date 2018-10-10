@@ -137,7 +137,7 @@ def main(argv):
     # default parameter
     minute, hour, day, cycles = '0，15，30，45', '*', '*', '10'
     target_time = None
-    iterative_interval = 15
+    iterative_interval = 1
     benchmark = None
     reverseFlag = False
     # CLI input handler
@@ -146,7 +146,7 @@ def main(argv):
             benchmark = arg
         if opt in ("-r"):
             reverseFlag = True
-    if benchmark not in ['y_cruncher', 'pgbench']:
+    if benchmark not in ['y_cruncher', 'pgbench', 'sysbench']:
         print('illegal benchmark\n'+notice)
         sys.exit()
 
