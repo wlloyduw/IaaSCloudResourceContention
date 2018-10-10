@@ -8,7 +8,7 @@ from dateutil.relativedelta import relativedelta
 import threading
 
 
-def pssh(minute='*', hour='*', day='*', cycles='10', benchmark='pgbench'):
+def pssh(minute='*', hour='*', day='*', cycles='1', benchmark='pgbench'):
     # chaos, legacy, hard to modify, but excute fast
     # in some aspect, pssh=pssh_v2+cloneGitRepo
     shellscript = r'''
@@ -85,6 +85,7 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
     respond = os.popen(shell).read()
 
     if benchmark in ('pgbench'):
+        print("make sure your instance type is: c3")
         init_data_dir = r'''
 		psshcommand='sudo bash /home/ubuntu/SCRIPT/scripts/remote/init_pg_on_localdisk.bash'
 

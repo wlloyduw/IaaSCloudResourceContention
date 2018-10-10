@@ -141,7 +141,41 @@ class parser(object):
         pass
 
     def sysbench(self):
-        pass
+        needHeader = False
+        if not os.path.isfile(const.datadir + 'sysbench.csv'):
+            needHeader = True
+        os.system("mkdir " + const.datadir)
+        with open(const.datadir+'sysbench.csv', 'a') as fout:
+            row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
+                               , ('wallTime', None), ('testOption', None), ('per-request-avg-time', None),
+                               ('total-time', None), ('total-time', None)
+                               ])
+
+            writer = csv.DictWriter(fout, fieldnames=row)
+            if needHeader:
+                writer.writeheader()
+            row['instanceType'] = self.kw['instanceType']
+            row['instanceID'] = self.kw['instanceID']
+            row['experimentID'] = self.kw['experimentID']
+            row['wallTime'] = self.kw['duration']
+            row['testOption'] = self.kw['testOption']
+
+            i = 0
+            for line in result:
+                if line.find('per-request statistics:') != -1:
+                    target = result[i + 2]
+                    avg = re.search(r'avg:\s*(.*)', target).group(1)
+                    row['per-request-avg-time'] = avg
+                if line.find('total time:') != -1:
+                    totalTime = re.search(r'total time:\s*(.*)', line).group(1)
+                    row['total-time'] = totalTime
+                if line.find('Number of threads:') != -1:
+                    threadNum = re.search(
+                        r'Number of threads:\s*(.*)', line).group(1)
+                    row['thread-num'] = threadNum
+                i += 1
+
+            writer.writerow(row)
 
     def stress_ng(self):
         pass

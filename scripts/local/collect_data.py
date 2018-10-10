@@ -46,8 +46,8 @@ def collecter(filename):
 def main(argv):
     try:
         download(argv[0])
-    except OSError:
-        print("OSError : make sure the hostfile is correct")
+    except IndexError:
+        print("IndexError : Make sure the hostfile is correct\n collect_data.py <hostfile>")
     collecter('newdata.csv')
 
 
