@@ -146,7 +146,7 @@ def main(argv):
             benchmark = arg
         if opt in ("-r"):
             reverseFlag = True
-    if benchmark not in ['y_cruncher', 'pgbench', 'sysbench']:
+    if benchmark not in const.supportedBenchmarks.keys():
         print('illegal benchmark\n'+notice)
         sys.exit()
 

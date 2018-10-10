@@ -7,15 +7,14 @@ import const
 import getopt
 from experiment import Experiment
 # use ‘<<’ and delimiter play with interactive benchmark
-# Experiment(benchmark,cycle,options,experimentID):
+# Experiment(benchmark,cycle,supportedBenchmarks,experimentID):
 
 
 def main(argv):
-    options = dict([(const.y_cruncher, const.y_cruncher_option),
-                    (const.pgbench, const.pgbench_option)])
+
     ID = '0'
     cycle = '10'
-    benchmark = const.pgbench
+    benchmark = const.sysbench
     try:
         opts, args = getopt.getopt(argv, "hc:i:t:")
     except getopt.GetoptError:
@@ -32,13 +31,13 @@ def main(argv):
         elif opt in ("-c"):
             cycle = arg
         elif opt in ("-t"):
-            if arg in options.keys():
+            if arg in const.supportedBenchmarks.keys():
                 benchmark = arg
     # do experiment HERE!!!
-    # e1=Experiment(const.y_cruncher,cycle,options,ID)
+    # e1=Experiment(const.y_cruncher,cycle,supportedBenchmarks,ID)
     # e1.run()
 
-    e2 = Experiment(benchmark, cycle, options, ID)
+    e2 = Experiment(benchmark, cycle, const.supportedBenchmarks, ID)
 
     if const.plugins is True:
         # On
