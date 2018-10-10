@@ -40,3 +40,4 @@ Thumbs.db
 *.pem
 .ipynb_checkpoints
 dockerimg
+__pycache__
