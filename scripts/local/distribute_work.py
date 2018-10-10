@@ -3,6 +3,8 @@
 import os
 import getopt
 import sys
+sys.path.append('..')
+from remote import const
 import datetime
 from dateutil.relativedelta import relativedelta
 import threading
