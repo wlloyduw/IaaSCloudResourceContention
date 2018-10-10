@@ -147,7 +147,8 @@ class parser(object):
         os.system("mkdir " + const.datadir)
         with open(const.datadir+'sysbench.csv', 'a') as fout:
             row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
-                               , ('wallTime', None), ('testOption', None), ('per-request-avg-time', None),
+                               ('wallTime', None), ('testOption',
+                                                    None), ('per-request-avg-time', None),
                                ('total-time', None), ('total-time', None)
                                ])
 
