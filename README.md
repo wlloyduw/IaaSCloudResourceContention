@@ -6,74 +6,91 @@ Edward Han@UWT
 
 ## Abstract
 
-This repo is used to purposely create Resource Contention on AWS.
+This repo is used to purposely create Resource Contention on AWS.<br/>
 Main idea is to run a sort of benchmarks simultaneously on Dedicated host.
 
 ## How to do experiment
 
-1. provision AWS instances
-   - for iperf tag half instance as <key:iperfRole, val:client> and half <key:iperfRole, val:server>
+1. provision AWS instances using **ami-0c85437aa3f534a1a**
+   - for iperf
+     - tag half instance as <key:iperfRole, val:client> and half <key:iperfRole, val:server>
+   - for pgbench
+     - provision c3 with instance store
 2. python3 distribute_work.py / iperf_master.py accordingly
 3. python3 collect_data.py
+   - for iperf
+     - use iperClient as input when collecting data
+   - for other benchmarks
+     - use hostfile input when collecting data
+4. proceeding .csv file with jupyter-notebokk accordingly, if needed
 
 ## Directory Description
 
-1. \***\*local\*\*** # scripts running on my laptop while doing experiment
-
-- **collect_data.py**
-- **distribute_work.py** #distribute workload to each VM according to expiment type
-- **hostfile_pssh** #public IP pool
-
-2. \***\*remote\*\*** # scripts assign to each AWS instance involved in experiment
-
-- **const.py** #defined a sort of constant, such as benchmark name, etc.
-- **experiment.py** #mainly defined Parser for grabing output of benchmark
-- **run.py** #main()
+    #scripts/
+    .
+    ├── local
+    │   ├── collect_data.py
+    │   ├── crontab # use linux crontab as a RPC interface
+    │   ├── crontab.bak
+    │   ├── distribute_work.py # entrance module on local
+    │   ├── hostfile_pssh #public IP pool
+    │   ├── iperfClients  #public IP pool
+    │   ├── iperfServers  #public IP pool
+    │   ├── iperf_master.py #for iperf only
+    └── remote
+        ├── __init__.py
+        ├── const.py #defined a sort of constant, such as benchmark name, etc.
+        ├── experiment.py #mainly defined Parser for grabing output of benchmark
+        ├── init_pg_on_localdisk.bash #will be invoked when working with pgbench
+        ├── iperf_slave.py # for iperf only
+        └── run.py # entrance module on remote
 
 ## Manual
 
 run.py<br>
--c [num of cycles]<br>
--i [exp_id]<br>
--t [exp_type]<br>
 
-distribute_work.py<br>
--h : help<br>
--r :dedicated host reverse_mode 1to16 (16to1 by default)<br>
--t/c [minute:hour:day in UTC]/[minutes count down]<br>
--n [num of works]<br>
--d [dedicated host mode interval]<br>
+    -c [num of cycles]
+    -i [exp_id]
+    -t [exp_type]
+
+distribute_work.py
+
+    -h #help
+    -r #dedicated host reverse_mode 1to16 (16to1 by default)
+    -t/c [minute:hour:day in UTC]/[minutes count down]
+    -n [num of works]
+    -d [dedicated host mode interval]
 
 ## Updates
 
-**July 22. 2018** Add a init script for pgbench experiment
+**Oct 10. 2018** Version 1.0 - Add support to sysbench
 
 **Oct 7. 2018** Add two sepretated .py for iperf experiment
 
      iperf_master.py
      iperf_slave.py
 
-Dependencies(may uncomprehensive)
+- Dependencies
 
-1. slavenode
+  - slavenode
 
-   - git
-   - all benchmarks [iperf, pgbench, y-cruncher, sysbench, ...]
+    - git, all benchmarks [iperf, pgbench, y-cruncher, sysbench, ...]
 
-2. masternode
+  - masternode
 
-   - pssh
-   - scp
-   - ssh
+    - pssh, scp, ssh
 
-3. shared
+  - shared
+    - python3 [re,csv...a sort of packages]
+    - environment variables
+    - file paths [.pem .csv .py]
 
-   - python3 [re,csv...a sort of packages]
-   - environment variables & paths [.pem .csv .py]
+Previous module have some design flaw since most of the work was served for making a proof that our method is feasible<br>
+For convenience and agile, I simplely mixed python3 and some bash scripts without encapsulation, which lead to a painful experience of maintaining after that...<br>
+At this time, rewrite is much faster than reuse... well, quality of those two new added module is quite better than what I wrote before.
+Overall, it's fairly scalable now, and definitely can achieve our goal :)<br>
+I'm on the way to coding elegantly!
 
-Refactor most of exsited scripts to support iperf<br>
-Part of the reason is functional problem and design flaw in previous work<br>
-Main reason is that I wanna do some improvment on it and get rid of that whole that of mess...<br>
-Since I mix python3 and some shell, it's hard to debug<br>
-Overall, it's not element...uhhh, but much better than that before.<br>
-It's partially maintainable, fairly scalable, definitely conquered what we wanted :)...<br>
+**July 22. 2018** Add a init script for pgbench experiment
+
+     init_pg_on_localdisk.bash
