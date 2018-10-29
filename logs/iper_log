@@ -1,0 +1,276 @@
+hanxinleideMacBook-Pro:local hanxinlei$ python3 iperf_master.py 
+
+createIperfPair()
+ClientList: ['52.91.238.128', '52.70.130.97', '54.147.233.205', '54.86.98.82', '100.24.15.44', '52.90.118.82', '35.173.240.26', '18.215.253.22', '54.89.13.222', '18.209.172.235', '54.83.191.204', '34.235.132.41', '52.91.158.52', '18.209.160.184', '34.203.209.195', '35.173.183.120']
+ServerList: ['34.207.178.230', '18.215.251.1', '54.210.119.33', '35.175.208.18', '54.197.219.156', '54.84.128.138', '54.91.226.161', '18.209.108.204', '54.174.198.125', '54.208.17.177', '18.212.144.211', '54.85.111.164', '52.90.213.55', '54.227.209.37', '54.90.122.192', '54.165.209.106']
+Pairs: {'52.91.238.128': '34.207.178.230', '52.70.130.97': '18.215.251.1', '54.147.233.205': '54.210.119.33', '54.86.98.82': '35.175.208.18', '100.24.15.44': '54.197.219.156', '52.90.118.82': '54.84.128.138', '35.173.240.26': '54.91.226.161', '18.215.253.22': '18.209.108.204', '54.89.13.222': '54.174.198.125', '18.209.172.235': '54.208.17.177', '54.83.191.204': '18.212.144.211', '34.235.132.41': '54.85.111.164', '52.91.158.52': '52.90.213.55', '18.209.160.184': '54.227.209.37', '34.203.209.195': '54.90.122.192', '35.173.183.120': '54.165.209.106'}
+
+launchIperfServer()
+###PSSH CALL:iperf -s --daemon &
+[1] 21:50:08 [FAILURE] ubuntu@34.207.178.230 Timed out, Killed by signal 9
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+Stderr: Warning: Permanently added '34.207.178.230' (ECDSA) to the list of known hosts.
+[2] 21:50:08 [FAILURE] ubuntu@18.215.251.1 Timed out, Killed by signal 9
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+Stderr: Warning: Permanently added '18.215.251.1' (ECDSA) to the list of known hosts.
+[3] 21:50:08 [FAILURE] ubuntu@54.210.119.33 Timed out, Killed by signal 9
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+Stderr: Warning: Permanently added '54.210.119.33' (ECDSA) to the list of known hosts.
+[4] 21:50:09 [FAILURE] ubuntu@35.175.208.18 Timed out, Killed by signal 9
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+Stderr: Warning: Permanently added '35.175.208.18' (ECDSA) to the list of known hosts.
+[5] 21:50:09 [FAILURE] ubuntu@54.197.219.156 Timed out, Killed by signal 9
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+Stderr: Warning: Permanently added '54.197.219.156' (ECDSA) to the list of known hosts.
+[6] 21:50:09 [FAILURE] ubuntu@54.84.128.138 Timed out, Killed by signal 9
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+Stderr: Warning: Permanently added '54.84.128.138' (ECDSA) to the list of known hosts.
+[7] 21:50:09 [FAILURE] ubuntu@54.91.226.161 Timed out, Killed by signal 9
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+Stderr: Warning: Permanently added '54.91.226.161' (ECDSA) to the list of known hosts.
+[8] 21:50:09 [FAILURE] ubuntu@18.209.108.204 Timed out, Killed by signal 9
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+Stderr: Warning: Permanently added '18.209.108.204' (ECDSA) to the list of known hosts.
+[9] 21:50:09 [FAILURE] ubuntu@54.174.198.125 Timed out, Killed by signal 9
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+Stderr: Warning: Permanently added '54.174.198.125' (ECDSA) to the list of known hosts.
+[10] 21:50:09 [FAILURE] ubuntu@54.208.17.177 Timed out, Killed by signal 9
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+Stderr: Warning: Permanently added '54.208.17.177' (ECDSA) to the list of known hosts.
+[11] 21:50:09 [FAILURE] ubuntu@54.85.111.164 Timed out, Killed by signal 9
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+Stderr: Warning: Permanently added '54.85.111.164' (ECDSA) to the list of known hosts.
+[12] 21:50:09 [FAILURE] ubuntu@18.212.144.211 Timed out, Killed by signal 9
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+Stderr: Warning: Permanently added '18.212.144.211' (ECDSA) to the list of known hosts.
+[13] 21:50:09 [FAILURE] ubuntu@52.90.213.55 Timed out, Killed by signal 9
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+Stderr: Warning: Permanently added '52.90.213.55' (ECDSA) to the list of known hosts.
+[14] 21:50:09 [FAILURE] ubuntu@54.227.209.37 Timed out, Killed by signal 9
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+Stderr: Warning: Permanently added '54.227.209.37' (ECDSA) to the list of known hosts.
+[15] 21:50:09 [FAILURE] ubuntu@54.90.122.192 Timed out, Killed by signal 9
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+Stderr: Warning: Permanently added '54.90.122.192' (ECDSA) to the list of known hosts.
+[16] 21:50:09 [FAILURE] ubuntu@54.165.209.106 Timed out, Killed by signal 9
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+Stderr: Warning: Permanently added '54.165.209.106' (ECDSA) to the list of known hosts.
+
+configurIperfClient()
+Sending crontab to IP:52.91.238.128
+Warning: Permanently added '52.91.238.128' (ECDSA) to the list of known hosts.
+
+Sending crontab to IP:52.70.130.97
+Warning: Permanently added '52.70.130.97' (ECDSA) to the list of known hosts.
+
+Sending crontab to IP:54.147.233.205
+Warning: Permanently added '54.147.233.205' (ECDSA) to the list of known hosts.
+
+Sending crontab to IP:54.86.98.82
+Warning: Permanently added '54.86.98.82' (ECDSA) to the list of known hosts.
+
+Sending crontab to IP:100.24.15.44
+Warning: Permanently added '100.24.15.44' (ECDSA) to the list of known hosts.
+
+Sending crontab to IP:52.90.118.82
+Warning: Permanently added '52.90.118.82' (ECDSA) to the list of known hosts.
+
+Sending crontab to IP:35.173.240.26
+Warning: Permanently added '35.173.240.26' (ECDSA) to the list of known hosts.
+
+Sending crontab to IP:18.215.253.22
+Warning: Permanently added '18.215.253.22' (ECDSA) to the list of known hosts.
+
+Sending crontab to IP:54.89.13.222
+Warning: Permanently added '54.89.13.222' (ECDSA) to the list of known hosts.
+
+Sending crontab to IP:18.209.172.235
+Warning: Permanently added '18.209.172.235' (ECDSA) to the list of known hosts.
+
+Sending crontab to IP:54.83.191.204
+Warning: Permanently added '54.83.191.204' (ECDSA) to the list of known hosts.
+
+Sending crontab to IP:34.235.132.41
+Warning: Permanently added '34.235.132.41' (ECDSA) to the list of known hosts.
+
+Sending crontab to IP:52.91.158.52
+Warning: Permanently added '52.91.158.52' (ECDSA) to the list of known hosts.
+
+Sending crontab to IP:18.209.160.184
+Warning: Permanently added '18.209.160.184' (ECDSA) to the list of known hosts.
+
+Sending crontab to IP:34.203.209.195
+Warning: Permanently added '34.203.209.195' (ECDSA) to the list of known hosts.
+
+Sending crontab to IP:35.173.183.120
+Warning: Permanently added '35.173.183.120' (ECDSA) to the list of known hosts.
+
+###PSSH CALL:'sudo cp ~/crontab /etc/crontab && sudo chown root.root /etc/crontab && sudo service cron reload'
+[1] 21:50:44 [SUCCESS] ubuntu@52.70.130.97
+ * Reloading configuration files for periodic command scheduler cron
+   ...done.
+[2] 21:50:44 [SUCCESS] ubuntu@54.89.13.222
+ * Reloading configuration files for periodic command scheduler cron
+   ...done.
+[3] 21:50:44 [SUCCESS] ubuntu@100.24.15.44
+ * Reloading configuration files for periodic command scheduler cron
+   ...done.
+[4] 21:50:44 [SUCCESS] ubuntu@34.235.132.41
+ * Reloading configuration files for periodic command scheduler cron
+   ...done.
+[5] 21:50:44 [SUCCESS] ubuntu@35.173.240.26
+ * Reloading configuration files for periodic command scheduler cron
+   ...done.
+[6] 21:50:44 [SUCCESS] ubuntu@18.215.253.22
+ * Reloading configuration files for periodic command scheduler cron
+   ...done.
+[7] 21:50:44 [SUCCESS] ubuntu@52.91.238.128
+ * Reloading configuration files for periodic command scheduler cron
+   ...done.
+[8] 21:50:44 [SUCCESS] ubuntu@52.90.118.82
+ * Reloading configuration files for periodic command scheduler cron
+   ...done.
+[9] 21:50:44 [SUCCESS] ubuntu@54.86.98.82
+ * Reloading configuration files for periodic command scheduler cron
+   ...done.
+[10] 21:50:44 [SUCCESS] ubuntu@52.91.158.52
+ * Reloading configuration files for periodic command scheduler cron
+   ...done.
+[11] 21:50:44 [SUCCESS] ubuntu@54.147.233.205
+ * Reloading configuration files for periodic command scheduler cron
+   ...done.
+[12] 21:50:44 [SUCCESS] ubuntu@18.209.172.235
+ * Reloading configuration files for periodic command scheduler cron
+   ...done.
+[13] 21:50:47 [SUCCESS] ubuntu@54.83.191.204
+ * Reloading configuration files for periodic command scheduler cron
+   ...done.
+[14] 21:50:47 [SUCCESS] ubuntu@18.209.160.184
+ * Reloading configuration files for periodic command scheduler cron
+   ...done.
+[15] 21:50:47 [SUCCESS] ubuntu@34.203.209.195
+ * Reloading configuration files for periodic command scheduler cron
+   ...done.
+[16] 21:50:47 [SUCCESS] ubuntu@35.173.183.120
+ * Reloading configuration files for periodic command scheduler cron
+   ...done.
+
+###PSSH CALL: 'eval "$(ssh-agent)" && ssh-add -k ~/.ssh/git_capstone && rm -rf Capstone SCRIPT && 
+        git clone git@github.com:khaosminded/Capstone.git && mv Capstone SCRIPT' 
+[1] 21:50:48 [SUCCESS] ubuntu@54.89.13.222
+Agent pid 11617
+Stderr: Identity added: /home/ubuntu/.ssh/git_capstone (/home/ubuntu/.ssh/git_capstone)
+Cloning into 'Capstone'...
+[2] 21:50:49 [SUCCESS] ubuntu@52.70.130.97
+Agent pid 11527
+Stderr: Identity added: /home/ubuntu/.ssh/git_capstone (/home/ubuntu/.ssh/git_capstone)
+Cloning into 'Capstone'...
+[3] 21:50:49 [SUCCESS] ubuntu@35.173.240.26
+Agent pid 11622
+Stderr: Identity added: /home/ubuntu/.ssh/git_capstone (/home/ubuntu/.ssh/git_capstone)
+Cloning into 'Capstone'...
+[4] 21:50:49 [SUCCESS] ubuntu@100.24.15.44
+Agent pid 11617
+Stderr: Identity added: /home/ubuntu/.ssh/git_capstone (/home/ubuntu/.ssh/git_capstone)
+Cloning into 'Capstone'...
+[5] 21:50:49 [SUCCESS] ubuntu@54.86.98.82
+Agent pid 11531
+Stderr: Identity added: /home/ubuntu/.ssh/git_capstone (/home/ubuntu/.ssh/git_capstone)
+Cloning into 'Capstone'...
+[6] 21:50:49 [SUCCESS] ubuntu@54.147.233.205
+Agent pid 11635
+Stderr: Identity added: /home/ubuntu/.ssh/git_capstone (/home/ubuntu/.ssh/git_capstone)
+Cloning into 'Capstone'...
+[7] 21:50:49 [SUCCESS] ubuntu@52.91.238.128
+Agent pid 11549
+Stderr: Identity added: /home/ubuntu/.ssh/git_capstone (/home/ubuntu/.ssh/git_capstone)
+Cloning into 'Capstone'...
+[8] 21:50:49 [SUCCESS] ubuntu@52.90.118.82
+Agent pid 11618
+Stderr: Identity added: /home/ubuntu/.ssh/git_capstone (/home/ubuntu/.ssh/git_capstone)
+Cloning into 'Capstone'...
+[9] 21:50:49 [SUCCESS] ubuntu@18.215.253.22
+Agent pid 11579
+Stderr: Identity added: /home/ubuntu/.ssh/git_capstone (/home/ubuntu/.ssh/git_capstone)
+Cloning into 'Capstone'...
+[10] 21:50:49 [SUCCESS] ubuntu@18.209.160.184
+Agent pid 11667
+Stderr: Identity added: /home/ubuntu/.ssh/git_capstone (/home/ubuntu/.ssh/git_capstone)
+Cloning into 'Capstone'...
+[11] 21:50:49 [SUCCESS] ubuntu@35.173.183.120
+Agent pid 11514
+Stderr: Identity added: /home/ubuntu/.ssh/git_capstone (/home/ubuntu/.ssh/git_capstone)
+Cloning into 'Capstone'...
+[12] 21:50:49 [SUCCESS] ubuntu@34.203.209.195
+Agent pid 11908
+Stderr: Identity added: /home/ubuntu/.ssh/git_capstone (/home/ubuntu/.ssh/git_capstone)
+Cloning into 'Capstone'...
+[13] 21:50:49 [SUCCESS] ubuntu@52.91.158.52
+Agent pid 11959
+Stderr: Identity added: /home/ubuntu/.ssh/git_capstone (/home/ubuntu/.ssh/git_capstone)
+Cloning into 'Capstone'...
+[14] 21:50:49 [SUCCESS] ubuntu@54.83.191.204
+Agent pid 11657
+Stderr: Identity added: /home/ubuntu/.ssh/git_capstone (/home/ubuntu/.ssh/git_capstone)
+Cloning into 'Capstone'...
+[15] 21:50:49 [SUCCESS] ubuntu@34.235.132.41
+Agent pid 11531
+Stderr: Identity added: /home/ubuntu/.ssh/git_capstone (/home/ubuntu/.ssh/git_capstone)
+Cloning into 'Capstone'...
+[16] 21:50:49 [SUCCESS] ubuntu@18.209.172.235
+Agent pid 11624
+Stderr: Identity added: /home/ubuntu/.ssh/git_capstone (/home/ubuntu/.ssh/git_capstone)
+Cloning into 'Capstone'...
+
+
+Experiment will end at :Fri Oct 19 22:20:49 2018
+
+use collect_data.py to collect data at that time

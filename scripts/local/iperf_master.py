@@ -17,9 +17,10 @@ from shutil import copyfile
 PEM_PATH = "~/.ssh/as0.pem"
 ### CUSTOM CONFIGURATIONs ###
 LAUNCH_DELAY = 3  # after LAUNCH_DELAY then start experiment on slave nodes, in minutes
-SETS_INTERVAL = 1  # sleep time between each set within a experiment, in minutes
-CYCLES_PER_SET = 3  # k cycles per set
+CYCLES_PER_SET = 11  # k cycles per set.
 CYCLE_DURATION = 15  # limit max time per cycle if applicable, in seconds
+# sleep time between each set within a experiment, in minutes
+SETS_INTERVAL = (CYCLE_DURATION * CYCLES_PER_SET) / 60 + 1
 REVERSE_FLAG = False  # False : do experiment incrementally; TRUE: decremental
 EXPERIMENT_ID = int(datetime.timestamp(datetime.now()))
 
@@ -67,7 +68,7 @@ def launchIperfServer():
     print(psshExcute('iperfServers', cmd))
 
 
-## build a list of command wrote to clients' crontab file that contains raw command needed pass to run_iperf.py ##
+## build a list of command wrote to clients' crontab file that contains raw command needed pass to iperf_slave.py  ##
 def cronBuilder(serverAddr, clientSeq, total):
     # assume clientSeq 0 based
     def cronHelper(time):
@@ -135,8 +136,7 @@ def main(argv):
     launchIperfServer()
     setsTotal = configurIperfClient(C2S_MAP)
 
-    endTimeCounter = LAUNCH_DELAY + setsTotal * CYCLES_PER_SET * \
-        CYCLE_DURATION / 60 + (setsTotal - 1) * SETS_INTERVAL  # in minutes
+    endTimeCounter = LAUNCH_DELAY + setsTotal * SETS_INTERVAL  # in minutes
     endTime = datetime.now() + delta(minutes=int(endTimeCounter))
     print("\nExperiment will end at :" + datetime.ctime(endTime))
     print("\nuse collect_data.py to collect data at that time")

@@ -149,7 +149,7 @@ class parser(object):
             row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
                                ('wallTime', None), ('testOption',
                                                     None), ('per-request-avg-time', None),
-                               ('total-time', None), ('total-time', None)
+                               ('total-time', None), ('thread-num', None)
                                ])
 
             writer = csv.DictWriter(fout, fieldnames=row)
