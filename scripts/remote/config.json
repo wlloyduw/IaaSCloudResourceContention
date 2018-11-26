@@ -1,8 +1,14 @@
 {
+  "types": ["sysbench", "pgbench", "sysbenchio"],
   "benchmarks": {
-    "sysbench": "sysbench  --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run",
-    "pgbench": "pgbench --client=10 --jobs=10 --time=60  ubuntu",
-    "ycruncher": "/home/ubuntu/CPU_test/y-cruncher v0.7.5.9480-static/y-cruncher << EOF\n0\n1\n1\nEOF\n"
+    "sysbench": "sysbench  --test=cpu --cpu-max-prime=1000000 --num-threads=2 --max-requests=10 run",
+    "pgbench": "pgbench --client=10 --jobs=10 --time=5 ubuntu",
+    "sysbenchio": "cd /mnt/ && sudo sysbench --test=fileio --file-total-size=8G --file-test-mode=rndrw --init-rng=on --max-time=5 --max-requests=0 run"
+  },
+  "timecost": {
+    "sysbench": "5",
+    "pgbench": "5",
+    "sysbenchio": "5"
   },
   "datadir": "/home/ubuntu/SCRIPT/scripts/remote/data/"
 }

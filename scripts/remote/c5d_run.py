@@ -28,8 +28,8 @@ def main(args):
             perf = Parser.sysbenchParse(rawperf)
         if benchmark is "pgbench":
             perf = Parser.sysbenchParse(rawperf)
-        if benchmark is "ycruncher":
-            perf = Parser.sysbenchParse(rawperf)
+        if benchmark is "sysbenchio":
+            perf = Parser.sysbenchioParse(rawperf)
         entry.row.update(perf)
         entry.appendToFile()
     pass
@@ -80,7 +80,7 @@ class Parser:
             for line in rawperf.split('\n'):
                 if line.find('total time:') != -1:
                     totalTime = re.search(r'total time:\s*(.*)', line).group(1)
-                    Parser.result['total-time'] = totalTime
+                    Parser.result['total-time(s)'] = totalTime
         except (AttributeError, IndexError):
             os.popen("mkdir RE_ERROR!!!")
         return Parser.result
@@ -89,21 +89,21 @@ class Parser:
     def pgbenchParse(self, rawperf):
         try:
             for line in rawperf.split('\n'):
-                if line.find('processed:') != -1:
-                    transactions = re.search(r'(\d+)', line).group(1)
-                    Parser.result['transactions'] = transactions
+                if line.find('excluding connections establishing') != -1:
+                    transactions = re.search(r'(\d*\.\d*)', line).group(1)
+                    Parser.result['transactions(per s)'] = transactions
         except (AttributeError, IndexError):
             os.popen("mkdir RE_ERROR!!!")
         return Parser.result
 
     @classmethod
-    def ycruncherParse(self, rawperf):
+    def sysbenchioParse(self, rawperf):
         try:
             for line in rawperf.split('\n'):
-                if line.find('Total Computation') != -1:
+                if line.find('Total transferred') != -1:
                     computationTime = re.search(
-                        r'(\d*\.\d*).*seconds', line).group(1)
-                    Parser.result['computationTime'] = computationTime
+                        r'(\d*\.\d*)Mb/sec', line).group(1)
+                    Parser.result['transferred(Mb/sec)'] = computationTime
         except (AttributeError, IndexError):
             os.popen("mkdir RE_ERROR!!!")
         return Parser.result
