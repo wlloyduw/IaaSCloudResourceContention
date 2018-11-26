@@ -13,24 +13,28 @@ import re
 
 
 def main(args):
-    config = loadConfigure("config.json")
+    config = loadConfigure("/home/ubuntu/SCRIPT/scripts/remote/config.json")
     benchmark = args[0]
     setId = args[1]
     vmId = args[2]
-    runs = args[3]
+    runs = int(args[3])
     cmd = config["benchmarks"][benchmark]
     entry = Entry(config["datadir"], benchmark, setId, vmId, cmd)
 
     for i in range(runs):
-        rawperf = os.popen(cmd)
-        perf = []
-        if benchmark is "sysbench":
+        rawperf = os.popen(cmd).read()
+        perf = {}
+        if benchmark == "sysbench":
             perf = Parser.sysbenchParse(rawperf)
-        if benchmark is "pgbench":
-            perf = Parser.sysbenchParse(rawperf)
-        if benchmark is "sysbenchio":
+        elif benchmark == "pgbench":
+            perf = Parser.pgbenchParse(rawperf)
+        elif benchmark == "sysbenchio":
             perf = Parser.sysbenchioParse(rawperf)
+        else:
+            print("benchmark didn't match")
+
         entry.row.update(perf)
+        print(entry.row)
         entry.appendToFile()
     pass
 

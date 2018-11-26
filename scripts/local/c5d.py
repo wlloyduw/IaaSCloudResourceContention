@@ -46,7 +46,7 @@ def cronBuilder(starttime, clientSeq, total):
     launch_time = starttime + delta(minutes=int(LAUNCH_DELAY))
     cmdList = []
     setsOffset = 0
-    with open("../remote/config.json", 'r') as fin:
+    with open("/home/ubuntu/SCRIPT/scripts/remote/config.json", 'r') as fin:
         config = json.loads(fin.read())
     for i in range(total):  # each sets
         setId, vmId = i + 1, clientSeq + 1
@@ -106,11 +106,11 @@ def main(argv):
     setsTotal = configureInstances(ipPool)
     print("initiating pgbench")
     psshExcute(
-        ipfile, "sudo bash /home/ubuntu/SCRIPT/scripts/remote/init_pg_on_localdisk.bash")
+        ipfile, "sudo bash /home/ubuntu/SCRIPT/scripts/remote/init_pg_on_localdisk.bash &")
 
     for period in TIME:
-        print("\n" + period[0]+"=>"+period[1])
-    print("\nExperiment will end at :" + TIME[-1][1])
+        print("\n" + period[0].ctime()+"=>"+period[1].ctime())
+    print("\nExperiment will end at :" + TIME[-1][1].ctime())
     print("\ntotal sets: %s" % setsTotal)
 
 
