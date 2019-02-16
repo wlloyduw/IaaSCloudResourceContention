@@ -7,7 +7,7 @@ Edward Han@UWT
 ## Abstract
 
 This repo is used to purposely create Resource Contention on AWS.<br/>
-Main idea is to run a sort of benchmarks simultaneously on Dedicated host.
+Main idea is to run a suite of benchmarks simultaneously on a Dedicated host.
 
 ## How to do experiment
 
