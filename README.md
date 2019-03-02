@@ -1,6 +1,5 @@
-# Capstone Project
+# CMulti-dimensional Public Cloud Resource Contention Detection to Predict Virtual Machine Co-residency
 
-Multi-dimensional Public Cloud Resource Contention Detection<br>
 Advisor, Wes Lloyd@UWT
 Edward Han@UWT
 
