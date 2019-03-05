@@ -86,6 +86,8 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
 	'''
     respond = os.popen(shell).read()
 
+    if True:
+        return
     if benchmark in ('pgbench'):
         print("make sure your instance type is: c3")
         init_data_dir = r'''
