@@ -201,7 +201,7 @@ class parser(object):
             i = 0
             for line in self.string:
                 if line.find('transferred') != -1:
-                    speed = re.search(r'(\d*\.\d*)', line).group(1)
+                    speed = re.search(r'\((\d*\.\d*) MB/sec\)', line).group(1)
                     row['ram_write_speed'] = speed
                 if line.find('total time:') != -1:
                     totalTime = re.search(r'total time:\s*(.*)', line).group(1)
