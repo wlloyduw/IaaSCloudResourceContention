@@ -35,6 +35,7 @@ stress_ng = sys.modules[__name__].stress_ng = 'stress_ng'
 sysbench = sys.modules[__name__].sysbench = 'sysbench'
 y_cruncher = sys.modules[__name__].y_cruncher = 'y_cruncher'
 pgbench = sys.modules[__name__].pgbench = 'pgbench'
+sysbench_ram = sys.modules[__name__].sysbench_ram ='sysbench_ram'
 dic = sys.modules[__name__].command = dict()
 
 # running options of y_cruncher # 7.379s on c4.large
@@ -49,10 +50,14 @@ pgbench_option = sys.modules[__name__].pgbench_option = ' --client=10 --jobs=10 
 dic[sysbench] = 'sysbench'
 sysbench_option = sys.modules[__name__].sysbench_option = ' --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run'
 # sysbench --test=memory --memory-block-size=1K --num-threads=2 --memory-total-size=10G run
+dic[sysbench_ram] = 'sysbench'
+sysbench_ram_option = sys.modules[__name__].sysbench_ram_option = ' --num-threads=2 --test=memory --memory-block-size=3500M --memory-total-size=100G run'
+#10.9424s on c4.large
 # supported bench marks
 sys.modules[__name__].supportedBenchmarks = dict([(y_cruncher, y_cruncher_option),
                                                   (pgbench, pgbench_option),
-                                                  (sysbench, sysbench_option)])
+                                                  (sysbench, sysbench_option),
+                                                  (sysbench_ram, sysbench_ram_option)])
 
 # dir
 sys.modules[__name__].datadir = '/home/ubuntu/SCRIPT/scripts/remote/data/'

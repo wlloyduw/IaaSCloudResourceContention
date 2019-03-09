@@ -178,6 +178,41 @@ class parser(object):
 
             writer.writerow(row)
 
+    def sysbench_ram(self):
+        needHeader = False
+        if not os.path.isfile(const.datadir + 'sysbench_ram.csv'):
+            needHeader = True
+        os.system("mkdir " + const.datadir)
+        with open(const.datadir+'sysbench_ram.csv', 'a') as fout:
+            row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
+                               ('wallTime', None), ('testOption',None), ('ram_write_speed', None),
+                               ('total-time', None), ('thread-num', None)
+                               ])
+
+            writer = csv.DictWriter(fout, fieldnames=row)
+            if needHeader:
+                writer.writeheader()
+            row['instanceType'] = self.kw['instanceType']
+            row['instanceID'] = self.kw['instanceID']
+            row['experimentID'] = self.kw['experimentID']
+            row['wallTime'] = self.kw['duration']
+            row['testOption'] = self.kw['testOption']
+
+            i = 0
+            for line in self.string:
+                if line.find('transferred') != -1:
+                    speed = re.search(r'(\d*\.\d*)', line).group(1)
+                    row['ram_write_speed'] = speed
+                if line.find('total time:') != -1:
+                    totalTime = re.search(r'total time:\s*(.*)', line).group(1)
+                    row['total-time'] = totalTime
+                if line.find('Number of threads:') != -1:
+                    threadNum = re.search(
+                        r'Number of threads:\s*(.*)', line).group(1)
+                    row['thread-num'] = threadNum
+                i += 1
+
+            writer.writerow(row)
     def stress_ng(self):
         pass
 
