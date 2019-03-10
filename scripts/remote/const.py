@@ -51,7 +51,7 @@ dic[sysbench] = 'sysbench'
 sysbench_option = sys.modules[__name__].sysbench_option = ' --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run'
 # sysbench --test=memory --memory-block-size=1K --num-threads=2 --memory-total-size=10G run
 dic[sysbench_ram] = 'sysbench'
-sysbench_ram_option = sys.modules[__name__].sysbench_ram_option = ' --num-threads=2 --test=memory --memory-block-size=3500M --memory-total-size=100G run'
+sysbench_ram_option = sys.modules[__name__].sysbench_ram_option = ' --num-threads=2 --test=memory --memory-block-size=1M --memory-total-size=100G run'
 #10.9424s on c4.large
 # supported bench marks
 sys.modules[__name__].supportedBenchmarks = dict([(y_cruncher, y_cruncher_option),
