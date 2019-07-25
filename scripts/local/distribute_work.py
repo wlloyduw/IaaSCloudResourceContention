@@ -19,7 +19,7 @@ def pssh(minute='*', hour='*', day='*', cycles='1', benchmark='pgbench'):
 	_task='''+"'"+minute+" "+hour+" "+day+''' * * ubuntu python3  ~/SCRIPT/scripts/remote/run.py -c '''+cycles+' -t '+benchmark+''' -i '$id
 	task=\\'$_task\\'
 	psshcommand='set -f && eval "$(ssh-agent -s)" && ssh-add -k ~/.ssh/git_capstone && rm -rf Capstone SCRIPT && git clone git@github.com:wlloyduw/Capstone.git  && mv Capstone SCRIPT && cd ~/SCRIPT && cp /etc/crontab . && echo '$task' >> crontab && sudo mv crontab /etc/crontab && sudo chown root.root /etc/crontab && sudo service cron reload'
-	pssh -i -h hostfile_pssh -x "-i ~/.ssh/as0.pem" $psshcommand
+	pssh -i -h hostfile_pssh -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
 	'''
     respond = os.popen(shellscript).read()
     print(respond)
@@ -35,7 +35,7 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
         return '''
 		set -f
 		psshcommand='set -f && echo "''' + minute + " " + hour + " " + day + ''' * * ubuntu python3  ~/SCRIPT/scripts/remote/run.py -c ''' + cycles+' -t '+benchmark + ' -i ' + exp_id + '''" >> crontab'
-		pssh -i -H "''' + HOST_STRING + '''" -x "-i ~/.ssh/as0.pem" $psshcommand
+		pssh -i -H "''' + HOST_STRING + '''" -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
 		'''
 
     # copy ./crontab to every instance:~/. in hostlist
@@ -44,7 +44,7 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
         hostlist = f.read()
         hostlist = hostlist.strip().split('\n')
     datadir = ':~/'
-    command = 'scp -i as0.pem -r ./crontab '
+    command = 'scp -i ~/.ssh/as0.pem -r ./crontab '
     threadlist = []
     for host in hostlist:
         wholecommand = command+host+datadir
@@ -72,6 +72,7 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
 
         shell = getPsshcommand(str(target_time.minute), str(
             target_time.hour), str(target_time.day), HOST_STRING)
+        #print(shell)
         tmp = os.popen(shell).read()
         print(tmp)
         # add interval to each line of crontab
@@ -82,7 +83,7 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
 	psshcommand='sudo mv ~/crontab /etc/crontab && sudo chown root.root /etc/crontab && 
 	sudo service cron reload'
 
-	pssh -i -h hostfile_pssh -x "-i ~/.ssh/as0.pem" $psshcommand
+	pssh -i -h hostfile_pssh -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
 	'''
     respond = os.popen(shell).read()
 
@@ -93,7 +94,7 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
         init_data_dir = r'''
 		psshcommand='sudo bash /home/ubuntu/SCRIPT/scripts/remote/init_pg_on_localdisk.bash'
 
-		pssh -i -h hostfile_pssh -x "-i ~/.ssh/as0.pem" $psshcommand
+		pssh -i -h hostfile_pssh -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
 		'''
         respond = os.popen(init_data_dir).read()
         print(respond)
@@ -104,7 +105,7 @@ def cloneGitRepo():
 	psshcommand='eval "$(ssh-agent -s)" && ssh-add -k ~/.ssh/git_capstone && rm -rf Capstone SCRIPT &&
 	git clone git@github.com:wlloyduw/Capstone.git && mv Capstone SCRIPT'
 
-	pssh -i -h hostfile_pssh -x "-i ~/.ssh/as0.pem" $psshcommand
+	pssh -i -h hostfile_pssh -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
 	'''
     respond = os.popen(shell).read()
     print(respond)

@@ -1,0 +1,14 @@
+experimentID,instanceID,instanceType,wallTime,testOption,per-request-avg-time,total-time,thread-num
+1564035929,i-01ae74ac44c7109e8,c4.large,8.653367757797241, --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run,1720.45ms,8.6038s,2
+1564035929,i-081718edb0e8b4d2a,c4.large,8.511178493499756, --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run,1691.43ms,8.4600s,2
+1564036494,i-0b95f6a630c3c14fc,c4.large,8.50750732421875, --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run,1693.30ms,8.4792s,2
+1564036494,i-0b95f6a630c3c14fc,c4.large,8.48843240737915, --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run,1692.56ms,8.4650s,2
+1564036494,i-0bf0556260d5673ca,c4.large,8.562901735305786, --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run,1697.79ms,8.5030s,2
+1564036494,i-0b95f6a630c3c14fc,c4.large,8.50750732421875, --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run,1693.30ms,8.4792s,2
+1564036494,i-0b95f6a630c3c14fc,c4.large,8.48843240737915, --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run,1692.56ms,8.4650s,2
+1564036494,i-0bf0556260d5673ca,c4.large,8.562901735305786, --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run,1697.79ms,8.5030s,2
+1564036712,i-0dd9db19c4dcf1980,c4.large,8.50864863395691, --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run,1692.60ms,8.4730s,2
+1564036712,i-0b95f6a630c3c14fc,c4.large,8.521986722946167, --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run,1692.83ms,8.4765s,2
+1564036712,i-0b95f6a630c3c14fc,c4.large,8.497438669204712, --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run,1692.05ms,8.4732s,2
+1564036712,i-0bf0556260d5673ca,c4.large,8.53143858909607, --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run,1698.22ms,8.4943s,2
+1564036712,i-0bf0556260d5673ca,c4.large,8.526131391525269, --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run,1696.28ms,8.4846s,2
