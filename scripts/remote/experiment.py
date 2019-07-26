@@ -243,6 +243,7 @@ class Experiment(object):
         for i in range(self.cycle):
             # flush cache
             os.popen("echo 3 | sudo tee /proc/sys/vm/drop_caches").read()
+            print(const.command[self.benchmark]+self.options[self.benchmark])
             # time stamp that user percieved
             time1 = time.time()
             result = os.popen(
@@ -253,3 +254,4 @@ class Experiment(object):
                               duration=duration, experimentID=self.experimentID)
             func = myParser.getfunc()
             func()
+            print(result)
