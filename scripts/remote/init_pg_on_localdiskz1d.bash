@@ -7,10 +7,13 @@ then
   sleep 1
   echo "z1d instance: partitioning and formatting ephemeral NVMe SSD before test..."
   sudo parted /dev/nvme1n1 mklabel msdos
-  sudo parted -a optimal /dev/nvme1n1 mkpart primary ext4 0%  69.9GB
-  sudo mkfs.ext4 /dev/nvme1n1p1
-  sudo mount /dev/nvme1n1p1 /mnt -t ext4
   sleep .5
+  sudo parted -a optimal /dev/nvme1n1 mkpart primary ext4 0%  69.9GB
+  sleep 1
+  sudo mkfs.ext4 /dev/nvme1n1p1
+  sleep 1
+  sudo mount /dev/nvme1n1p1 /mnt -t ext4
+  sleep 1
   #Move the database files to the new data disk:
   echo "z1d instance: moving postgresql to the ephemeral drive before test..."
   sudo mv /var/lib/postgresql/9.5/main /mnt/main
