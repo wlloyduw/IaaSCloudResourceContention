@@ -1,7 +1,7 @@
 #!bin/bash
 echo "c3 instance: moving postgresql to the ephemeral drive before test..."
 
-if [[ ! -d /mnt/postgres-data9.5 ]]
+if [[ ! -d /mnt/main ]]
 then
   #Stop the Postgres server:
   sudo service postgresql stop
