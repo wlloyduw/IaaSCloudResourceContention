@@ -14,3 +14,15 @@ experimentID,instanceID,instanceType,wallTime,testOption,per-request-avg-time,to
 1564036712,i-0bf0556260d5673ca,c4.large,8.526131391525269, --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run,1696.28ms,8.4846s,2
 i-08f4a05a31f62dda9,1564107731,c3.large,60.29338765144348,10,10,1,TPC-B (sort of),simple,60 s,55469,"data_directory = '/var/lib/postgresql/9.5/main'		# use data in another directory
 "
+i-0099ec6949ceb572b,1564110617,c3.large,0.4759831428527832,,,,,,,,"data_directory = '/var/lib/postgresql/9.5/main'		# use data in another directory
+"
+i-0c6d710e27c58072f,1564110617,c3.large,0.30259108543395996,,,,,,,,"data_directory = '/var/lib/postgresql/9.5/main'		# use data in another directory
+"
+i-0c6d710e27c58072f,1564110617,c3.large,0.21469664573669434,,,,,,,,"data_directory = '/mnt/postgres-data9.5'
+"
+i-0ebdcb717810632e8,1564110617,c3.large,0.4440500736236572,,,,,,,,"data_directory = '/var/lib/postgresql/9.5/main'		# use data in another directory
+"
+i-0ebdcb717810632e8,1564110617,c3.large,0.19892096519470215,,,,,,,,"data_directory = '/mnt/postgres-data9.5'
+"
+i-0ebdcb717810632e8,1564110617,c3.large,0.18731069564819336,,,,,,,,"data_directory = '/mnt/postgres-data9.5'
+"
