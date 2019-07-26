@@ -13,6 +13,7 @@ import threading
 def pssh(minute='*', hour='*', day='*', cycles='1', benchmark='pgbench'):
     # chaos, legacy, hard to modify, but excute fast
     # in some aspect, pssh=pssh_v2+cloneGitRepo
+    print("in pssh")
     shellscript = r'''
 	set -f
 	id=$(date -u +%s)
@@ -26,6 +27,7 @@ def pssh(minute='*', hour='*', day='*', cycles='1', benchmark='pgbench'):
 
 
 def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cycles='10', interval=15, benchmark='pgbench', reverseFlag=False, vmgen='c3'):
+    print("in pssh2")
     # override pssh when doing 1to16 dedicated host experiment
     # copy each 'crontab' to its instance
     os.system('cp crontab.bak crontab')
