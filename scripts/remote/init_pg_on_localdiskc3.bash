@@ -5,11 +5,11 @@ if [[ ! -d /mnt/main ]]
 then
   #Stop the Postgres server:
   sudo service postgresql stop
-  sleep 30
+  sleep 10
   #Move the database files to the new data disk:
   sudo mv /var/lib/postgresql/9.5/main /mnt/main
   sudo -u postgres ln -s /mnt/main /var/lib/postgresql/9.5/main 
-  sleep 10
+  sleep 1
   #Edit postgresql.conf:
   #CFG=/etc/postgresql/9.5/main/postgresql.conf
   #K=data_directory
@@ -18,4 +18,5 @@ then
 
   #Start Postgres:
   sudo service postgresql start
+  sleep 15
 fi
