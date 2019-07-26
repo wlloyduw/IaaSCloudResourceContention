@@ -128,14 +128,14 @@ def main(argv):
 	-b <choose a benchmark>
 	-t/c <minute:hour:day in UTC>/<minutes count down> 
 	-n <num of works> 
-	-d <dedicated host mode interval>
-        -g vm generation, specify: c3, c5, c5d, z1d
+        -g aws ec2 vm generation, specify: c3, c5, c5d, z1d
+	-d <dedicated host mode interval> (*must be last argument in list*)
 	'''
     if len(argv) == 0:
         print(notice)
         sys.exit()
     try:
-        opts, args = getopt.getopt(argv, "hrt:c:n:d:b:")
+        opts, args = getopt.getopt(argv, "hrt:c:n:d:b:g:")
     except getopt.GetoptError:
         print(notice)
         sys.exit(2)
@@ -150,8 +150,6 @@ def main(argv):
     for opt, arg in opts:
         if opt in ("-b"):
             benchmark = arg
-        if opt in ("-g"):
-            vmgen = arg
         if opt in ("-r"):
             reverseFlag = True
     if benchmark not in const.supportedBenchmarks.keys():
@@ -181,6 +179,8 @@ def main(argv):
                 target_time.hour), str(target_time.day)
         elif opt in ('-n'):
             cycles = arg
+        elif opt in ('-g'):
+            vmgen = arg
         elif opt in ('-d'):
             # dedicated host mode
             iterative_interval = int(arg)
