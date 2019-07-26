@@ -1,4 +1,5 @@
 #!bin/bash
+echo "c3 instance: moving postgresql to the ephemeral drive before test..."
 
 #Stop the Postgres server:
 sudo service postgresql stop
