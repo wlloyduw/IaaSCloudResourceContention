@@ -25,7 +25,7 @@ def pssh(minute='*', hour='*', day='*', cycles='1', benchmark='pgbench'):
     print(respond)
 
 
-def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cycles='10', interval=15, benchmark='pgbench', reverseFlag=False):
+def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cycles='10', interval=15, benchmark='pgbench', reverseFlag=False, vmgen='c3'):
     # override pssh when doing 1to16 dedicated host experiment
     # copy each 'crontab' to its instance
     os.system('cp crontab.bak crontab')
@@ -87,12 +87,12 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
 	'''
     respond = os.popen(shell).read()
 
-    if True:
-        return
+    #if True:
+    #    return
     if benchmark in ('pgbench'):
-        print("make sure your instance type is: c3")
+        print("make sure your instance type is: " + vmgen)
         init_data_dir = r'''
-		psshcommand='sudo bash /home/ubuntu/SCRIPT/scripts/remote/init_pg_on_localdiskc3.bash'
+		psshcommand='sudo bash /home/ubuntu/SCRIPT/scripts/remote/init_pg_on_localdisk''' + vmgen + '''.bash'
 
 		pssh -i -h hostfile_pssh -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
 		'''
@@ -129,6 +129,7 @@ def main(argv):
 	-t/c <minute:hour:day in UTC>/<minutes count down> 
 	-n <num of works> 
 	-d <dedicated host mode interval>
+        -g vm generation, specify: c3, c5, c5d, z1d
 	'''
     if len(argv) == 0:
         print(notice)
@@ -149,6 +150,8 @@ def main(argv):
     for opt, arg in opts:
         if opt in ("-b"):
             benchmark = arg
+        if opt in ("-g"):
+            vmgen = arg
         if opt in ("-r"):
             reverseFlag = True
     if benchmark not in const.supportedBenchmarks.keys():
@@ -184,7 +187,7 @@ def main(argv):
             getPublicIpPool()
             cloneGitRepo()
             pssh_v2(target_time, cycles, iterative_interval,
-                    benchmark, reverseFlag)
+                    benchmark, reverseFlag, vmgen)
             sys.exit()
 
     getPublicIpPool()

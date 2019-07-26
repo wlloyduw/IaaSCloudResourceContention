@@ -12,3 +12,5 @@ experimentID,instanceID,instanceType,wallTime,testOption,per-request-avg-time,to
 1564036712,i-0b95f6a630c3c14fc,c4.large,8.497438669204712, --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run,1692.05ms,8.4732s,2
 1564036712,i-0bf0556260d5673ca,c4.large,8.53143858909607, --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run,1698.22ms,8.4943s,2
 1564036712,i-0bf0556260d5673ca,c4.large,8.526131391525269, --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run,1696.28ms,8.4846s,2
+i-08f4a05a31f62dda9,1564107731,c3.large,60.29338765144348,10,10,1,TPC-B (sort of),simple,60 s,55469,"data_directory = '/var/lib/postgresql/9.5/main'		# use data in another directory
+"
