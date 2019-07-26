@@ -94,7 +94,7 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
         init_data_dir = r'''
 		psshcommand='sudo bash /home/ubuntu/SCRIPT/scripts/remote/init_pg_on_localdisk''' + vmgen + '''.bash'
 
-		pssh -i -h hostfile_pssh -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
+		pssh -i -h hostfile_pssh -t 0 -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
 		'''
         respond = os.popen(init_data_dir).read()
         print(respond)
