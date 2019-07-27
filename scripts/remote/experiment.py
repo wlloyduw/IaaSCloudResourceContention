@@ -113,7 +113,7 @@ class parser(object):
             row['wallTime'] = self.kw['duration']
 
             mountPoint = os.popen(
-                'sed -n "s/^data_directory/data_directory/p" /etc/postgresql/9.5/main/postgresql.conf').read()
+                'sed -n "s/^data_directory/data_directory/p" /etc/postgresql/9.5/main/postgresql.conf | cut -d\'#\' -f 1').read()
             row['mountPoint'] = mountPoint
             for line in self.string:
                 if line.find('clients:') != -1:
