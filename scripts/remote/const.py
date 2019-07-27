@@ -41,7 +41,8 @@ dic = sys.modules[__name__].command = dict()
 # running options of y_cruncher # 7.379s on c4.large
 # the 3rd position decide the number of digits 1 - 25m, 2 - 50m, 3 - 100m, 4 - 250m, 7 - 2.5b
 dic[y_cruncher] = '/home/ubuntu/CPU_test/y-cruncher\ v0.7.5.9480-static/y-cruncher <<'
-y_cruncher_option = sys.modules[__name__].y_cruncher_option = 'EOF\n0\n1\n1\nEOF\n'
+y_cruncher_option = sys.modules[__name__].y_cruncher_option = '\n0\n1\n1\nEOF\n'
+#y_cruncher_option = sys.modules[__name__].y_cruncher_option = 'EOF\n0\n1\n1\nEOF\n'
 # running options of pgbench # need 61s on c4.large
 dic[pgbench] = 'pgbench'
 pgbench_option = sys.modules[__name__].pgbench_option = ' --client=10 --jobs=10 --time=60  ubuntu'

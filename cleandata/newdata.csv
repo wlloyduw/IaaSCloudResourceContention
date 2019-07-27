@@ -21,3 +21,4 @@ i-0ca77f320bd6c184c,1564114277,c3.large,60.297667264938354,10,10,1,TPC-B (sort o
 i-0aad3ee83f82aa64c,1564185611,z1d.large,60.2616400718689,10,10,1,TPC-B (sort of),simple,60 s,192856,"data_directory = '/var/lib/postgresql/9.5/main'		# use data in another directory "
 i-0aad3ee83f82aa64c,1564186228,z1d.large,60.19328761100769,10,10,1,TPC-B (sort of),simple,60 s,148494,"data_directory = '/var/lib/postgresql/9.5/main'		"
 i-0aad3ee83f82aa64c,1564186654,z1d.large,60.22320795059204,10,10,1,TPC-B (sort of),simple,60 s,194115,data_directory = '/var/lib/postgresql/9.5/main'		
+i-0aad3ee83f82aa64c,1564187009,z1d.large,60.24679470062256,10,10,1,TPC-B (sort of),simple,60 s,194177,data_directory = '/var/lib/postgresql/9.5/main'
