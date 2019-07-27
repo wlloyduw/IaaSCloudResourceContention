@@ -142,12 +142,13 @@ def main(argv):
         print(notice)
         sys.exit(2)
 
-    # default parameter
+    # default parameter values
     minute, hour, day, cycles = '0，15，30，45', '*', '*', '10'
     target_time = None
     iterative_interval = 1
     benchmark = None
     reverseFlag = False
+    vmgen = 'c3'
     # CLI input handler
     for opt, arg in opts:
         if opt in ("-b"):
