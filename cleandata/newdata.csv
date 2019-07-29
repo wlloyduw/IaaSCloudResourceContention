@@ -22,3 +22,4 @@ i-0aad3ee83f82aa64c,1564185611,z1d.large,60.2616400718689,10,10,1,TPC-B (sort of
 i-0aad3ee83f82aa64c,1564186228,z1d.large,60.19328761100769,10,10,1,TPC-B (sort of),simple,60 s,148494,"data_directory = '/var/lib/postgresql/9.5/main'		"
 i-0aad3ee83f82aa64c,1564186654,z1d.large,60.22320795059204,10,10,1,TPC-B (sort of),simple,60 s,194115,data_directory = '/var/lib/postgresql/9.5/main'		
 i-0aad3ee83f82aa64c,1564187009,z1d.large,60.24679470062256,10,10,1,TPC-B (sort of),simple,60 s,194177,data_directory = '/var/lib/postgresql/9.5/main'
+i-0aad3ee83f82aa64c,1564192196,z1d.large,15.4 GiB,Intel(R) Xeon(R) Platinum 8151 CPU @ 3.40GHz,2 threads / 1 core / 1 socket / 1 NUMA node,0.7.5.9480 (Linux/17-SKX ~ Kotori),Sat Jul 27 01:50:01 2019,15.0 GiB,Push,196.14 %,98.07 %,3.926,4.070,4.549245834350586
