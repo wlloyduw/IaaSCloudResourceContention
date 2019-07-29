@@ -34,6 +34,9 @@ bonnie = sys.modules[__name__].bonnie = 'bonnie'
 stress_ng = sys.modules[__name__].stress_ng = 'stress_ng'
 sysbench = sys.modules[__name__].sysbench = 'sysbench'
 y_cruncher = sys.modules[__name__].y_cruncher = 'y_cruncher'
+y_cruncherc3 = sys.modules[__name__].y_cruncher = 'y_cruncherc3'
+y_cruncherc4 = sys.modules[__name__].y_cruncher = 'y_cruncherc4'
+y_cruncherz1d = sys.modules[__name__].y_cruncher = 'y_cruncherz1d'
 pgbench = sys.modules[__name__].pgbench = 'pgbench'
 sysbench_ram = sys.modules[__name__].sysbench_ram ='sysbench_ram'
 dic = sys.modules[__name__].command = dict()
@@ -41,11 +44,17 @@ dic = sys.modules[__name__].command = dict()
 # running options of y_cruncher # 7.379s on c4.large
 # the 3rd position decide the number of digits 1 - 25m, 2 - 50m, 3 - 100m, 4 - 250m, 7 - 2.5b
 dic[y_cruncher] = '/home/ubuntu/CPU_test/y-cruncher\ v0.7.5.9480-static/y-cruncher <<'
+dic[y_cruncherc3] = '/home/ubuntu/CPU_test/y-cruncher\ v0.7.5.9480-static/y-cruncher <<'
+dic[y_cruncherc4] = '/home/ubuntu/CPU_test/y-cruncher\ v0.7.5.9480-static/y-cruncher <<'
+dic[y_cruncherz1d] = '/home/ubuntu/CPU_test/y-cruncher\ v0.7.5.9480-static/y-cruncher <<'
 # 
 # FIX ME FIX ME ----------- !
 # Had to add an extra '0\n' to get to work on z1d - IS THIS REQUIRED for c3/c4 ????
 #
 y_cruncher_option = sys.modules[__name__].y_cruncher_option = 'EOF\n0\n0\n1\n1\nEOF\n'
+y_cruncherc3_option = sys.modules[__name__].y_cruncher_option = 'EOF\n0\n1\n1\nEOF\n'
+y_cruncherc4_option = sys.modules[__name__].y_cruncher_option = 'EOF\n0\n1\n1\nEOF\n'
+y_cruncherz1d_option = sys.modules[__name__].y_cruncher_option = 'EOF\n0\n0\n1\n1\nEOF\n'
 #y_cruncher_option = sys.modules[__name__].y_cruncher_option = 'EOF\n0\n1\n1\nEOF\n'
 # running options of pgbench # need 61s on c4.large
 dic[pgbench] = 'pgbench'
@@ -60,6 +69,9 @@ sysbench_ram_option = sys.modules[__name__].sysbench_ram_option = ' --num-thread
 #10.9424s on c4.large
 # supported bench marks
 sys.modules[__name__].supportedBenchmarks = dict([(y_cruncher, y_cruncher_option),
+                                                  (y_cruncherc3, y_cruncherc3_option),
+                                                  (y_cruncherc4, y_cruncherc4_option),
+                                                  (y_cruncherz1d, y_cruncherz1d_option),
                                                   (pgbench, pgbench_option),
                                                   (sysbench, sysbench_option),
                                                   (sysbench_ram, sysbench_ram_option)])

@@ -229,6 +229,10 @@ class parser(object):
     def mbw(self):
         pass
 
+    y_cruncherc3 = y_cruncher
+    y_cruncherc4 = y_cruncher
+    y_cruncherz1d = y_cruncher
+	 
     def getfunc(self):
         return getattr(self, self.benchmark)
 
