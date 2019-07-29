@@ -36,8 +36,6 @@ def main(argv):
     # do experiment HERE!!!
     # e1=Experiment(const.y_cruncher,cycle,supportedBenchmarks,ID)
     # e1.run()
-    print('the benchmark=' + benchmark)
-    print('const supportedBenchmarks=' + const.supportedBenchmarks.get(benchmark))
     e2 = Experiment(benchmark, cycle, const.supportedBenchmarks, ID)
 
     if const.plugins is True:
