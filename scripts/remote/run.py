@@ -15,7 +15,6 @@ def main(argv):
     ID = '0'
     cycle = '10'
     benchmark = const.sysbench
-    vmgen
     try:
         opts, args = getopt.getopt(argv, "hc:i:t:")
     except getopt.GetoptError:
@@ -31,8 +30,6 @@ def main(argv):
             ID = arg
         elif opt in ("-c"):
             cycle = arg
-        elif opt in ("-g"):
-            vmgen = arg
         elif opt in ("-t"):
             if arg in const.supportedBenchmarks.keys():
                 benchmark = arg
