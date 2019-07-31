@@ -19,7 +19,7 @@ def pssh(minute='*', hour='*', day='*', cycles='1', benchmark='pgbench'):
 	id=$(date -u +%s)
 	_task='''+"'"+minute+" "+hour+" "+day+''' * * ubuntu python3  ~/SCRIPT/scripts/remote/run.py -c '''+cycles+' -t '+benchmark+''' -i '$id
 	task=\\'$_task\\'
-	psshcommand='set -f && eval "$(ssh-agent -s)" && ssh-add -k ~/.ssh/git_capstone && rm -rf Capstone SCRIPT && git clone https://github.com/wlloyduw/IaaSCloudResourceContention.git && mv Capstone SCRIPT && cd ~/SCRIPT && cp /etc/crontab . && echo '$task' >> crontab && sudo mv crontab /etc/crontab && sudo chown root.root /etc/crontab && sudo service cron reload'
+	psshcommand='set -f && eval "$(ssh-agent -s)" && ssh-add -k ~/.ssh/git_capstone && rm -rf IaaSCloudResourceContention && git clone https://github.com/wlloyduw/IaaSCloudResourceContention.git && mv IaaSCloudResourceContention SCRIPT && cd ~/SCRIPT && cp /etc/crontab . && echo '$task' >> crontab && sudo mv crontab /etc/crontab && sudo chown root.root /etc/crontab && sudo service cron reload'
 	pssh -i -h hostfile_pssh -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
 	'''
     respond = os.popen(shellscript).read()
@@ -104,8 +104,8 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
 
 def cloneGitRepo():
     shell = r'''
-	psshcommand='eval "$(ssh-agent -s)" && ssh-add -k ~/.ssh/git_capstone && rm -rf Capstone SCRIPT &&
-	git clone https://github.com/wlloyduw/IaaSCloudResourceContention.git && mv Capstone SCRIPT'
+	psshcommand='eval "$(ssh-agent -s)" && ssh-add -k ~/.ssh/git_capstone && rm -rf IaaSCloudResourceContention SCRIPT &&
+	git clone https://github.com/wlloyduw/IaaSCloudResourceContention.git && mv IaaSCloudResourceContention SCRIPT'
 
 	pssh -i -h hostfile_pssh -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
 	'''
