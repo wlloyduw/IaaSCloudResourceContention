@@ -119,8 +119,10 @@ def configurIperfClient(C2S_MAP):
     # CHANGE initiation method here, if neeeded
     cmd = "'sudo cp ~/crontab /etc/crontab && sudo chown root.root /etc/crontab && sudo service cron reload'"
     print(psshExcute("iperfClients", cmd))  # preparations for cron
-    cmd = ''' 'eval "$(ssh-agent)" && ssh-add -k ~/.ssh/git_capstone && rm -rf Capstone SCRIPT && 
-        git clone git@github.com:khaosminded/IaaSCloudResourceContention.git && mv Capstone SCRIPT' '''
+    cmd = ''' 'eval "$(ssh-agent)" && ssh-add -k ~/.ssh/git_capstone && rm -rf IaaSCloudResourceContention SCRIPT && 
+        git clone https://github.com/wlloyduw/IaaSCloudResourceContention.git && mv IaaSCloudResourceContention SCRIPT' '''
+        # old
+        #git clone git@github.com:khaosminded/IaaSCloudResourceContention.git && mv Capstone SCRIPT' '''
     print(psshExcute("iperfClients", cmd)
           )  # git clone, slave nodes needed to have git-hub private key
     return seq
