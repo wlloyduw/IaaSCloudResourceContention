@@ -129,7 +129,8 @@ def configurIperfClient(C2S_MAP):
 
 
 def psshExcute(addrfile, command):
-    pssh = "pssh -i -h %s -x '-i %s' %s" % (addrfile, PEM_PATH, command)
+    pssh = "pssh -i -h %s -x '-o StrictHostKeyChecking=no -i %s' %s" % (addrfile, PEM_PATH, command)
+    print (pssh)
     return "###PSSH CALL:%s\n" % (command) + os.popen(pssh).read()
 
 

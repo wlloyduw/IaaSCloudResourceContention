@@ -13,3 +13,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
 52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
 #
+34 23 1 * * ubuntu python3  ~/SCRIPT/scripts/remote/iperf_slave.py -c 11 -i 1564702276 -x 'iperf -c 54.237.207.57 --dualtest --window 416k --time 15 ' -s 1 -v 1
