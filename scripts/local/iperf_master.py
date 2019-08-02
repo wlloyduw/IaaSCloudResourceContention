@@ -112,7 +112,7 @@ def configurIperfClient(C2S_MAP):
             f.write("\n".join(cmdList))
         # copy crontab to slave nodes
         print("Sending crontab to IP:%s" % (clientAddr))
-        print(os.popen("scp -i %s crontab %s:~/" %
+        print(os.popen("scp -i %s -o StrictHostKeyChecking=no crontab %s:~/" %
                        (PEM_PATH, "ubuntu@" + clientAddr)).read())
 
     # for all clients, simultaneously
