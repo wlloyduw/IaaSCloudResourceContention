@@ -114,7 +114,7 @@ def cloneGitRepo():
 
 
 def getPublicIpPool():
-    getPublicIp = r'aws ec2 describe-instances | grep PublicIpAddress | cut -d":" -f 2 | cut -d"," -f 1 | cut -d"\"" -f 2 '
+    getPublicIp = r'aws ec2 describe-instances --filters "Name=instance-state-code,Values=16" | grep PublicIpAddress | cut -d":" -f 2 | cut -d"," -f 1 | cut -d"\"" -f 2 '
     ipList = os.popen(getPublicIp).read()
     ipList = ipList.strip().split('\n')
     with open('hostfile_pssh', 'w') as f:
