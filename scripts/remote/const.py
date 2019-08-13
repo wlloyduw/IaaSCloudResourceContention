@@ -37,7 +37,7 @@ y_cruncher = sys.modules[__name__].y_cruncher = 'y_cruncher'
 y_cruncherc3 = sys.modules[__name__].y_cruncherc3 = 'y_cruncherc3'
 y_cruncherc4 = sys.modules[__name__].y_cruncherc4 = 'y_cruncherc4'
 y_cruncherz1d = sys.modules[__name__].y_cruncherz1d = 'y_cruncherz1d'
-y_cruncherm5d = sys.modules[__name__].y_cruncherz1d = 'y_cruncherm5d'
+y_cruncherm5d = sys.modules[__name__].y_cruncherm5d = 'y_cruncherm5d'
 pgbench = sys.modules[__name__].pgbench = 'pgbench'
 sysbench_ram = sys.modules[__name__].sysbench_ram ='sysbench_ram'
 dic = sys.modules[__name__].command = dict()
