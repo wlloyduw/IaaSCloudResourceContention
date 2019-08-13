@@ -58,7 +58,7 @@ y_cruncherc3_option = sys.modules[__name__].y_cruncherc3_option = 'EOF\n0\n1\n1\
 y_cruncherc4_option = sys.modules[__name__].y_cruncherc4_option = 'EOF\n0\n1\n1\nEOF\n'
 y_cruncherz1d_option = sys.modules[__name__].y_cruncherz1d_option = 'EOF\n0\n0\n1\n1\nEOF\n'
 #y_cruncherz1d_option = sys.modules[__name__].y_cruncherm5d_option = 'EOF\n0\n0\n1\n1\nEOF\n'
-y_cruncherm5d_option = sys.modules[__name__].y_cruncherm5d_option = 'EOF\n0\n1\n1\nEOF\n'
+y_cruncherm5d_option = sys.modules[__name__].y_cruncherm5d_option = 'EOF\n0\n0\n1\n1\nEOF\n'
 #y_cruncher_option = sys.modules[__name__].y_cruncher_option = 'EOF\n0\n1\n1\nEOF\n'
 # running options of pgbench # need 61s on c4.large
 dic[pgbench] = 'pgbench'
