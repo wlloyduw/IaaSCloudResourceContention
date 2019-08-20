@@ -26,7 +26,7 @@ def pssh(minute='*', hour='*', day='*', cycles='1', benchmark='pgbench'):
     print(respond)
 
 
-def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cycles='10', interval=15, benchmark='pgbench', reverseFlag=False, vmgen='c3'):
+def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cycles='10', interval=15, benchmark='pgbench', reverseFlag=False, vmgen='c3', stopFlag=False):
     print("in pssh2")
     # override pssh when doing 1to16 dedicated host experiment
     # copy each 'crontab' to its instance
@@ -37,6 +37,12 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
         return '''
 		set -f
 		psshcommand='set -f && echo "''' + minute + " " + hour + " " + day + ''' * * ubuntu python3  ~/SCRIPT/scripts/remote/run.py -c ''' + cycles+' -t '+benchmark + ' -i ' + str(exp_id).strip() + '-' + str(setid) + ' | logger -t testharness' + '''" >> crontab'
+		pssh -i -H "''' + HOST_STRING + '''" -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
+		'''
+    def getStopcommand(minute, hour, day, HOST_STRING, setid):
+        return '''
+		set -f
+		psshcommand='set -f && echo \"''' + minute + " " + hour + " " + day + ''' * * ubuntu aws ec2 stop-instances --instance-ids $(curl http://169.254.169.254/latest/meta-data/instance-id 2>/dev/null) | logger -t testharness\" >> crontab'
 		pssh -i -H "''' + HOST_STRING + '''" -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
 		'''
     #ORIG CMD --> psshcommand='set -f && echo "''' + minute + " " + hour + " " + day + ''' * * ubuntu python3  ~/SCRIPT/scripts/remote/run.py -c ''' + cycles+' -t '+benchmark + ' -i ' + exp_id + ' | logger -t testharness' + '''" >> crontab'
@@ -77,6 +83,21 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
         #print(shell)
         tmp = os.popen(shell).read()
         print(tmp)
+
+        # Schedule instances to stop
+        if stopFlag == True:
+            print('stop VM:' + hostlist[i])
+            #print(len(hostlist))
+            #print(i)
+            shutdown_time = target_time + relativedelta(minutes=1)
+            shell = getStopcommand(str(shutdown_time.minute), str(
+                shutdown_time.hour), str(shutdown_time.day), hostlist[i], i)
+            #print(shell)
+            tmp = os.popen(shell).read()
+            print(tmp)
+        else:
+            print('no request to stop VMs')
+
         # add interval to each line of crontab
         target_time += relativedelta(minutes=interval)
 
@@ -100,6 +121,17 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
 		'''
         respond = os.popen(init_data_dir).read()
         print(respond)
+
+    # Refresh all keys
+    print("refreshing credentials on instances")
+    refresh_keys = r'''
+ 	psshcommand='~/.ssh/* /home/ubuntu/.ssh/*'
+
+	parallel-scp -h hostfile_pssh -t 0 -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" ~/.aws/credentials /home/ubuntu/.aws/credentials
+	'''
+    respond = os.popen(refresh_keys).read()
+    #print(refresh_keys)
+    print(respond)
 
 
 def cloneGitRepo():
@@ -126,6 +158,7 @@ def getPublicIpPool():
 def main(argv):
     notice = '''#distribute_work.py# 
 	-h : help
+        -s stop instances after test (experimental, use before everything but -b)
 	-r :dedicated host reverse_mode 1to16 (16to1 by default)
 	-b <choose a benchmark>
 	-t/c <minute:hour:day in UTC>/<minutes count down> 
@@ -137,7 +170,7 @@ def main(argv):
         print(notice)
         sys.exit()
     try:
-        opts, args = getopt.getopt(argv, "hrt:c:n:d:b:g:")
+        opts, args = getopt.getopt(argv, "shrt:c:n:d:b:g:")
     except getopt.GetoptError:
         print(notice)
         sys.exit(2)
@@ -148,6 +181,7 @@ def main(argv):
     iterative_interval = 1
     benchmark = None
     reverseFlag = False
+    stopFlag = False
     vmgen = 'c3'
     # CLI input handler
     for opt, arg in opts:
@@ -163,6 +197,10 @@ def main(argv):
         if opt == '-h':
             print('help:\n '+notice)
             sys.exit()
+
+        elif opt in ("-s"):
+            print('stop flag')
+            stopFlag = True
 
         elif opt in ("-t"):
             minute = arg.strip().split(':')[0]
@@ -190,10 +228,11 @@ def main(argv):
             getPublicIpPool()
             cloneGitRepo()
             pssh_v2(target_time, cycles, iterative_interval,
-                    benchmark, reverseFlag, vmgen)
+                    benchmark, reverseFlag, vmgen, stopFlag)
             sys.exit()
 
     getPublicIpPool()
+    print('No -d flag...!')
     pssh(minute, hour, day, cycles, benchmark)
 
 
