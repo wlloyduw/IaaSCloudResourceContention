@@ -67,7 +67,6 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
         threads.start()
     for threads in threadlist:
         threads.join()
-    skip=0
     # -H --host=HOST_STRING
     # No.1 instance has exactly 1 work, No.2 has 2 ... No.16 has 16 newline in crontab
     for i in range(len(hostlist)):
@@ -76,8 +75,9 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
             for host in hostlist[:i+1]:  # reverse 1VM->16VMs
                 HOST_STRING += host+' '
         else:
+            skip=1
             for host in hostlist[i:]:
-                if i > skip:
+                if skip == 0:
                     HOST_STRING += host+' '  # positive 16VMs->1VM
                     shell = getPsshcommand(str(target_time.minute), str(
                         target_time.hour), str(target_time.day), HOST_STRING, i, "")
@@ -86,13 +86,13 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
                     tmp = os.popen(shell).read()
                     print(tmp)
                 else:
-                    HOST_STRING += host+' '  # positive 16VMs->1VM
                     shell = getPsshcommand(str(target_time.minute), str(
                         target_time.hour), str(target_time.day), hostlist[i], i, " -s")
                     print(shell)
                     print(HOST_STRING)
                     tmp = os.popen(shell).read()
                     print(tmp)
+                    skip=0
 
         #shell = getPsshcommand(str(target_time.minute), str(
         #    target_time.hour), str(target_time.day), HOST_STRING, i)
