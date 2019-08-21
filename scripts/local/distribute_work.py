@@ -85,7 +85,7 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
                     print(HOST_STRING)
                     tmp = os.popen(shell).read()
                     print(tmp)
-                else
+                else:
                     skip=skip+1
                     HOST_STRING += host+' '  # positive 16VMs->1VM
                     shell = getPsshcommand(str(target_time.minute), str(
