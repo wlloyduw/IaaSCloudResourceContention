@@ -14,9 +14,10 @@ def main(argv):
 
     ID = '0'
     cycle = '10'
+    stopVM = False
     benchmark = const.sysbench
     try:
-        opts, args = getopt.getopt(argv, "hc:i:t:")
+        opts, args = getopt.getopt(argv, "shc:i:t:")
     except getopt.GetoptError:
         print('run.py -c <num of cycles> -i <exp_id> -t <exp_type>')
         sys.exit(2)
@@ -30,6 +31,8 @@ def main(argv):
             ID = arg
         elif opt in ("-c"):
             cycle = arg
+        elif opt in ("-s"):
+            stopVM = True
         elif opt in ("-t"):
             if arg in const.supportedBenchmarks.keys():
                 benchmark = arg
@@ -52,6 +55,8 @@ def main(argv):
     if benchmark in (const.y_cruncher):
         os.system('rm Pi*')
 
+    if stopVM == True:
+        os.system('aws ec2 stop-instances --instance-ids $(curl http://169.254.169.254/latest/meta-data/instance-id 2>/dev/null')
 
 if __name__ == "__main__":
     main(sys.argv[1:])

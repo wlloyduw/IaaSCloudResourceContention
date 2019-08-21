@@ -33,12 +33,13 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
     os.system('cp crontab.bak crontab')
     exp_id = os.popen('date -u +%s').read()
 
-    def getPsshcommand(minute, hour, day, HOST_STRING, setid):
+    def getPsshcommand(minute, hour, day, HOST_STRING, setid, stopVM):
         return '''
 		set -f
-		psshcommand='set -f && echo "''' + minute + " " + hour + " " + day + ''' * * ubuntu python3  ~/SCRIPT/scripts/remote/run.py -c ''' + cycles+' -t '+benchmark + ' -i ' + str(exp_id).strip() + '-' + str(setid) + ' | logger -t testharness' + '''" >> crontab'
+		psshcommand='set -f && echo "''' + minute + " " + hour + " " + day + ''' * * ubuntu python3  ~/SCRIPT/scripts/remote/run.py -c ''' + cycles+' -t '+benchmark + stopVM + ' -i ' + str(exp_id).strip() + '-' + str(setid) + ' | logger -t testharness' + '''" >> crontab'
 		pssh -i -H "''' + HOST_STRING + '''" -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
 		'''
+
     def getStopcommand(minute, hour, day, HOST_STRING, setid):
         return '''
 		set -f
@@ -66,7 +67,7 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
         threads.start()
     for threads in threadlist:
         threads.join()
-
+    skip=0
     # -H --host=HOST_STRING
     # No.1 instance has exactly 1 work, No.2 has 2 ... No.16 has 16 newline in crontab
     for i in range(len(hostlist)):
@@ -76,27 +77,45 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
                 HOST_STRING += host+' '
         else:
             for host in hostlist[i:]:
-                HOST_STRING += host+' '  # positive 16VMs->1VM
+                if i > skip:
+                    HOST_STRING += host+' '  # positive 16VMs->1VM
+                    shell = getPsshcommand(str(target_time.minute), str(
+                        target_time.hour), str(target_time.day), HOST_STRING, i, "")
+                    print(shell)
+                    print(HOST_STRING)
+                    tmp = os.popen(shell).read()
+                    print(tmp)
+                else
+                    skip=skip+1
+                    HOST_STRING += host+' '  # positive 16VMs->1VM
+                    shell = getPsshcommand(str(target_time.minute), str(
+                        target_time.hour), str(target_time.day), hostlist[i], i, " -s")
+                    print(shell)
+                    print(HOST_STRING)
+                    tmp = os.popen(shell).read()
+                    print(tmp)
 
-        shell = getPsshcommand(str(target_time.minute), str(
-            target_time.hour), str(target_time.day), HOST_STRING, i)
+        #shell = getPsshcommand(str(target_time.minute), str(
+        #    target_time.hour), str(target_time.day), HOST_STRING, i)
         #print(shell)
-        tmp = os.popen(shell).read()
-        print(tmp)
+        #print(HOST_STRING)
+        #tmp = os.popen(shell).read()
+        #print(tmp)
 
         # Schedule instances to stop
-        if stopFlag == True:
+        #if stopFlag == True:
             print('stop VM:' + hostlist[i])
-            #print(len(hostlist))
-            #print(i)
-            shutdown_time = target_time + relativedelta(minutes=1)
-            shell = getStopcommand(str(shutdown_time.minute), str(
-                shutdown_time.hour), str(shutdown_time.day), hostlist[i], i)
-            #print(shell)
-            tmp = os.popen(shell).read()
-            print(tmp)
-        else:
-            print('no request to stop VMs')
+            print(len(hostlist))
+            print(i)
+         
+        #    shutdown_time = target_time + relativedelta(minutes=1)
+        #    shell = getStopcommand(str(shutdown_time.minute), str(
+        #        shutdown_time.hour), str(shutdown_time.day), hostlist[i], i)
+        #    #print(shell)
+        #    tmp = os.popen(shell).read()
+        #    print(tmp)
+        #else:
+        #    print('no request to stop VMs')
 
         # add interval to each line of crontab
         target_time += relativedelta(minutes=interval)
