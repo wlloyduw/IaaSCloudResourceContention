@@ -79,33 +79,29 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
             for host in hostlist[i:]:
                 if skip == 0:
                     HOST_STRING += host+' '  # positive 16VMs->1VM
-                    shell = getPsshcommand(str(target_time.minute), str(
-                        target_time.hour), str(target_time.day), HOST_STRING, i, "")
-                    print(shell)
-                    print(HOST_STRING)
-                    tmp = os.popen(shell).read()
-                    print(tmp)
                 else:
+                    #schedule one VM to stop each time
+                    print("stop vm:" + hostlist[i]) 
                     shell = getPsshcommand(str(target_time.minute), str(
                         target_time.hour), str(target_time.day), hostlist[i], i, " -s")
-                    print(shell)
-                    print(HOST_STRING)
+                    #print(shell)
+                    #print(HOST_STRING)
                     tmp = os.popen(shell).read()
                     print(tmp)
                     skip=0
 
-        #shell = getPsshcommand(str(target_time.minute), str(
-        #    target_time.hour), str(target_time.day), HOST_STRING, i)
+        shell = getPsshcommand(str(target_time.minute), str(
+            target_time.hour), str(target_time.day), HOST_STRING, i, "")
         #print(shell)
         #print(HOST_STRING)
-        #tmp = os.popen(shell).read()
-        #print(tmp)
+        tmp = os.popen(shell).read()
+        print(tmp)
 
         # Schedule instances to stop
         #if stopFlag == True:
-            print('stop VM:' + hostlist[i])
-            print(len(hostlist))
-            print(i)
+        #    print('stop VM:' + hostlist[i])
+        #    print(len(hostlist))
+        #    print(i)
          
         #    shutdown_time = target_time + relativedelta(minutes=1)
         #    shell = getStopcommand(str(shutdown_time.minute), str(
@@ -218,7 +214,7 @@ def main(argv):
             sys.exit()
 
         elif opt in ("-s"):
-            print('stop flag')
+            print('stop VM flag has been included...')
             stopFlag = True
 
         elif opt in ("-t"):
