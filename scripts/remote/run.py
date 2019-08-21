@@ -56,7 +56,7 @@ def main(argv):
         os.system('rm Pi*')
 
     if stopVM == True:
-        os.system('aws ec2 stop-instances --instance-ids $(curl http://169.254.169.254/latest/meta-data/instance-id 2>/dev/null')
+        os.system('aws ec2 stop-instances --instance-ids $(curl http://169.254.169.254/latest/meta-data/instance-id 2>/dev/null)')
 
 if __name__ == "__main__":
     main(sys.argv[1:])

@@ -86,7 +86,6 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
                     tmp = os.popen(shell).read()
                     print(tmp)
                 else:
-                    skip=skip+1
                     HOST_STRING += host+' '  # positive 16VMs->1VM
                     shell = getPsshcommand(str(target_time.minute), str(
                         target_time.hour), str(target_time.day), hostlist[i], i, " -s")
@@ -119,6 +118,7 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
 
         # add interval to each line of crontab
         target_time += relativedelta(minutes=interval)
+        skip=skip+1
 
     # on each instance, mv ~/crontab to /etc/crontab & change the user to root
     shell = r'''
