@@ -178,7 +178,7 @@ def main(argv):
 	-b <choose a benchmark>
 	-t/c <minute:hour:day in UTC>/<minutes count down> 
 	-n <num of works> 
-        -g aws ec2 vm generation, specify: c3, c5, c5d, z1d
+        -g aws ec2 vm generation, specify: c3, c5, c5d, z1d, m5d
 	-d <dedicated host mode interval> (*must be last argument in list*)
 	'''
     if len(argv) == 0:
