@@ -69,6 +69,7 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
         threads.join()
     # -H --host=HOST_STRING
     # No.1 instance has exactly 1 work, No.2 has 2 ... No.16 has 16 newline in crontab
+    skip=0
     for i in range(len(hostlist)):
         HOST_STRING = ''
         if reverseFlag == True:
