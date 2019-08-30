@@ -1,6 +1,7 @@
-i-06e35205087e40947,1567196228-0,m5d.large,60.24310255050659,10,10,1,TPC-B (sort of),simple,60 s,40134,data_directory = '/var/lib/postgresql/9.5/main'
-i-06e35205087e40947,1567196228-1,m5d.large,60.1960072517395,10,10,1,TPC-B (sort of),simple,60 s,38033,data_directory = '/var/lib/postgresql/9.5/main'
-i-06e35205087e40947,1567196228-2,m5d.large,60.20777893066406,10,10,1,TPC-B (sort of),simple,60 s,37948,data_directory = '/var/lib/postgresql/9.5/main'
-i-059b8f4d8f880b45b,1567196228-0,m5d.large,60.43450927734375,10,10,1,TPC-B (sort of),simple,60 s,39009,data_directory = '/var/lib/postgresql/9.5/main'
-i-0ea5076d8393714e3,1567196228-0,m5d.large,60.253941774368286,10,10,1,TPC-B (sort of),simple,60 s,38629,data_directory = '/var/lib/postgresql/9.5/main'
-i-0ea5076d8393714e3,1567196228-1,m5d.large,60.273510217666626,10,10,1,TPC-B (sort of),simple,60 s,36862,data_directory = '/var/lib/postgresql/9.5/main'
+instanceID,experimentID,instanceType,wallTime,clients,threads,scaleFactor,transactionsType,queryMode,duration,transactions,mountPoint
+i-01ecfff04e615fb1f,1567199257-0,m5d.large,0.6543269157409668,,,,,,,,data_directory = '/var/lib/postgresql/9.5/main'
+i-021ec375b0bda8fbf,1567199257-0,m5d.large,0.18540263175964355,,,,,,,,data_directory = '/var/lib/postgresql/9.5/main'
+i-021ec375b0bda8fbf,1567199257-1,m5d.large,0.18050742149353027,,,,,,,,data_directory = '/var/lib/postgresql/9.5/main'
+i-0f56c6515bdbc482c,1567199257-0,m5d.large,0.19231081008911133,,,,,,,,data_directory = '/var/lib/postgresql/9.5/main'
+i-0f56c6515bdbc482c,1567199257-1,m5d.large,0.1946868896484375,,,,,,,,data_directory = '/var/lib/postgresql/9.5/main'
+i-0f56c6515bdbc482c,1567199257-2,m5d.large,0.32702040672302246,,,,,,,,data_directory = '/var/lib/postgresql/9.5/main'
