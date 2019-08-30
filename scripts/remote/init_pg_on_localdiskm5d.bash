@@ -14,9 +14,10 @@ then
   sleep 1
   sudo mount /dev/nvme1n1p1 /mnt -t ext4
   sleep 1
-  #Move the database files to the new data disk:
+  #copy the database files to the new data disk, leave local copy 
   echo "m5d instance: moving postgresql to the ephemeral drive before test..."
   sudo cp -R /var/lib/postgresql/9.5/main /mnt/main
+  sudo mv /var/lib/postgresql/9.5/main /var/lib/postgresql/9.5/main_aside
   sudo -u postgres ln -s /mnt/main /var/lib/postgresql/9.5/main 
   sleep 1
   #Edit postgresql.conf:
