@@ -1,7 +1,0 @@
-instanceID,experimentID,instanceType,wallTime,clients,threads,scaleFactor,transactionsType,queryMode,duration,transactions,mountPoint
-i-01ecfff04e615fb1f,1567199257-0,m5d.large,0.6543269157409668,,,,,,,,data_directory = '/var/lib/postgresql/9.5/main'
-i-021ec375b0bda8fbf,1567199257-0,m5d.large,0.18540263175964355,,,,,,,,data_directory = '/var/lib/postgresql/9.5/main'
-i-021ec375b0bda8fbf,1567199257-1,m5d.large,0.18050742149353027,,,,,,,,data_directory = '/var/lib/postgresql/9.5/main'
-i-0f56c6515bdbc482c,1567199257-0,m5d.large,0.19231081008911133,,,,,,,,data_directory = '/var/lib/postgresql/9.5/main'
-i-0f56c6515bdbc482c,1567199257-1,m5d.large,0.1946868896484375,,,,,,,,data_directory = '/var/lib/postgresql/9.5/main'
-i-0f56c6515bdbc482c,1567199257-2,m5d.large,0.32702040672302246,,,,,,,,data_directory = '/var/lib/postgresql/9.5/main'

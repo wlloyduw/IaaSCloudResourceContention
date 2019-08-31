@@ -1,0 +1,7 @@
+instanceID,experimentID,instanceType,wallTime,clients,threads,scaleFactor,transactionsType,queryMode,duration,transactions,mountPoint
+i-06bc865c25afe6c51,1567203404-0,m5d.large,60.29317617416382,10,10,1,TPC-B (sort of),simple,60 s,169384,data_directory = '/var/lib/postgresql/9.5/main'
+i-06bc865c25afe6c51,1567203404-1,m5d.large,60.17380499839783,10,10,1,TPC-B (sort of),simple,60 s,169853,data_directory = '/var/lib/postgresql/9.5/main'
+i-036c46b8e6afd1d2d,1567203404-0,m5d.large,60.16150498390198,10,10,1,TPC-B (sort of),simple,60 s,174393,data_directory = '/var/lib/postgresql/9.5/main'
+i-036c46b8e6afd1d2d,1567203404-1,m5d.large,60.15778183937073,10,10,1,TPC-B (sort of),simple,60 s,174586,data_directory = '/var/lib/postgresql/9.5/main'
+i-036c46b8e6afd1d2d,1567203404-2,m5d.large,60.165021896362305,10,10,1,TPC-B (sort of),simple,60 s,158818,data_directory = '/var/lib/postgresql/9.5/main'
+i-0a947c12fb4b3dbd1,1567203404-0,m5d.large,60.17665386199951,10,10,1,TPC-B (sort of),simple,60 s,174321,data_directory = '/var/lib/postgresql/9.5/main'
