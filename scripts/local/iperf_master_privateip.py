@@ -36,14 +36,14 @@ def getClientPool():
             f.write('ubuntu@' + ip + '\n')
     print("ClientList:", response)
 
-    command = r'aws ec2 describe-instances --filters "Name=tag:iperfRole,Values=client" "Name=instance-state-name,Values=running"'
-    command += r' | grep PublicIpAddress | cut -d":" -f 2 | cut -d"," -f 1 | cut -d"\"" -f 2'
+#    command = r'aws ec2 describe-instances --filters "Name=tag:iperfRole,Values=client" "Name=instance-state-name,Values=running"'
+#    command += r' | grep PublicIpAddress | cut -d":" -f 2 | cut -d"," -f 1 | cut -d"\"" -f 2'
 
-    response = os.popen(command).read().strip().split('\n')
-    with open('iperfClientsPub', 'w') as f:
-        for ip in response:
-            f.write('ubuntu@' + ip + '\n')
-    print("ClientList:", response)
+#    response = os.popen(command).read().strip().split('\n')
+#    with open('iperfClientsPub', 'w') as f:
+#        for ip in response:
+#            f.write('ubuntu@' + ip + '\n')
+#    print("ClientList:", response)
 
     return response
 
@@ -59,14 +59,14 @@ def getServerPool():
             f.write('ubuntu@' + ip + '\n')
     print("ServerList:", response)
 
-    command = r'aws ec2 describe-instances --filters "Name=tag:iperfRole,Values=server" "Name=instance-state-name,Values=running"'
-    command += r' | grep PublicIpAddress | cut -d":" -f 2 | cut -d"," -f 1 | cut -d"\"" -f 2'
+#    command = r'aws ec2 describe-instances --filters "Name=tag:iperfRole,Values=server" "Name=instance-state-name,Values=running"'
+#    command += r' | grep PublicIpAddress | cut -d":" -f 2 | cut -d"," -f 1 | cut -d"\"" -f 2'
 
-    response = os.popen(command).read().strip().split('\n')
-    with open('iperfServersPub', 'w') as f:
-        for ip in response:
-            f.write('ubuntu@' + ip + '\n')
-    print("ServerList:", response)
+#    response = os.popen(command).read().strip().split('\n')
+#    with open('iperfServersPub', 'w') as f:
+#        for ip in response:
+#            f.write('ubuntu@' + ip + '\n')
+#    print("ServerList:", response)
 
     return response
 
