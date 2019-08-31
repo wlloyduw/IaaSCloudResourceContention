@@ -85,7 +85,7 @@ def createIperfPair():
 def launchIperfServer():
     print("\nlaunchIperfServer()")
     cmd = "iperf -s --daemon &"
-    print(psshExcute('iperfServersPub', cmd))
+    print(psshExcute('iperfServers', cmd))
 
 
 ## build a list of command wrote to clients' crontab file that contains raw command needed pass to iperf_slave.py  ##
@@ -138,12 +138,12 @@ def configurIperfClient(C2S_MAP):
     # for all clients, simultaneously
     # CHANGE initiation method here, if neeeded
     cmd = "'sudo cp ~/crontab /etc/crontab && sudo chown root.root /etc/crontab && sudo service cron reload'"
-    print(psshExcute("iperfClientsPub", cmd))  # preparations for cron
+    print(psshExcute("iperfClients", cmd))  # preparations for cron
     cmd = ''' 'eval "$(ssh-agent)" && ssh-add -k ~/.ssh/git_capstone && rm -rf IaaSCloudResourceContention SCRIPT && 
         git clone https://github.com/wlloyduw/IaaSCloudResourceContention.git && mv IaaSCloudResourceContention SCRIPT' '''
         # old
         #git clone git@github.com:khaosminded/IaaSCloudResourceContention.git && mv Capstone SCRIPT' '''
-    print(psshExcute("iperfClientsPub", cmd)
+    print(psshExcute("iperfClients", cmd)
           )  # git clone, slave nodes needed to have git-hub private key
     return seq
 
