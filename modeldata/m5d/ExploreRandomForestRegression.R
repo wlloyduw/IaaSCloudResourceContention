@@ -16,11 +16,9 @@ train <- sample_frac(wholeSet, 0.9)
 sample_id <- as.numeric(rownames(train)) # rownames() returns character so as.numeric
 test <- wholeSet[-sample_id,]
 
-formula = set~iperf+sysbench+ycruncher+pgbench
+formula = setId~iperf+sysbench+ycruncher+pgbench
 
-modelRandomForest <- randomForest(
-  formula,
-  data=train)
+modelRandomForest <- randomForest(formula, data=train, ntree=2000)
 
 print(modelRandomForest)
 saveRDS(modelRandomForest, "./modelRandomForest.rds")
