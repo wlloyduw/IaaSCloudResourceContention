@@ -5,6 +5,7 @@ rm(list=ls())
 #load Open Cloud data
 set.seed(100)
 wholeSet = read.csv("./merged.csv")
+wholeSet$iperf <- wholeSet$iperf * 1000
 
 # load the model
 super_model <- readRDS("modelRandomForest.rds")
@@ -16,7 +17,6 @@ predictions
 max(predictions)
 min(predictions)
 mean(predictions)
+sd(predictions)
 
-
-
-write.csv(predictions, "./predictions.csv")
+write.csv(predictions, "./predictions_openCloud.csv")

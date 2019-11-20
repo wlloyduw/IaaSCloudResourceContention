@@ -4,7 +4,7 @@ rm(list=ls())
 
 #load Open Cloud data
 set.seed(100)
-wholeSet = read.csv("./Aggregate_Summary_Dedicated_Host_11-16-2019.csv")
+wholeSet = read.csv("./merged_11-16-2019 .csv")
 
 # load the model
 super_model <- readRDS("modelRandomForest.rds")
@@ -37,6 +37,6 @@ plot(predictions, wholeSet$setId, xlab="predicted", ylab="actual", col="blue")
 abline(a=0,b=1)
 
 
-write.csv(predictions, "./predictions.csv")
+write.csv(predictions, "./predictions_merged.csv")
 
 
