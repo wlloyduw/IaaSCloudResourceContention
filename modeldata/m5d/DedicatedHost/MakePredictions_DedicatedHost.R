@@ -22,7 +22,9 @@ sd(predictions)
 rounded_predictions <- round(predictions)
 
 #calculate the rmse
-predictions_rmse <- rmse(wholeSet$setId, rounded_predictions)
+library("ModelMetrics")
+predictions_rmse <- rmse(wholeSet$setId, predictions)
+predictions_rmse
 
 #create the confusion matrix
 predictions_confusion <- confusionMatrix(wholeSet$setId, rounded_predictions)
@@ -31,7 +33,7 @@ predictions_confusion <- confusionMatrix(wholeSet$setId, rounded_predictions)
 par(mfrow=c(1,1))
 plot(super_model)
 
-plot(rounded_predictions, wholeSet$setId, xlab="predicted", ylab="actual")
+plot(predictions, wholeSet$setId, xlab="predicted", ylab="actual", col="blue")
 abline(a=0,b=1)
 
 
