@@ -24,6 +24,8 @@ for (vm in 1:50) {
   b = sysbench[sysbench$vmId == vm,]
   c = ycruncher[ycruncher$vmId == vm,]
   d = pgbench[pgbench$vmId == vm,]
+  #Get a hold of th instance id
+  #Map predictions to instances
   merged = cbind(a["iperf"],b["sysbench"],c["ycruncher"],d["pgbench"],1, vm)
   globalMerged = rbind(globalMerged, merged)
 }

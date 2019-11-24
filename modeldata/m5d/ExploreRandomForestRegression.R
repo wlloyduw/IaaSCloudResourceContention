@@ -7,7 +7,7 @@ set.seed(100)
 wholeSet = read.csv("./merged.csv")
 
 #Convert to mbs, only if they are in gbs
-#wholeSet$iperf <- wholeSet$iperf * 1000
+wholeSet$iperf <- wholeSet$iperf * 1000
 
 str(wholeSet)
 
@@ -19,15 +19,15 @@ library(dplyr)
 #sample_id <- as.numeric(rownames(train)) # rownames() returns character so as.numeric
 #test <- wholeSet[-sample_id,]
 
-formula = setId~iperf+sysbench+ycruncher+pgbench
+formula = setId ~ iperf+sysbench+ycruncher+pgbench
 
-modelRandomForest <- randomForest(formula, data=wholeSet, ntree=2000, na.action=na.exclude)
+modelRandomForest <- randomForest(formula, data=wholeSet, ntree=2000, na.action=na.exclude, importance=TRUE)
 
 print(modelRandomForest)
 saveRDS(modelRandomForest, "./modelRandomForest.rds")
 
 # Importance of each predictor.
-print(importance(modelRandomForest,type = 2)) 
+print(importance(modelRandomForest,type = 1)) 
 
 #We are no longer using a train split
 #predictions <- predict(modelRandomForest, test)
