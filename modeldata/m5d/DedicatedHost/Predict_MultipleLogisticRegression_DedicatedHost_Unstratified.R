@@ -1,8 +1,9 @@
-setwd("/home/ravschoo/ResourceContention/IaaSCloudResourceContention/modeldata/m5d/DedicatedHost/")
 #Clear workspace 
 rm(list=ls())
 
-set.seed(100)
+setwd("/home/ravschoo/ResourceContention/IaaSCloudResourceContention/modeldata/m5d/DedicatedHost/")
+
+
 wholeSet = read.csv("./Aggregate_Summary_Dedicated_Host_11-16-2019.csv")
 
 library(nnet)
@@ -13,7 +14,6 @@ summary (mlr_model) # model summary
 
 iperf_scaled <- scale(wholeSet$iperf)
 summary(iperf_scaled)
-
 pgbench_scaled <- scale(wholeSet$pgbench)
 summary(pgbench_scaled)
 
@@ -54,11 +54,11 @@ for (i in 1:length(predictions)) {
 }
 
 #This should give us the mean of the abs error for predictions that should be 48 vms.
-mean(abs_error[1:48])
+#mean(abs_error[1:48])
 
-write.csv(abs_error, "./unstratified_abs_error.csv")
+#write.csv(abs_error, "./unstratified_abs_error.csv")
 
 
-plot(predictions, wholeSet$setId, xlab="Predicted # of VMs", ylab="Actual # of VMs", col="blue", main="Unstratified MLR")
+plot(predictions, wholeSet$setId, xlab="Predicted # of VMs", ylab="Actual # of VMs", col="blue", main="MLR")
 abline(a=0,b=1)
 

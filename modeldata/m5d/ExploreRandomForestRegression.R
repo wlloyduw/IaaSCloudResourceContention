@@ -26,21 +26,4 @@ modelRandomForest <- randomForest(formula, data=wholeSet, ntree=2000, na.action=
 print(modelRandomForest)
 saveRDS(modelRandomForest, "./modelRandomForest.rds")
 
-# Importance of each predictor.
-print(importance(modelRandomForest,type = 1)) 
 
-#We are no longer using a train split
-#predictions <- predict(modelRandomForest, test)
-
-#write.table(table(predictions, test$set), "./predictions1.txt")
-
-
-
-summary(modelRandomForest)
-
-#plot(x = test$set , y = predictions,col="blue",pch=19,xlab="# of co-located",ylab="# of co-located", xaxt='n',yaxt='n')
-#par(new=TRUE)
-#plot(x = test$set  , y = comparason$set, col="red",pch=17, xlab='', ylab='', xaxt='n',yaxt='n')
-#axis(1,1:48)
-#axis(2,1:48)
-#legend("topleft",legend=c("observed value","predicted value"),pch=c(17,19), col=c("red","blue"))

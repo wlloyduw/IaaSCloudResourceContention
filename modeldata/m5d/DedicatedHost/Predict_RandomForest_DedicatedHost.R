@@ -38,7 +38,7 @@ metrics_mae
 par(mfrow=c(1,1))
 plot(super_model)
 
-plot(predictions, wholeSet$setId, xlab="Predicted # of VMs", ylab="Actual # of VMs", col="blue", main="Untreated Random Forest")
+plot(predictions, wholeSet$setId, xlab="Predicted # of VMs", ylab="Actual # of VMs", col="blue", main="Random Forest")
 abline(a=0,b=1)
 
 par(mfrow = c(1,1))

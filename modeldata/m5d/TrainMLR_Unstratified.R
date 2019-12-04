@@ -31,8 +31,24 @@ wholeSet$pgbench <- pgbench_scaled
 wholeSet$sysbench <- sysbench_scaled
 wholeSet$ycruncher <- ycruncher_scaled
 
-model <- lm(setId ~ pgbench + sysbench + ycruncher, data = wholeSet)
+model <- lm(setId ~ iperf + pgbench + sysbench + ycruncher, data = wholeSet)
 summary(model)
 
 #Save this model
-saveRDS(model, "./model_mlr_unstrat_no_iperf.rds")
+saveRDS(model, "./model_mlr_unstrat.rds")
+
+## Get mean and sd for each benchmark.  Use this to scale the prediction data
+means <- vector()
+sds <- vector()
+
+means[1] <- mean(sysbench_scaled)
+sds[1] <- sd(sysbench_scaled)
+means[2] <- mean(ycruncher_scaled)
+sds[2] <- sd(ycruncher_scaled)
+means[3] <- mean(pgbench_scaled)
+sds[3] <- sd(pgbench_scaled)
+means[4] <- mean(iperf_scaled, na.rm=TRUE)
+sds[4] <- sd(iperf_scaled, na.rm=TRUE)
+
+save(means, file="./means.rds")
+save(sds, file="./sds.rds")

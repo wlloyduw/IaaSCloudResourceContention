@@ -63,10 +63,34 @@ for (i in 1:length(predictions)) {
 }
 
 #This should give us the mean of the abs error for predictions that should be 48 vms.
-mean(abs_error[1:3])
-sum(abs_error[1:3]) / 3
+#mean(abs_error[1:3])
+#sum(abs_error[1:3]) / 3
 
-write.csv(abs_error, "./treated_mlr_abs_error_no_iperf.csv")
+#write.csv(abs_error, "./treated_mlr_abs_error_no_iperf.csv")
 
-plot(predictions, strat_data$setId, xlab="Predicted # of VMs", ylab="Actual # of VMs", col="blue", main="Treated MLR")
-abline(a=0,b=1)
+#plot(predictions, strat_data$setId, xlab="Predicted # of VMs", ylab="Actual # of VMs", col="blue", main="Treated MLR")
+#abline(a=0,b=1)
+
+#Match bad predictions with instance ids and get predictors
+bad_indices <- abs_error > 4
+
+strat_data[bad_indices,]
+
+## Lets look at the raw values.
+strat_data1 <- stratified(indt=wholeSet, group=c("setId"), size=3)
+strat_data1[bad_indices,]
+
+good_data <- strat_data[!bad_indices]
+
+good_predictions <- predict(mlr_model, good_data)
+
+max(good_predictions)
+min(good_predictions)
+mean(good_predictions)
+sd(good_predictions)
+
+good_predictions_rmse <- rmse(good_predictions, good_data$setId)
+good_predictions_rmse
+
+good_metrics_mae <- mae(good_predictions, good_data$setId)
+good_metrics_mae
