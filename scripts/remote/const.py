@@ -70,6 +70,9 @@ sysbench_option = sys.modules[__name__].sysbench_option = ' --test=cpu --cpu-max
 # sysbench --test=memory --memory-block-size=1K --num-threads=2 --memory-total-size=10G run
 dic[sysbench_ram] = 'sysbench'
 sysbench_ram_option = sys.modules[__name__].sysbench_ram_option = ' --num-threads=2 --test=memory --memory-block-size=1M --memory-total-size=100G run'
+# stress-ng --malloc 100 --malloc-ops 100000 --malloc-bytes 40000000 --fault 10 --fault-ops 100
+dic[stress_ng] = 'stress-ng'
+stress_ng_option = sys.modules[__name__].stress_ng_option = ' --malloc 100 --malloc-ops 100000 --malloc-bytes 40000000 --fault 1024 --fault-ops 500000'
 #10.9424s on c4.large
 # supported bench marks
 sys.modules[__name__].supportedBenchmarks = dict([(y_cruncher, y_cruncher_option),
@@ -79,11 +82,12 @@ sys.modules[__name__].supportedBenchmarks = dict([(y_cruncher, y_cruncher_option
                                                   (y_cruncherm5d, y_cruncherm5d_option),
                                                   (pgbench, pgbench_option),
                                                   (sysbench, sysbench_option),
-                                                  (sysbench_ram, sysbench_ram_option)])
-
+                                                  (sysbench_ram, sysbench_ram_option),
+                                                  (stress_ng, stress_ng_option)])
 # dir
 sys.modules[__name__].datadir = '/home/ubuntu/SCRIPT/scripts/remote/data/'
 sys.modules[__name__].plugindir = '/home/ubuntu/SCRIPT/scripts/remote/plugin'
+sys.modules[__name__].remotedir = '/home/ubuntu/SCRIPT/scripts/remote/'
 # Flags
 sys.modules[__name__].plugins = False  # enable call rudata
 # sys.modules[__name__].pginit = True   #move pgsql to local disk mnt point

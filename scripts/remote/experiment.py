@@ -9,9 +9,10 @@ data should be collect every run, otherwise it will be overwrite;
 import re
 import csv
 import const
-import os
+import os, sys, stat
 import time
 from collections import OrderedDict
+import subprocess
 
 
 class parser(object):
@@ -214,8 +215,36 @@ class parser(object):
                 i += 1
 
             writer.writerow(row)
+
+
     def stress_ng(self):
-        pass
+        os.chmod(const.remotedir+'stressng.sh', stat.S_IRWXU)
+        proc = subprocess.check_output([const.remotedir+'stressng.sh'])
+        pgfaultList = proc.decode('utf-8').split("\n")
+        pgfault = pgfaultList[3]
+        pgmajfault = pgfaultList[4]
+
+        needHeader = False
+        if not os.path.isfile(const.datadir + 'stress_ng.csv'):
+            needHeader = True
+        os.system("mkdir " + const.datadir)
+        with open(const.datadir+'stress_ng.csv', 'a') as fout:
+            row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
+                               ('wallTime', None), ('testOption', None), ('vpgFaults', None),
+                               ('vmajorpgFaults', None)])
+
+            writer = csv.DictWriter(fout, fieldnames=row)
+            if needHeader:
+                writer.writeheader()
+            row['instanceType'] = self.kw['instanceType']
+            row['instanceID'] = self.kw['instanceID']
+            row['experimentID'] = self.kw['experimentID']
+            row['wallTime'] = self.kw['duration']
+            row['testOption'] = self.kw['testOption']
+            row['vpgFaults'] = pgfault
+            row['vmajorpgFaults'] = pgmajfault
+
+            writer.writerow(row)
 
     def bonnie(self):
         pass
