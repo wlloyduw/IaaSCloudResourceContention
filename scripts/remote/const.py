@@ -72,7 +72,7 @@ dic[sysbench_ram] = 'sysbench'
 sysbench_ram_option = sys.modules[__name__].sysbench_ram_option = ' --num-threads=2 --test=memory --memory-block-size=1M --memory-total-size=100G run'
 # stress-ng --malloc 100 --malloc-ops 100000 --malloc-bytes 40000000 --fault 10 --fault-ops 100
 dic[stress_ng] = 'stress-ng'
-stress_ng_option = sys.modules[__name__].stress_ng_option = ' --malloc 100 --malloc-ops 100000 --malloc-bytes 40000000 --fault 1024 --fault-ops 500000'
+stress_ng_option = sys.modules[__name__].stress_ng_option = ' --malloc 100 --malloc-ops 100000 --malloc-bytes 40000000 --fault 1024 --fault-ops 5000'
 #10.9424s on c4.large
 # supported bench marks
 sys.modules[__name__].supportedBenchmarks = dict([(y_cruncher, y_cruncher_option),
