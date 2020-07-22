@@ -221,10 +221,10 @@ class parser(object):
         os.chmod(const.remotedir+'stressng.sh', stat.S_IRWXU)
         proc = subprocess.check_output([const.remotedir+'stressng.sh'])
         pgfaultList = proc.decode('utf-8').split("\n")
-        pgfault = pgfaultList[5]
-        pgmajfault = pgfaultList[6]
+        pgfault = pgfaultList[20]
+        pgmajfault = pgfaultList[21]
         startTime = pgfaultList[0]
-        endTime = pgfaultList[4]
+        endTime = pgfaultList[19]
 
         needHeader = False
         if not os.path.isfile(const.datadir + 'stress_ng.csv'):
