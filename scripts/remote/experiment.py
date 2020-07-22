@@ -11,6 +11,7 @@ import csv
 import const
 import os, sys, stat
 import time
+from datetime import datetime
 from collections import OrderedDict
 import subprocess
 
@@ -221,10 +222,11 @@ class parser(object):
         os.chmod(const.remotedir+'stressng.sh', stat.S_IRWXU)
         proc = subprocess.check_output([const.remotedir+'stressng.sh'])
         pgfaultList = proc.decode('utf-8').split("\n")
-        pgfault = pgfaultList[20]
-        pgmajfault = pgfaultList[21]
+        pgfault = pgfaultList[17]
+        pgmajfault = pgfaultList[18]
         startTime = pgfaultList[0]
-        endTime = pgfaultList[19]
+        endTime = pgfaultList[16]
+        runtime = (datetime.strptime(endTime, "%H:%M:%S.%f") - datetime.strptime(startTime, "%H:%M:%S.%f")).total_seconds()
 
         needHeader = False
         if not os.path.isfile(const.datadir + 'stress_ng.csv'):
@@ -241,11 +243,11 @@ class parser(object):
             row['instanceType'] = self.kw['instanceType']
             row['instanceID'] = self.kw['instanceID']
             row['experimentID'] = self.kw['experimentID']
-            row['wallTime'] = self.kw['duration']
+            row['wallTime'] = runtime
             row['testOption'] = self.kw['testOption']
             row['vpgFaults'] = pgfault
             row['vmajorpgFaults'] = pgmajfault
-            row['startTime'] = startTime
+            row['startTime'] = startTime 
             row['endTime'] = endTime
 
             writer.writerow(row)
