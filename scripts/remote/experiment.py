@@ -222,10 +222,10 @@ class parser(object):
         os.chmod(const.remotedir+'stressng.sh', stat.S_IRWXU)
         proc = subprocess.check_output([const.remotedir+'stressng.sh'])
         pgfaultList = proc.decode('utf-8').split("\n")
-        pgfault = pgfaultList[26]
-        pgmajfault = pgfaultList[27]
+        pgfault = pgfaultList[5]
+        pgmajfault = pgfaultList[6]
         startTime = pgfaultList[0]
-        endTime = pgfaultList[25]
+        endTime = pgfaultList[4]
         runtime = (datetime.strptime(endTime, "%H:%M:%S.%f") - datetime.strptime(startTime, "%H:%M:%S.%f")).total_seconds()
 
         needHeader = False
