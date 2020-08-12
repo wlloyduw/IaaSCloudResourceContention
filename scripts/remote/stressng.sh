@@ -1,7 +1,7 @@
 #!/bin/bash
 date +%T.%3N
 
-stress-ng --malloc 100 --malloc-ops 1000 --malloc-bytes 40000 --fault 50 --fault-ops 50
+stress-ng --malloc 1000 --malloc-ops 10000 --malloc-bytes 40000
 
 date +%T.%3N
 grep -m 1 -i pgfault /proc/vmstat | cut -d' ' -f 2

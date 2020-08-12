@@ -222,8 +222,8 @@ class parser(object):
         os.chmod(const.remotedir+'stressng.sh', stat.S_IRWXU)
         proc = subprocess.check_output([const.remotedir+'stressng.sh'])
         pgfaultList = proc.decode('utf-8').split("\n")
-        pgfault = pgfaultList[5]
-        pgmajfault = pgfaultList[6]
+        #pgfault = pgfaultList[5]
+        #pgmajfault = pgfaultList[6]
         startTime = pgfaultList[0]
         endTime = pgfaultList[4]
         runtime = (datetime.strptime(endTime, "%H:%M:%S.%f") - datetime.strptime(startTime, "%H:%M:%S.%f")).total_seconds()
@@ -234,8 +234,7 @@ class parser(object):
         os.system("mkdir " + const.datadir)
         with open(const.datadir+'stress_ng.csv', 'a') as fout:
             row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
-                               ('wallTime', None), ('testOption', None), ('vpgFaults', None),
-                               ('vmajorpgFaults', None), ('startTime', None), ('endTime', None)])
+                               ('wallTime', None), ('testOption', None),('startTime', None), ('endTime', None)])
 
             writer = csv.DictWriter(fout, fieldnames=row)
             if needHeader:
@@ -245,8 +244,8 @@ class parser(object):
             row['experimentID'] = self.kw['experimentID']
             row['wallTime'] = runtime
             row['testOption'] = self.kw['testOption']
-            row['vpgFaults'] = pgfault
-            row['vmajorpgFaults'] = pgmajfault
+            #row['vpgFaults'] = pgfault
+            #row['vmajorpgFaults'] = pgmajfault
             row['startTime'] = startTime 
             row['endTime'] = endTime
 
