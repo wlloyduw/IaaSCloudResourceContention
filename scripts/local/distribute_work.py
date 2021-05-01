@@ -83,8 +83,13 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
                 else:
                     #schedule one VM to stop each time
                     print("stop vm:" + hostlist[i]) 
-                    shell = getPsshcommand(str(target_time.minute), str(
-                        target_time.hour), str(target_time.day), hostlist[i], i, " -s")
+                    if stopFlag == True:
+                        shell = getPsshcommand(str(target_time.minute), str(
+                            target_time.hour), str(target_time.day), hostlist[i], i, " -s")
+                    else:
+                        shell = getPsshcommand(str(target_time.minute), str(
+                            target_time.hour), str(target_time.day), hostlist[i], i, "")
+
                     #print(shell)
                     #print(HOST_STRING)
                     tmp = os.popen(shell).read()
