@@ -125,7 +125,7 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
     # on each instance, mv ~/crontab to /etc/crontab & change the user to root
     shell = r'''
 	psshcommand='sudo mv ~/crontab /etc/crontab && sudo chown root.root /etc/crontab && 
-	sudo service cron reload'
+	sudo chmod 644 /etc/crontab && sudo service cron reload'
 
 	pssh -i -h hostfile_pssh -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
 	'''
@@ -158,8 +158,7 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
 def cloneGitRepo():
     shell = r'''
 	psshcommand='eval "$(ssh-agent -s)" && ssh-add -k ~/.ssh/git_capstone && rm -rf IaaSCloudResourceContention SCRIPT &&
-	git clone https://github.com/wlloyduw/IaaSCloudResourceContention.git && mv IaaSCloudResourceContention SCRIPT &&
-        chmod 644 /etc/crontab'
+	git clone https://github.com/wlloyduw/IaaSCloudResourceContention.git && mv IaaSCloudResourceContention SCRIPT' 
 
 	pssh -i -h hostfile_pssh -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
 	'''
