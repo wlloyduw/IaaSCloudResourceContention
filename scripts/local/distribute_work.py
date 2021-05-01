@@ -158,13 +158,13 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
 def cloneGitRepo():
     shell = r'''
 	psshcommand='eval "$(ssh-agent -s)" && ssh-add -k ~/.ssh/git_capstone && rm -rf IaaSCloudResourceContention SCRIPT &&
-	git clone https://github.com/wlloyduw/IaaSCloudResourceContention.git && mv IaaSCloudResourceContention SCRIPT'
+	git clone https://github.com/wlloyduw/IaaSCloudResourceContention.git && mv IaaSCloudResourceContention SCRIPT &&
+        chmod 644 /etc/crontab'
 
 	pssh -i -h hostfile_pssh -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
 	'''
     respond = os.popen(shell).read()
     print(respond)
-
 
 def getPublicIpPool():
     getPublicIp = r'aws ec2 describe-instances --filters "Name=instance-state-code,Values=16" | grep PublicIpAddress | cut -d":" -f 2 | cut -d"," -f 1 | cut -d"\"" -f 2 '
