@@ -401,6 +401,54 @@ class parser(object):
 
             writer.writerow(row)
 
+    def stream(self):
+        needHeader = False
+        if not os.path.isfile(const.datadir + 'stream.csv'):
+            needHeader = True
+        os.system("mkdir " + const.datadir)
+        with open(const.datadir+'stream.csv', 'a') as fout:
+            row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
+                               ('wallTime', None), ('testOption',
+                                                    None), ('Copy', None),
+                               ('Scale', None),
+                               ('Add', None),
+                               ('Triad', None),
+                               ('total-time', None), ('thread-num', None)
+                               ])
+
+            writer = csv.DictWriter(fout, fieldnames=row)
+            if needHeader:
+                writer.writeheader()
+            row['instanceType'] = self.kw['instanceType']
+            row['instanceID'] = self.kw['instanceID']
+            row['experimentID'] = self.kw['experimentID']
+            row['wallTime'] = self.kw['duration']
+            row['testOption'] = self.kw['testOption']
+            row['Output'] = self.string
+
+            i = 0
+            for line in self.string:
+                if line.find('1024') != -1:
+                    target_1KiB = self.string[i]
+                    val_1KiB = target_1KiB.split(" ")[1]
+                    row['Copy'] = val_1KiB
+                if line.find('1048576') != -1:
+                    target_1MiB = self.string[i]
+                    val_1MiB = target_1MiB.split(" ")[1]
+                    row['Scale'] = val_1MiB
+                if line.find('1073741824') != -1:
+                    target_1GiB = self.string[i]
+                    val_1GiB = target_1GiB.split(" ")[1]
+                    row['Add'] = val_1GiB
+                if line.find('4294967296') != -1:
+                    target_4GiB = self.string[i]
+                    val_4GiB = target_4GiB.split(" ")[1]
+                    row['Triad'] = val_4GiB
+                i += 1
+
+            writer.writerow(row)
+    
+    
     def bonnie(self):
         pass
 

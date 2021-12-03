@@ -36,6 +36,7 @@ sysbench = sys.modules[__name__].sysbench = 'sysbench'
 cachebench = sys.modules[__name__].cachebench = 'cachebench'
 cachebenchw = sys.modules[__name__].cachebenchw = 'cachebenchw'
 cachebenchb = sys.modules[__name__].cachebenchb = 'cachebenchb'
+stream = sys.modules[__name__].stream = 'stream'
 y_cruncher = sys.modules[__name__].y_cruncher = 'y_cruncher'
 y_cruncherc3 = sys.modules[__name__].y_cruncherc3 = 'y_cruncherc3'
 y_cruncherc4 = sys.modules[__name__].y_cruncherc4 = 'y_cruncherc4'
@@ -82,6 +83,8 @@ dic[cachebenchb] = './cachebench'
 cachebench_option = sys.modules[__name__].cachebench_option = ' -r -m32 -e1 -x0 -d2'
 cachebenchw_option = sys.modules[__name__].cachebenchw_option = ' -w -m32 -e1 -x0 -d2'
 cachebenchb_option = sys.modules[__name__].cachebenchb_option = ' -b -m32 -e1 -x0 -d2'
+dic[stream] = 'gcc'
+stream_option = sys.modules[__name__].stream_option = ' -o -DSTREAM_ARRAY_SIZE=100000000 -fopenmp -mcmodel=medium stream.c -o stream | export OMP_NUM_THREADS=2 | time ./stream'
 # 10.9424s on c4.large
 # supported bench marks
 sys.modules[__name__].supportedBenchmarks = dict([(y_cruncher, y_cruncher_option),
@@ -100,7 +103,8 @@ sys.modules[__name__].supportedBenchmarks = dict([(y_cruncher, y_cruncher_option
                                                   (stress_ng, stress_ng_option),
                                                   (cachebench, cachebench_option),
                                                   (cachebenchw, cachebenchw_option),
-                                                  (cachebenchb, cachebenchb_option)])
+                                                  (cachebenchb, cachebenchb_option),
+                                                  (stream, stream_option)])
 # dir
 sys.modules[__name__].datadir = '/home/ubuntu/SCRIPT/scripts/remote/data/'
 sys.modules[__name__].plugindir = '/home/ubuntu/SCRIPT/scripts/remote/plugin'
