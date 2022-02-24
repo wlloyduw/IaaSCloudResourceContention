@@ -84,8 +84,8 @@ cachebench_option = sys.modules[__name__].cachebench_option = ' -r -m32 -e1 -x0 
 cachebenchw_option = sys.modules[__name__].cachebenchw_option = ' -w -m32 -e1 -x0 -d2'
 cachebenchb_option = sys.modules[__name__].cachebenchb_option = ' -b -m32 -e1 -x0 -d2'
 dic[stream] = 'gcc'
-#stream_option = sys.modules[__name__].stream_option = ' -o -DSTREAM_ARRAY_SIZE=100000000 -fopenmp -mcmodel=medium stream.c -o stream | export OMP_NUM_THREADS=2 | time ./stream'   
-stream_option = sys.modules[__name__].stream_option = ' -o -DSTREAM_ARRAY_SIZE=100000000 -fopenmp -mcmodel=medium stream.c -o stream | export OMP_NUM_THREADS=2 | for i in {1..10}; do time ./stream; done' 
+stream_option = sys.modules[__name__].stream_option = ' -o -DSTREAM_ARRAY_SIZE=100000000 -fopenmp -mcmodel=medium stream.c -o stream | export OMP_NUM_THREADS=2 | time ./stream'   
+#stream_option = sys.modules[__name__].stream_option = ' -o -DSTREAM_ARRAY_SIZE=100000000 -fopenmp -mcmodel=medium stream.c -o stream | export OMP_NUM_THREADS=2 | for i in {1..10}; do time ./stream; done' 
 # 10.9424s on c4.large
 # supported bench marks
 sys.modules[__name__].supportedBenchmarks = dict([(y_cruncher, y_cruncher_option),
