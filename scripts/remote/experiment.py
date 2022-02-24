@@ -426,6 +426,7 @@ class parser(object):
             row['wallTime'] = self.kw['duration']
             row['testOption'] = self.kw['testOption']
             row['Output'] = self.string
+            j += 1
             
 
             i = 0
@@ -449,7 +450,7 @@ class parser(object):
                 i += 1
 
             writer.writerow(row)
-            j += 1
+            
     
     
     def bonnie(self):
