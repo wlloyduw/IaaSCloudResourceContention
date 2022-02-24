@@ -419,16 +419,15 @@ class parser(object):
             writer = csv.DictWriter(fout, fieldnames=row)
             if needHeader:
                 writer.writeheader()
-            j = 0
+          
             row['instanceType'] = self.kw['instanceType']
             row['instanceID'] = self.kw['instanceID']
             row['experimentID'] = self.kw['experimentID']
             row['wallTime'] = self.kw['duration']
             row['testOption'] = self.kw['testOption']
             row['Output'] = self.string
-            	j += 1
-            
-
+            	
+  
             i = 0
             for line in self.string:
                 if line.find('1024') != -1:
