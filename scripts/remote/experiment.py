@@ -413,13 +413,14 @@ class parser(object):
                                ('Scale', None),
                                ('Add', None),
                                ('Triad', None),
-                               ('total-time', None), ('thread-num', None), ('Output-Stream', None)
+                               ('total-time', None), 
+                               ('thread-num', None), 
+                               ('Output-Stream', None)
                                ])
 
             writer = csv.DictWriter(fout, fieldnames=row)
             if needHeader:
                 writer.writeheader()
-          
             row['instanceType'] = self.kw['instanceType']
             row['instanceID'] = self.kw['instanceID']
             row['experimentID'] = self.kw['experimentID']
@@ -427,7 +428,6 @@ class parser(object):
             row['testOption'] = self.kw['testOption']
             row['Output-Stream'] = self.string
             	
-  
             i = 0
             for line in self.string:
                 if line.find('1024') != -1:
