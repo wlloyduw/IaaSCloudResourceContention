@@ -413,7 +413,7 @@ class parser(object):
                                ('Scale', None),
                                ('Add', None),
                                ('Triad', None),
-                               ('total-time', None), ('thread-num', None)
+                               ('total-time', None), ('thread-num', None), ('Output-Stream', None)
                                ])
 
             writer = csv.DictWriter(fout, fieldnames=row)
