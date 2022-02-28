@@ -425,7 +425,7 @@ class parser(object):
             row['experimentID'] = self.kw['experimentID']
             row['wallTime'] = self.kw['duration']
             row['testOption'] = self.kw['testOption']
-            row['Output'] = self.string
+            row['Output-Stream'] = self.string
             	
   
             i = 0
