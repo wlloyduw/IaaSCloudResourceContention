@@ -441,8 +441,8 @@ class parser(object):
             i = 0
             for line in self.string:
                 if line.find('Copy:') != -1:
-                    obj = re.search(r'Copy:\s+([0-9]*\.[0-9]+( +[0-9]*\.[0-9]+)+)', line)
-                    row['Copy best rate'] += obj.group(1)
+                    obj = re.search(r'Copy:\s+([0-9]*\.[0-9]+( +[0-9]*\.[0-9]+)+)', line).group(1)
+                    row['Copy best rate'] += obj
                     row['Copy avg time'] += i
                 if line.find('1048576') != -1:
                     target_1MiB = self.string[i]
