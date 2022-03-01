@@ -439,13 +439,14 @@ class parser(object):
             #j += 1
 
             i = 0
-            obj_data = 0
+            obj_data = 0            
             count = 0
             for line in self.string:
                 if line.find('Copy:') != -1:
                     obj = re.search(
                         r'Copy:\s+([0-9]*\.[0-9]+( +[0-9]*\.[0-9]+)+)', line).group(1)
-                    obj_data += int(obj)
+                    x = obj.split() 
+                    obj_data += int(x[0])
                     row['Copy best rate'] = obj_data
                     count += i
                     row['Copy avg time'] += count
