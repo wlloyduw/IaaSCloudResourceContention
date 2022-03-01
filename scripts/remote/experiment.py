@@ -433,8 +433,8 @@ class parser(object):
             j = 0
             for a in self.string:
                 obj = re.search(
-                    r'Copy:\s+([0-9]*\.[0-9]+( +[0-9]*\.[0-9]+)+)', a)
-                row['Copy best rate'] = obj.group(1)
+                    r'Copy:\s+([0-9]*\.[0-9]+( +[0-9]*\.[0-9]+)+)', a).group(1)
+                row['Copy best rate'] = obj
                 row['Copy avg time'] = j
                 j += 1
 
