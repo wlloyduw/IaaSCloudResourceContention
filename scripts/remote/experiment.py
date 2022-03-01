@@ -427,9 +427,8 @@ class parser(object):
             row['instanceType'] = self.kw['instanceType']
             row['instanceID'] = self.kw['instanceID']
             row['experimentID'] = self.kw['experimentID']
-            row['wallTime'] = self.kw['duration']
-            wrapper = textwrap.TextWrapper(width=50)
-            row['testOption'] = wrapper.wrap(self.kw['testOption'])
+            row['wallTime'] = self.kw['duration']            
+            row['testOption'] = self.kw['testOption']
             row['Output-Stream'] = self.string
 
             #j = 0
