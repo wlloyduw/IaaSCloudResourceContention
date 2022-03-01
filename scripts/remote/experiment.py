@@ -403,7 +403,6 @@ class parser(object):
             writer.writerow(row)
 
     def stream(self):
-        global obj_data, count
         needHeader = False
         if not os.path.isfile(const.datadir + 'stream.csv'):
             needHeader = True
@@ -442,6 +441,7 @@ class parser(object):
             i = 0
             for line in self.string:
                 if line.find('Copy:') != -1:
+                    global obj_data, count
                     obj = re.search(
                         r'Copy:\s+([0-9]*\.[0-9]+( +[0-9]*\.[0-9]+)+)', line).group(1)
                     obj_data += obj
