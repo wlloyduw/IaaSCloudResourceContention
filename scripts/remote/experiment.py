@@ -449,7 +449,7 @@ class parser(object):
                     obj_data += float((x[0]))
                     row['Copy best rate'] = obj_data
                     count += i
-                    row['Copy avg time'] += count
+                    row['Copy avg time'] = count
                 if line.find('1048576') != -1:
                     target_1MiB = self.string[i]
                     val_1MiB = target_1MiB.split(" ")[1]
