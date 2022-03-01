@@ -13,6 +13,7 @@ import os
 import sys
 import stat
 import time
+import textwrap
 from datetime import datetime
 from collections import OrderedDict
 import subprocess
@@ -427,7 +428,8 @@ class parser(object):
             row['instanceID'] = self.kw['instanceID']
             row['experimentID'] = self.kw['experimentID']
             row['wallTime'] = self.kw['duration']
-            row['testOption'] = self.kw['testOption']
+            wrapper = textwrap.TextWrapper(width=50)
+            row['testOption'] = wrapper.wrap(self.kw['testOption'])
             row['Output-Stream'] = self.string
 
             #j = 0
@@ -449,19 +451,7 @@ class parser(object):
                     obj_data += float((x[0]))
                     row['Copy best rate'] = obj_data
                     count += i
-                    row['Copy avg time'] = count
-                if line.find('1048576') != -1:
-                    target_1MiB = self.string[i]
-                    val_1MiB = target_1MiB.split(" ")[1]
-                    row['Scale'] = val_1MiB
-                if line.find('1073741824') != -1:
-                    target_1GiB = self.string[i]
-                    val_1GiB = target_1GiB.split(" ")[1]
-                    row['Add'] = val_1GiB
-                if line.find('4294967296') != -1:
-                    target_4GiB = self.string[i]
-                    val_4GiB = target_4GiB.split(" ")[1]
-                    row['Triad'] = val_4GiB
+                    row['Copy avg time'] = count                
                 i += 1
 
             writer.writerow(row)
