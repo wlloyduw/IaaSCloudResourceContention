@@ -446,7 +446,7 @@ class parser(object):
                     obj = re.search(
                         r'Copy:\s+([0-9]*\.[0-9]+( +[0-9]*\.[0-9]+)+)', line).group(1)
                     x = obj.split() 
-                    obj_data += (x[0])
+                    obj_data += float((x[0]))
                     row['Copy best rate'] = obj_data
                     count += i
                     row['Copy avg time'] += count
