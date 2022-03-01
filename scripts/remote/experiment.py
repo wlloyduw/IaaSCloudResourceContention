@@ -325,6 +325,7 @@ class parser(object):
             writer = csv.DictWriter(fout, fieldnames=row)
             if needHeader:
                 writer.writeheader()
+
             row['instanceType'] = self.kw['instanceType']
             row['instanceID'] = self.kw['instanceID']
             row['experimentID'] = self.kw['experimentID']
@@ -409,25 +410,34 @@ class parser(object):
         with open(const.datadir+'stream.csv', 'a') as fout:
             row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
                                ('wallTime', None), ('testOption',
-                                                    None), ('Copy', None),
-                               ('Scale', None),
-                               ('Add', None),
-                               ('Triad', None),
-                               ('total-time', None), 
-                               ('thread-num', None), 
+                                                    None), ('Copy best rate', None),
+                               ('Copy avg time', None),
+                               ('Copy min time', None),
+                               ('Copy max time', None),
+                               ('total-time', None),
+                               ('thread-num', None),
                                ('Output-Stream', None)
                                ])
 
             writer = csv.DictWriter(fout, fieldnames=row)
             if needHeader:
                 writer.writeheader()
+
             row['instanceType'] = self.kw['instanceType']
             row['instanceID'] = self.kw['instanceID']
             row['experimentID'] = self.kw['experimentID']
             row['wallTime'] = self.kw['duration']
             row['testOption'] = self.kw['testOption']
             row['Output-Stream'] = self.string
-            	
+            
+            j = 0
+            for a in self.string:
+            	obj = re.search(r'Copy:\s+([0-9]*\.[0-9]+( +[0-9]*\.[0-9]+)+)', a)
+	    	row['Copy best rate'] = obj.group(1)
+	    	row['Copy avg time'] = j
+	    	j += 1
+
+
             i = 0
             for line in self.string:
                 if line.find('1024') != -1:
@@ -449,9 +459,7 @@ class parser(object):
                 i += 1
 
             writer.writerow(row)
-            
-    
-    
+
     def bonnie(self):
         pass
 
