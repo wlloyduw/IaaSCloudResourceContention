@@ -429,14 +429,14 @@ class parser(object):
             row['wallTime'] = self.kw['duration']
             row['testOption'] = self.kw['testOption']
             row['Output-Stream'] = self.string
-            
+
             j = 0
             for a in self.string:
-            	obj = re.search(r'Copy:\s+([0-9]*\.[0-9]+( +[0-9]*\.[0-9]+)+)', a)
-	    	row['Copy best rate'] = obj.group(1)
-	    	row['Copy avg time'] = j
-	    	j += 1
-
+                obj = re.search(
+                    r'Copy:\s+([0-9]*\.[0-9]+( +[0-9]*\.[0-9]+)+)', a)
+                row['Copy best rate'] = obj.group(1)
+                row['Copy avg time'] = j
+                j += 1
 
             i = 0
             for line in self.string:
