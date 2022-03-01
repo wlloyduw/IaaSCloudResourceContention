@@ -439,7 +439,8 @@ class parser(object):
             #j += 1
 
             i = 0
-            global obj_data, count
+            obj_data = 0
+            count = 0
             for line in self.string:
                 if line.find('Copy:') != -1:
                     obj = re.search(
