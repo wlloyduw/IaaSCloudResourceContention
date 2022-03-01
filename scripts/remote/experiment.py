@@ -430,20 +430,20 @@ class parser(object):
             row['testOption'] = self.kw['testOption']
             row['Output-Stream'] = self.string
 
-            j = 0
-            for a in self.string:
-                obj = re.search(
-                    r'Copy:\s+([0-9]*\.[0-9]+( +[0-9]*\.[0-9]+)+)', a).group(1)
-                row['Copy best rate'] = obj
-                row['Copy avg time'] = j
-                j += 1
+            #j = 0
+            #for a in self.string:
+                #obj = re.search(
+                    #r'Copy:\s+([0-9]*\.[0-9]+( +[0-9]*\.[0-9]+)+)', a).group(1)
+                #row['Copy best rate'] = obj
+                #row['Copy avg time'] = j
+                #j += 1
 
             i = 0
             for line in self.string:
-                if line.find('1024') != -1:
-                    target_1KiB = self.string[i]
-                    val_1KiB = target_1KiB.split(" ")[1]
-                    row['Copy'] = val_1KiB
+                if line.find('Copy:') != -1:
+                    obj = re.search(r'Copy:\s+([0-9]*\.[0-9]+( +[0-9]*\.[0-9]+)+)', line)
+                    row['Copy best rate'] += obj.group(1)
+                    row['Copy avg time'] += i
                 if line.find('1048576') != -1:
                     target_1MiB = self.string[i]
                     val_1MiB = target_1MiB.split(" ")[1]
