@@ -403,6 +403,7 @@ class parser(object):
             writer.writerow(row)
 
     def stream(self):
+        global obj_data, count
         needHeader = False
         if not os.path.isfile(const.datadir + 'stream.csv'):
             needHeader = True
@@ -431,17 +432,18 @@ class parser(object):
             row['Output-Stream'] = self.string
 
             #j = 0
-            #for a in self.string:
-                #obj = re.search(
-                    #r'Copy:\s+([0-9]*\.[0-9]+( +[0-9]*\.[0-9]+)+)', a).group(1)
-                #row['Copy best rate'] = obj
-                #row['Copy avg time'] = j
-                #j += 1
+            # for a in self.string:
+            # obj = re.search(
+            # r'Copy:\s+([0-9]*\.[0-9]+( +[0-9]*\.[0-9]+)+)', a).group(1)
+            #row['Copy best rate'] = obj
+            #row['Copy avg time'] = j
+            #j += 1
 
             i = 0
             for line in self.string:
                 if line.find('Copy:') != -1:
-                    obj = re.search(r'Copy:\s+([0-9]*\.[0-9]+( +[0-9]*\.[0-9]+)+)', line).group(1)
+                    obj = re.search(
+                        r'Copy:\s+([0-9]*\.[0-9]+( +[0-9]*\.[0-9]+)+)', line).group(1)
                     obj_data += obj
                     row['Copy best rate'] = obj_data
                     count += i
