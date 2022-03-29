@@ -7,7 +7,7 @@
     "cachebench": "./cachebench -r -m32 -e1 -x0 -d2",
     "cachebenchw": "./cachebenchw -w -m32 -e1 -x0 -d2",
     "cachebenchb": "./cachebenchb -b -m32 -e1 -x0 -d2",
-    "stream": "gcc -o -DSTREAM_ARRAY_SIZE=100000000 -fopenmp -mcmodel=medium stream.c -o stream | export OMP_NUM_THREADS=2 | time ./stream",
+    "stream": "cd /home/ubuntu/SCRIPT/scripts/remote/ && ./stream_parser.sh",
     "pmbench": "export FORCE_TIMES_TO_RUN=1 | time `echo "1 1 n " | phoronix-test-suite batch-run pts/pmbench`" 
   },
   "timecost": {
