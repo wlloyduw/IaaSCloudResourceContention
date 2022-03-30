@@ -431,27 +431,26 @@ class parser(object):
             row['testOption'] = self.kw['testOption']
             row['Output-Stream'] = self.string
 
-            #j = 0
-            # for a in self.string:
-            # obj = re.search(
-            # r'Copy:\s+([0-9]*\.[0-9]+( +[0-9]*\.[0-9]+)+)', a).group(1)
-            #row['Copy best rate'] = obj
-            #row['Copy avg time'] = j
-            #j += 1
-
-            i = 0
-            obj_data = 0.0           
-            count = 0
+           i = 0
             for line in self.string:
-                if line.find('Copy:') != -1:
-                    obj = re.search(
-                        r'Copy:\s+([0-9]*\.[0-9]+( +[0-9]*\.[0-9]+)+)', line).group(1)
-                    x = obj.split() 
-                    obj_data += float((x[0]))
-                    row['Copy best rate'] = obj_data
-                    count += i
-                    row['Copy avg time'] = count                
+                if line.find('Average_Best_Rate') != -1:
+                    copy_best_rate = self.string[i]
+                    val_1 = copy_best_rate.split(":")[1]
+                    row['Copy best rate'] = val_1
+                if line.find('Average_Avg_time') != -1:
+                    copy_avg_time = self.string[i]
+                    val_2 = copy_avg_time.split(":")[1]
+                    row['Copy avg time'] = val_2
+                if line.find('Average_Min_time') != -1:
+                    copy_min_time = self.string[i]
+                    val_3 = copy_min_time.split(":")[1]
+                    row['Copy min time'] = val_3
+                if line.find('Average_Max_time') != -1:
+                    copy_max_time = self.string[i]
+                    val_4 = copy_max_time.split(" ")[1]
+                    row['Copy max time'] = val_4
                 i += 1
+           
 
             writer.writerow(row)
             
