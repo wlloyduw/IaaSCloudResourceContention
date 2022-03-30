@@ -402,7 +402,7 @@ class parser(object):
                 i += 1
 
             writer.writerow(row)
-    
+
     def stream(self):
         needHeader = False
         if not os.path.isfile(const.datadir + 'stream.csv'):
@@ -427,12 +427,12 @@ class parser(object):
             row['instanceType'] = self.kw['instanceType']
             row['instanceID'] = self.kw['instanceID']
             row['experimentID'] = self.kw['experimentID']
-            row['wallTime'] = self.kw['duration']            
+            row['wallTime'] = self.kw['duration']
             row['testOption'] = self.kw['testOption']
             row['Output-Stream'] = self.string
 
            i = 0
-            for line in self.string:
+           for line in self.string:
                 if line.find('Average_Best_Rate') != -1:
                     copy_best_rate = self.string[i]
                     val_1 = copy_best_rate.split(":")[1]
