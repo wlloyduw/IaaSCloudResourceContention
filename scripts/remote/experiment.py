@@ -464,8 +464,8 @@ class parser(object):
                                ('wallTime', None), ('testOption',
                                                     None), ('Concurrent Worker Threads', None),
                                ('Average Page Latency', None),
-                               ('Output', None),
-                               ('total-time', None), ('thread-num', None)
+                               ('thread-num', None),
+                               ('total-time', None), ('Output', None)
                                ])
 
             writer = csv.DictWriter(fout, fieldnames=row)
@@ -480,10 +480,10 @@ class parser(object):
 
             i = 0
             for line in self.string:
-                if line.find('1024') != -1:
-                    target_1KiB = self.string[i]
-                    val_1KiB = target_1KiB.split(" ")[1]
-                    row['1 KiB Throughput'] = val_1KiB
+                if line.find('Average') != -1:
+                    avg_latency = self.string[i]
+                    val_1 = avg_latency.split(":")[1]
+                    row['Average Latency in micro seconds'] = val_1
                 if line.find('1048576') != -1:
                     target_1MiB = self.string[i]
                     val_1MiB = target_1MiB.split(" ")[1]

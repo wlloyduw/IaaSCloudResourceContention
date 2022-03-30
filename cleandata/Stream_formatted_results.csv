@@ -1,0 +1,2 @@
+experimentID,instanceID,instanceType,wallTime,testOption,Copy best rate,Copy avg time,Copy min time,Copy max time,total-time,thread-num,Output-Stream
+1648656545-0,i-09565efb383878d3f,m5d.large,9.055299758911133, ./stream_parser.sh,10220.6800000,.0159413,.0156546,.0167320,,,"['Average_Best_Rate:10220.6800000', 'Average_Avg_time:.0159413', 'Average_Min_time:.0156546', 'Average_Max_time:.0167320', '']"
