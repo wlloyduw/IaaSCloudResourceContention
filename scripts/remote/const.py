@@ -87,7 +87,7 @@ cachebenchb_option = sys.modules[__name__].cachebenchb_option = ' -b -m32 -e1 -x
 #stream_option = sys.modules[__name__].stream_option = ' -o -DSTREAM_ARRAY_SIZE=100000000 -fopenmp -mcmodel=medium stream.c -o stream | export OMP_NUM_THREADS=2 | time ./stream'   
 #stream_option = sys.modules[__name__].stream_option = ' -o -DSTREAM_ARRAY_SIZE=100000000 -fopenmp -mcmodel=medium stream.c -o stream | export OMP_NUM_THREADS=2 | for i in {1..10}; do time ./stream; done'
 dic[stream] = 'time' 
-stream_option = sys.modules[__name__].stream_option = './stream_parser.sh'
+stream_option = sys.modules[__name__].stream_option = ' ./stream_parser.sh'
 dic[pmbench] = 'export'
 pmbench_option = sys.modules[__name__].pmbench_option = ' FORCE_TIMES_TO_RUN=1 | time `echo "1 1 n " | phoronix-test-suite batch-run pts/pmbench`'
 # 10.9424s on c4.large
