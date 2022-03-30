@@ -447,7 +447,7 @@ class parser(object):
                     row['Copy min time'] = val_3
                 if line.find('Average_Max_time') != -1:
                     copy_max_time = self.string[i]
-                    val_4 = copy_max_time.split(" ")[1]
+                    val_4 = copy_max_time.split(":")[1]
                     row['Copy max time'] = val_4
                 i += 1
            
