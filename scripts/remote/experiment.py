@@ -431,8 +431,8 @@ class parser(object):
             row['testOption'] = self.kw['testOption']
             row['Output-Stream'] = self.string
 
-           i = 0
-           for line in self.string:
+            i = 0
+            for line in self.string:
                 if line.find('Average_Best_Rate') != -1:
                     copy_best_rate = self.string[i]
                     val_1 = copy_best_rate.split(":")[1]
