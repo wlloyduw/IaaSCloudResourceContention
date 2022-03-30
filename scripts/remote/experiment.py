@@ -450,10 +450,9 @@ class parser(object):
                     val_4 = copy_max_time.split(":")[1]
                     row['Copy max time'] = val_4
                 i += 1
-           
 
             writer.writerow(row)
-            
+
     def pmbench(self):
         needHeader = False
         if not os.path.isfile(const.datadir + 'pmbench.csv'):
@@ -462,10 +461,9 @@ class parser(object):
         with open(const.datadir+'pmbench.csv', 'a') as fout:
             row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
                                ('wallTime', None), ('testOption',
-                                                    None), ('Concurrent Worker Threads', None),
+                                                    None),
                                ('Average Page Latency', None),
-                               ('thread-num', None),
-                               ('total-time', None), ('Output', None)
+                               ('Output', None)
                                ])
 
             writer = csv.DictWriter(fout, fieldnames=row)
@@ -483,19 +481,7 @@ class parser(object):
                 if line.find('Average') != -1:
                     avg_latency = self.string[i]
                     val_1 = avg_latency.split(":")[1]
-                    row['Average Latency in micro seconds'] = val_1
-                if line.find('1048576') != -1:
-                    target_1MiB = self.string[i]
-                    val_1MiB = target_1MiB.split(" ")[1]
-                    row['1 MiB Throughput'] = val_1MiB
-                if line.find('1073741824') != -1:
-                    target_1GiB = self.string[i]
-                    val_1GiB = target_1GiB.split(" ")[1]
-                    row['1 GiB Throughput'] = val_1GiB
-                if line.find('4294967296') != -1:
-                    target_4GiB = self.string[i]
-                    val_4GiB = target_4GiB.split(" ")[1]
-                    row['4 GiB Throughput'] = val_4GiB
+                    row['Average Page Latency'] = val_1
                 i += 1
 
             writer.writerow(row)
