@@ -1,0 +1,11 @@
+1649088748-0,i-06a31816b3a3ce166,m5d.large,68.12819218635559, ./pmbenchw.sh, 0.0748,"['Average: 0.0748', '']"
+experimentID,instanceID,instanceType,wallTime,testOption,Average Page Latency,Output
+1649088748-1,i-06a31816b3a3ce166,m5d.large,67.33035159111023, ./pmbenchw.sh, 0.0845,"['Average: 0.0845', '']"
+1649088370-1,i-003e5415310e1153d,m5d.large,0.8209259510040283, ./pmbenchw.sh,,"['', '']"
+experimentID,instanceID,instanceType,wallTime,testOption,Average Page Latency,Output
+1649088748-0,i-003e5415310e1153d,m5d.large,68.01011276245117, ./pmbenchw.sh, 0.0853,"['Average: 0.0853', '']"
+experimentID,instanceID,instanceType,wallTime,testOption,Average Page Latency,Output
+1649088748-1,i-003e5415310e1153d,m5d.large,67.09001898765564, ./pmbenchw.sh, 0.0802,"['Average: 0.0802', '']"
+experimentID,instanceID,instanceType,wallTime,testOption,Average Page Latency,Output
+1649088748-2,i-003e5415310e1153d,m5d.large,67.1029782295227, ./pmbenchw.sh, 0.0833,"['Average: 0.0833', '']"
+1649088748-0,i-09565efb383878d3f,m5d.large,67.1788101196289, ./pmbenchw.sh, 0.086,"['Average: 0.086', '']"

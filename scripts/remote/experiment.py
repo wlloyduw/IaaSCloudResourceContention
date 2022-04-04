@@ -549,7 +549,7 @@ class parser(object):
         if not os.path.isfile(const.datadir + 'pmbenchw.csv'):
             needHeader = True
         os.system("mkdir " + const.datadir)
-        with open(const.datadir+'pmbench.csv', 'a') as fout:
+        with open(const.datadir+'pmbenchw.csv', 'a') as fout:
             row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
                                ('wallTime', None), ('testOption',
                                                     None),
@@ -582,7 +582,7 @@ class parser(object):
         if not os.path.isfile(const.datadir + 'pmbenchw50.csv'):
             needHeader = True
         os.system("mkdir " + const.datadir)
-        with open(const.datadir+'pmbench.csv', 'a') as fout:
+        with open(const.datadir+'pmbenchw50.csv', 'a') as fout:
             row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
                                ('wallTime', None), ('testOption',
                                                     None),
