@@ -91,11 +91,11 @@ cachebenchb_option = sys.modules[__name__].cachebenchb_option = ' -b -m32 -e1 -x
 dic[stream] = 'time' 
 stream_option = sys.modules[__name__].stream_option = ' ./stream_parser2.sh'
 dic[pmbench] = 'time'
-dic[pmbenchw] = 'time'
-dic[pmbenchw50] = 'time'
+#dic[pmbenchw] = 'time'
+#dic[pmbenchw50] = 'time'
 pmbench_option = sys.modules[__name__].pmbench_option = ' ./pmbench.sh'
-pmbenchw_option = sys.modules[__name__].pmbenchw_option = ' ./pmbenchw.sh'
-pmbenchw50_option = sys.modules[__name__].pmbenchw50_option = ' ./pmbenchw50.sh'
+#pmbenchw_option = sys.modules[__name__].pmbenchw_option = ' ./pmbenchw.sh'
+#pmbenchw50_option = sys.modules[__name__].pmbenchw50_option = ' ./pmbenchw50.sh'
 # 10.9424s on c4.large
 # supported bench marks
 sys.modules[__name__].supportedBenchmarks = dict([(y_cruncher, y_cruncher_option),
