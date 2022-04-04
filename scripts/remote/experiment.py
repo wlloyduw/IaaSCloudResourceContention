@@ -411,12 +411,22 @@ class parser(object):
         with open(const.datadir+'stream.csv', 'a') as fout:
             row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
                                ('wallTime', None), ('testOption',
-                                                    None), ('Copy best rate', None),
-                               ('Copy avg time', None),
-                               ('Copy min time', None),
-                               ('Copy max time', None),
-                               ('total-time', None),
-                               ('thread-num', None),
+                                                    None), ('Average-Copy best rate', None),
+                               ('Average-Copy avg time', None),
+                               ('Average-Copy min time', None),
+                               ('Average-Copy max time', None),
+                               ('Average-Scale best rate', None),
+                               ('Average-Scale avg time', None),
+                               ('Average-Scale min time', None),
+                               ('Average-Scale max time', None),
+                               ('Average-Add best rate', None),
+                               ('Average-Add avg time', None),
+                               ('Average-Add min time', None),
+                               ('Average-Add max time', None),
+                               ('Average-Triad best rate', None),
+                               ('Average-Triad avg time', None),
+                               ('Average-Triad min time', None),
+                               ('Average-Triad max time', None),
                                ('Output-Stream', None)
                                ])
 
@@ -433,22 +443,70 @@ class parser(object):
 
             i = 0
             for line in self.string:
-                if line.find('Average_Best_Rate') != -1:
+                if line.find('Copy_Average_Best_Rate') != -1:
                     copy_best_rate = self.string[i]
                     val_1 = copy_best_rate.split(":")[1]
-                    row['Copy best rate'] = val_1
-                if line.find('Average_Avg_time') != -1:
+                    row['Average-Copy best rate'] = val_1
+                if line.find('Copy_Average_Avg_time') != -1:
                     copy_avg_time = self.string[i]
                     val_2 = copy_avg_time.split(":")[1]
-                    row['Copy avg time'] = val_2
-                if line.find('Average_Min_time') != -1:
+                    row['Average-Copy avg time'] = val_2
+                if line.find('Copy_Average_Min_time') != -1:
                     copy_min_time = self.string[i]
                     val_3 = copy_min_time.split(":")[1]
-                    row['Copy min time'] = val_3
-                if line.find('Average_Max_time') != -1:
+                    row['Average-Copy min time'] = val_3
+                if line.find('Copy_Average_Max_time') != -1:
                     copy_max_time = self.string[i]
                     val_4 = copy_max_time.split(":")[1]
-                    row['Copy max time'] = val_4
+                    row['Average-Copy max time'] = val_4
+                if line.find('Scale_Average_Best_Rate') != -1:
+                    scale_best_rate = self.string[i]
+                    val_5 = scale_best_rate.split(":")[1]
+                    row['Average-Scale best rate'] = val_5
+                if line.find('Scale_Average_Avg_time') != -1:
+                    scale_avg_time = self.string[i]
+                    val_6 = scale_avg_time.split(":")[1]
+                    row['Average-Scale avg time'] = val_6
+                if line.find('Scale_Average_Min_time') != -1:
+                    scale_min_time = self.string[i]
+                    val_7 = scale_min_time.split(":")[1]
+                    row['Average-Scale min time'] = val_7
+                if line.find('Scale_Average_Max_time') != -1:
+                    scale_max_time = self.string[i]
+                    val_8 = scale_max_time.split(":")[1]
+                    row['Average-Scale max time'] = val_8
+                if line.find('Add_Average_Best_Rate') != -1:
+                    add_best_rate = self.string[i]
+                    val_9 = add_best_rate.split(":")[1]
+                    row['Average-Add best rate'] = val_9
+                if line.find('Add_Average_Avg_time') != -1:
+                    add_avg_time = self.string[i]
+                    val_10 = add_avg_time.split(":")[1]
+                    row['Average-Add avg time'] = val_10
+                if line.find('Add_Average_Min_time') != -1:
+                    add_min_time = self.string[i]
+                    val_11 = add_min_time.split(":")[1]
+                    row['Average-Add min time'] = val_11
+                if line.find('Add_Average_Max_time') != -1:
+                    add_max_time = self.string[i]
+                    val_12 = add_max_time.split(":")[1]
+                    row['Average-Add max time'] = val_12
+                if line.find('Triad_Average_Best_Rate') != -1:
+                    triad_best_rate = self.string[i]
+                    val_13 = triad_best_rate.split(":")[1]
+                    row['Average-Triad best rate'] = val_13
+                if line.find('Triad_Average_Avg_time') != -1:
+                    triad_avg_time = self.string[i]
+                    val_14 = triad_avg_time.split(":")[1]
+                    row['Average-Triad avg time'] = val_14
+                if line.find('Triad_Average_Min_time') != -1:
+                    triad_min_time = self.string[i]
+                    val_15 = triad_min_time.split(":")[1]
+                    row['Average-Triad min time'] = val_15
+                if line.find('Triad_Average_Max_time') != -1:
+                    triad_max_time = self.string[i]
+                    val_16 = triad_max_time.split(":")[1]
+                    row['Average-Triad max time'] = val_16
                 i += 1
 
             writer.writerow(row)
@@ -456,6 +514,72 @@ class parser(object):
     def pmbench(self):
         needHeader = False
         if not os.path.isfile(const.datadir + 'pmbench.csv'):
+            needHeader = True
+        os.system("mkdir " + const.datadir)
+        with open(const.datadir+'pmbench.csv', 'a') as fout:
+            row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
+                               ('wallTime', None), ('testOption',
+                                                    None),
+                               ('Average Page Latency', None),
+                               ('Output', None)
+                               ])
+
+            writer = csv.DictWriter(fout, fieldnames=row)
+            if needHeader:
+                writer.writeheader()
+            row['instanceType'] = self.kw['instanceType']
+            row['instanceID'] = self.kw['instanceID']
+            row['experimentID'] = self.kw['experimentID']
+            row['wallTime'] = self.kw['duration']
+            row['testOption'] = self.kw['testOption']
+            row['Output'] = self.string
+
+            i = 0
+            for line in self.string:
+                if line.find('Average') != -1:
+                    avg_latency = self.string[i]
+                    val_1 = avg_latency.split(":")[1]
+                    row['Average Page Latency'] = val_1
+                i += 1
+
+            writer.writerow(row)
+
+    def pmbenchw(self):
+        needHeader = False
+        if not os.path.isfile(const.datadir + 'pmbenchw.csv'):
+            needHeader = True
+        os.system("mkdir " + const.datadir)
+        with open(const.datadir+'pmbench.csv', 'a') as fout:
+            row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
+                               ('wallTime', None), ('testOption',
+                                                    None),
+                               ('Average Page Latency', None),
+                               ('Output', None)
+                               ])
+
+            writer = csv.DictWriter(fout, fieldnames=row)
+            if needHeader:
+                writer.writeheader()
+            row['instanceType'] = self.kw['instanceType']
+            row['instanceID'] = self.kw['instanceID']
+            row['experimentID'] = self.kw['experimentID']
+            row['wallTime'] = self.kw['duration']
+            row['testOption'] = self.kw['testOption']
+            row['Output'] = self.string
+
+            i = 0
+            for line in self.string:
+                if line.find('Average') != -1:
+                    avg_latency = self.string[i]
+                    val_1 = avg_latency.split(":")[1]
+                    row['Average Page Latency'] = val_1
+                i += 1
+
+            writer.writerow(row)
+
+    def pmbenchw50(self):
+        needHeader = False
+        if not os.path.isfile(const.datadir + 'pmbenchw50.csv'):
             needHeader = True
         os.system("mkdir " + const.datadir)
         with open(const.datadir+'pmbench.csv', 'a') as fout:

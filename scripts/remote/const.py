@@ -87,9 +87,13 @@ cachebenchb_option = sys.modules[__name__].cachebenchb_option = ' -b -m32 -e1 -x
 #stream_option = sys.modules[__name__].stream_option = ' -o -DSTREAM_ARRAY_SIZE=100000000 -fopenmp -mcmodel=medium stream.c -o stream | export OMP_NUM_THREADS=2 | time ./stream'   
 #stream_option = sys.modules[__name__].stream_option = ' -o -DSTREAM_ARRAY_SIZE=100000000 -fopenmp -mcmodel=medium stream.c -o stream | export OMP_NUM_THREADS=2 | for i in {1..10}; do time ./stream; done'
 dic[stream] = 'time' 
-stream_option = sys.modules[__name__].stream_option = ' ./stream_parser.sh'
+stream_option = sys.modules[__name__].stream_option = ' ./stream_parser2.sh'
 dic[pmbench] = 'time'
 pmbench_option = sys.modules[__name__].pmbench_option = ' ./pmbench.sh'
+dic[pmbenchw] = 'time'
+pmbenchw_option = sys.modules[__name__].pmbenchw_option = ' ./pmbenchw.sh'
+dic[pmbenchw50] = 'time'
+pmbenchw50_option = sys.modules[__name__].pmbenchw50_option = ' ./pmbenchw50.sh'
 # 10.9424s on c4.large
 # supported bench marks
 sys.modules[__name__].supportedBenchmarks = dict([(y_cruncher, y_cruncher_option),
@@ -110,7 +114,9 @@ sys.modules[__name__].supportedBenchmarks = dict([(y_cruncher, y_cruncher_option
                                                   (cachebenchw, cachebenchw_option),
                                                   (cachebenchb, cachebenchb_option),
                                                   (stream, stream_option),
-                                                  (pmbench, pmbench_option)])
+                                                  (pmbench, pmbench_option),
+                                                  (pmbenchw, pmbenchw_option),
+                                                  (pmbenchw50, pmbenchw50_option)])
 # dir
 sys.modules[__name__].datadir = '/home/ubuntu/SCRIPT/scripts/remote/data/'
 sys.modules[__name__].plugindir = '/home/ubuntu/SCRIPT/scripts/remote/plugin'

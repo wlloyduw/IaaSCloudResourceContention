@@ -1,2 +1,0 @@
-experimentID,instanceID,instanceType,wallTime,testOption,Concurrent Worker Threads,Average Page Latency,thread-num,total-time,Output
-1648659771-0,i-09565efb383878d3f,m5d.large,68.08006191253662, ./pmbench.sh,,,,,"['Memory Test Configuration', 'Average: 0.0611', '']", 0.0611
