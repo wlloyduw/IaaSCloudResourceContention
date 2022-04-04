@@ -1,5 +1,5 @@
 {
-  "types": ["sysbench", "pgbench", "sysbenchio","cachebench","cachebenchw","cachebenchb","stream","pmbench"],
+  "types": ["sysbench", "pgbench", "sysbenchio","cachebench","cachebenchw","cachebenchb","stream","pmbench","pmbenchw","pmbenchw50"],
   "benchmarks": {
     "sysbench": "sysbench  --test=cpu --cpu-max-prime=1000000 --num-threads=2 --max-requests=10 run",
     "pgbench": "pgbench --client=10 --jobs=10 --time=5 ubuntu",
