@@ -1,0 +1,36 @@
+pmbench w 100,,,,,,
+experimentID,instanceID,instanceType,wallTime,testOption,Average Page Latency,Output
+1649090028-0,i-06a31816b3a3ce166,m5d.large,67.1897885799408, ./pmbenchw.sh,0.0813,"['Average: 0.0813', '']"
+1649090028-0,i-003e5415310e1153d,m5d.large,66.9839141368866, ./pmbenchw.sh,0.0841,"['Average: 0.0841', '']"
+1649090028-0,i-09565efb383878d3f,m5d.large,67.1128282546997, ./pmbenchw.sh,0.0784,"['Average: 0.0784', '']"
+,,,,,0.081266666666667,
+1649090028-1,i-06a31816b3a3ce166,m5d.large,67.1638004779816, ./pmbenchw.sh,0.0814,"['Average: 0.0814', '']"
+1649090028-1,i-003e5415310e1153d,m5d.large,67.0759918689728, ./pmbenchw.sh,0.0771,"['Average: 0.0771', '']"
+,,,,,0.07925,
+1649090028-2,i-003e5415310e1153d,m5d.large,67.0696885585785, ./pmbenchw.sh,0.0841,"['Average: 0.0841', '']"
+,,,,,,
+pmbench w 50 r 50 ,,,,,,
+experimentID,instanceID,instanceType,wallTime,testOption,Average Page Latency,Output
+1649091272-0,i-06a31816b3a3ce166,m5d.large,67.4780254364014, ./pmbenchw50.sh,0.1227,"['Average: 0.1227', '']"
+1649091272-0,i-003e5415310e1153d,m5d.large,67.1930840015411, ./pmbenchw50.sh,0.125,"['Average: 0.125', '']"
+1649091272-0,i-09565efb383878d3f,m5d.large,67.2176516056061, ./pmbenchw50.sh,0.1134,"['Average: 0.1134', '']"
+1649091272-1,i-06a31816b3a3ce166,m5d.large,67.3811156749725, ./pmbenchw50.sh,0.1222,"['Average: 0.1222', '']"
+1649091272-1,i-003e5415310e1153d,m5d.large,67.135603427887, ./pmbenchw50.sh,0.1267,"['Average: 0.1267', '']"
+1649091272-2,i-003e5415310e1153d,m5d.large,67.1554009914398, ./pmbenchw50.sh,0.1222,"['Average: 0.1222', '']"
+,,,,,,
+pmbench w 20 r 80,,,,,,
+experimentID,instanceID,instanceType,wallTime,testOption,Average Page Latency,Output
+1649268045-0,i-0af7acc39ef378d2e,m5d.large,69.9461402893066, ./pmbenchw.sh,0.1374,"['Average: 0.1374', '']"
+1649268045-0,i-009f300ebb19cee92,m5d.large,70.157860994339, ./pmbenchw.sh,0.1385,"['Average: 0.1385', '']"
+1649268045-1,i-009f300ebb19cee92,m5d.large,66.9618527889252, ./pmbenchw.sh,0.1373,"['Average: 0.1373', '']"
+1649268045-2,i-009f300ebb19cee92,m5d.large,66.9487571716309, ./pmbenchw.sh,0.1448,"['Average: 0.1448', '']"
+1649268045-0,i-088ef8d134dea6110,m5d.large,70.0296437740326, ./pmbenchw.sh,0.1395,"['Average: 0.1395', '']"
+1649268045-1,i-088ef8d134dea6110,m5d.large,66.9901027679443, ./pmbenchw.sh,0.1384,"['Average: 0.1384', '']"
+,,,,,,
+pmbench r 100 w0,,,,,,
+1649268555-0,i-0af7acc39ef378d2e,m5d.large,67.0128345489502, ./pmbenchw.sh,0.0674,"['Average: 0.0674', '']"
+1649268555-0,i-009f300ebb19cee92,m5d.large,66.8695459365845, ./pmbenchw.sh,0.0673,"['Average: 0.0673', '']"
+1649268555-1,i-009f300ebb19cee92,m5d.large,66.8720765113831, ./pmbenchw.sh,0.0679,"['Average: 0.0679', '']"
+1649268555-2,i-009f300ebb19cee92,m5d.large,66.870368719101, ./pmbenchw.sh,0.0672,"['Average: 0.0672', '']"
+1649268555-0,i-088ef8d134dea6110,m5d.large,66.8872072696686, ./pmbenchw.sh,0.0675,"['Average: 0.0675', '']"
+1649268555-1,i-088ef8d134dea6110,m5d.large,66.9371843338013, ./pmbenchw.sh,0.0673,"['Average: 0.0673', '']"
