@@ -3,7 +3,8 @@
 export FORCE_TIMES_TO_RUN=1
 var=`echo "1 
 1
-n" | cd /home/ubuntu && phoronix-test-suite batch-run pts/pmbench`
+n" | phoronix-test-suite run pmbench`
+#n" | cd /home/ubuntu && phoronix-test-suite batch-run pts/pmbench`
 
 var1=`echo $var | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"`
 
