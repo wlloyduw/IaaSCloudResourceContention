@@ -40,6 +40,7 @@ stream = sys.modules[__name__].stream = 'stream'
 pmbench = sys.modules[__name__].pmbench = 'pmbench'
 pmbenchw = sys.modules[__name__].pmbenchw = 'pmbenchw'
 pmbenchw50 = sys.modules[__name__].pmbenchw50 = 'pmbenchw50'
+pmbenchw20r80 = sys.modules[__name__].pmbenchw20r80 = 'pmbenchw20r80'
 y_cruncher = sys.modules[__name__].y_cruncher = 'y_cruncher'
 y_cruncherc3 = sys.modules[__name__].y_cruncherc3 = 'y_cruncherc3'
 y_cruncherc4 = sys.modules[__name__].y_cruncherc4 = 'y_cruncherc4'
@@ -93,9 +94,11 @@ stream_option = sys.modules[__name__].stream_option = ' ./stream_parser2.sh'
 dic[pmbench] = 'time'
 dic[pmbenchw] = 'time'
 dic[pmbenchw50] = 'time'
+dic[pmbenchw20r80] = 'time'
 pmbench_option = sys.modules[__name__].pmbench_option = ' /home/ubuntu/SCRIPT/scripts/remote/pmbench.sh'
 pmbenchw_option = sys.modules[__name__].pmbenchw_option = ' ./pmbenchw.sh'
 pmbenchw50_option = sys.modules[__name__].pmbenchw50_option = ' ./pmbenchw50.sh'
+pmbenchw20r80_option = sys.modules[__name__].pmbenchw20r80_option = ' /home/ubuntu/SCRIPT/scripts/remote/pmbenchw20r80.sh'
 # 10.9424s on c4.large
 # supported bench marks
 sys.modules[__name__].supportedBenchmarks = dict([(y_cruncher, y_cruncher_option),
@@ -118,6 +121,7 @@ sys.modules[__name__].supportedBenchmarks = dict([(y_cruncher, y_cruncher_option
                                                   (stream, stream_option),
                                                   (pmbench, pmbench_option),
                                                   (pmbenchw, pmbenchw_option),
+                                                  (pmbenchw20r80, pmbenchw20r80_option),
                                                   (pmbenchw50, pmbenchw50_option)])
 # dir
 sys.modules[__name__].datadir = '/home/ubuntu/SCRIPT/scripts/remote/data/'
