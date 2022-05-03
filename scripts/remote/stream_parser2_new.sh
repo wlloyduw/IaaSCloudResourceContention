@@ -38,7 +38,7 @@ echo "$1"_Average_Max_time:$(bc <<< "scale=7; $sum_Max_time/$run_count")
 echo run_count:$run_count
 }
 
-var=`export OMP_NUM_THREADS=2 | for i in {1..3}; do time ./stream; done`
+var=`export OMP_NUM_THREADS=2 | for i in {1..15}; do time ./stream; done`
 
 #echo $var
 
