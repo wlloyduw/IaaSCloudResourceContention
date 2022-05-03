@@ -1,0 +1,7 @@
+experimentID,instanceID,instanceType,wallTime,testOption,Average Page Latency,Output
+1649724457-0,i-0706d35d7e3baf01f,m5d.large,67.4290044307709, /home/ubuntu/SCRIPT/scripts/remote/pmbenchw20r80.sh,0.1492,"['Average: 0.1492', '']"
+1649724457-0,i-0b92d97f40b6eaef2,m5d.large,67.6042594909668, /home/ubuntu/SCRIPT/scripts/remote/pmbenchw20r80.sh,0.1442,"['Average: 0.1442', '']"
+1649724457-0,i-0671e0114cd8c3355,m5d.large,67.4416644573212, /home/ubuntu/SCRIPT/scripts/remote/pmbenchw20r80.sh,0.1403,"['Average: 0.1403', '']"
+1649724457-1,i-0706d35d7e3baf01f,m5d.large,67.4050731658936, /home/ubuntu/SCRIPT/scripts/remote/pmbenchw20r80.sh,0.1399,"['Average: 0.1399', '']"
+1649724457-1,i-0b92d97f40b6eaef2,m5d.large,67.6525354385376, /home/ubuntu/SCRIPT/scripts/remote/pmbenchw20r80.sh,0.1432,"['Average: 0.1432', '']"
+1649724457-2,i-0b92d97f40b6eaef2,m5d.large,67.6754293441772, /home/ubuntu/SCRIPT/scripts/remote/pmbenchw20r80.sh,0.145,"['Average: 0.145', '']"

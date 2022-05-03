@@ -411,7 +411,8 @@ class parser(object):
         with open(const.datadir+'stream.csv', 'a') as fout:
             row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
                                ('wallTime', None), ('testOption',
-                                                    None), ('Average-Copy best rate', None),
+                                                    None), ('NumberOfRuns', None),
+                               ('Average-Copy best rate', None),
                                ('Average-Copy avg time', None),
                                ('Average-Copy min time', None),
                                ('Average-Copy max time', None),
@@ -443,6 +444,10 @@ class parser(object):
 
             i = 0
             for line in self.string:
+           	 if line.find('run_count') != -1:
+                    runcount = self.string[i]
+                    val_0 = runcount.split(":")[1]
+                    row['NumberOfRuns'] = val_0
                 if line.find('Copy_Average_Best_Rate') != -1:
                     copy_best_rate = self.string[i]
                     val_1 = copy_best_rate.split(":")[1]

@@ -90,7 +90,7 @@ cachebenchb_option = sys.modules[__name__].cachebenchb_option = ' -b -m32 -e1 -x
 #stream_option = sys.modules[__name__].stream_option = ' -o -DSTREAM_ARRAY_SIZE=100000000 -fopenmp -mcmodel=medium stream.c -o stream | export OMP_NUM_THREADS=2 | time ./stream'   
 #stream_option = sys.modules[__name__].stream_option = ' -o -DSTREAM_ARRAY_SIZE=100000000 -fopenmp -mcmodel=medium stream.c -o stream | export OMP_NUM_THREADS=2 | for i in {1..10}; do time ./stream; done'
 dic[stream] = 'time' 
-stream_option = sys.modules[__name__].stream_option = ' ./stream_parser2.sh'
+stream_option = sys.modules[__name__].stream_option = ' /home/ubuntu/SCRIPT/scripts/remote/stream_parser2_new.sh'
 dic[pmbench] = 'time'
 dic[pmbenchw] = 'time'
 dic[pmbenchw50] = 'time'
