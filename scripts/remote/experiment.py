@@ -444,7 +444,7 @@ class parser(object):
 
             i = 0
             for line in self.string:
-           	 if line.find('run_count') != -1:
+                if line.find('run_count') != -1:
                     runcount = self.string[i]
                     val_0 = runcount.split(":")[1]
                     row['NumberOfRuns'] = val_0
