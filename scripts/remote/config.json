@@ -10,7 +10,8 @@
     "stream": "./stream_parser2.sh",
     "pmbench": "./pmbench.sh",
     "pmbenchw": "./pmbenchw.sh",
-    "pmbenchw50": "./pmbenchw50.sh"
+    "pmbenchw50": "./pmbenchw50.sh",
+    "sklearn": "./sklearn.sh"
   },
   "timecost": {
     "sysbench": "5",
@@ -22,7 +23,8 @@
     "stream": "5",
     "pmbench": "5",
     "pmbenchw": "5",
-    "pmbenchw50": "5"
+    "pmbenchw50": "5",
+    "sklearn": "5"
   },
   "datadir": "/home/ubuntu/SCRIPT/scripts/remote/data/"
 }
