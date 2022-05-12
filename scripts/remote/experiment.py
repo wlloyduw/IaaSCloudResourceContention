@@ -667,6 +667,7 @@ class parser(object):
             row['instanceID'] = self.kw['instanceID']
             row['experimentID'] = self.kw['experimentID']
             row['wallTime'] = self.kw['duration']
+            row['avg_time'] = self.string
 
             i = 0
             for line in self.string:
