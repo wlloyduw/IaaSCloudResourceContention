@@ -51,6 +51,7 @@ sysbench_ram = sys.modules[__name__].sysbench_ram = 'sysbench_ram'
 # Zening's change ZZZ
 sklearn = sys.modules[__name__].sklearn = 'sklearn'
 apache_siege = sys.modules[__name__].apache_siege = 'apache_siege'
+xsbench = sys.modules[__name__].xsbench = 'xsbench'
 
 dic = sys.modules[__name__].command = dict()
 
@@ -107,8 +108,10 @@ pmbenchw20r80_option = sys.modules[__name__].pmbenchw20r80_option = ' /home/ubun
 # Zening's change ZZZ
 dic[sklearn] = 'time'
 dic[apache_siege] = 'time'
+dic[xsbench] = 'time'
 sklearn_option = sys.modules[__name__].sklearn_option = ' /home/ubuntu/SCRIPT/scripts/remote/sklearn.sh'
 apache_siege_option = sys.modules[__name__].apache_siege_option = ' /home/ubuntu/SCRIPT/scripts/remote/apache_siege.sh'
+xsbench_option = sys.modules[__name__].xsbench_option = ' /home/ubuntu/SCRIPT/scripts/remote/xsbench.sh'
 
 # 10.9424s on c4.large
 # supported bench marks
@@ -136,7 +139,8 @@ sys.modules[__name__].supportedBenchmarks = dict([(y_cruncher, y_cruncher_option
                                                   (pmbenchw20r80, pmbenchw20r80_option),
                                                   (pmbenchw50, pmbenchw50_option),
                                                   (sklearn, sklearn_option),
-                                                  (apache_siege, apache_siege_option)])
+                                                  (apache_siege, apache_siege_option),
+                                                  (xsbench, xsbench_option)])
 # dir
 sys.modules[__name__].datadir = '/home/ubuntu/SCRIPT/scripts/remote/data/'
 sys.modules[__name__].plugindir = '/home/ubuntu/SCRIPT/scripts/remote/plugin'
