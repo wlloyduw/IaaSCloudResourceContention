@@ -11,7 +11,8 @@
     "pmbench": "./pmbench.sh",
     "pmbenchw": "./pmbenchw.sh",
     "pmbenchw50": "./pmbenchw50.sh",
-    "sklearn": "./sklearn.sh"
+    "sklearn": "./sklearn.sh",
+    "apache_siege": "./apache_siege.sh"
   },
   "timecost": {
     "sysbench": "5",
@@ -24,7 +25,8 @@
     "pmbench": "5",
     "pmbenchw": "5",
     "pmbenchw50": "5",
-    "sklearn": "5"
+    "sklearn": "5",
+    "apache_siege": "5"
   },
   "datadir": "/home/ubuntu/SCRIPT/scripts/remote/data/"
 }

@@ -678,6 +678,35 @@ class parser(object):
                 i += 1
 
             writer.writerow(row)        
+    
+    def apache_siege(self):
+        needHeader = False
+        if not os.path.isfile(const.datadir + 'apache_siege.csv'):
+            needHeader = True
+        os.system("mkdir " + const.datadir)
+        with open(const.datadir+'apache_siege.csv', 'a') as fout:
+            row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
+                               ('wallTime', None),
+                               ('transactionsPerSecond', None)
+                               ])
+
+            writer = csv.DictWriter(fout, fieldnames=row)
+            if needHeader:
+                writer.writeheader()
+            row['instanceType'] = self.kw['instanceType']
+            row['instanceID'] = self.kw['instanceID']
+            row['experimentID'] = self.kw['experimentID']
+            row['wallTime'] = self.kw['duration']
+
+            i = 0
+            for line in self.string:
+                if line.find('Average') != -1:
+                    avg_res = self.string[i]
+                    val_1 = avg_res.split(":")[1]
+                    row['transactionsPerSecond'] = val_1
+                i += 1
+
+            writer.writerow(row)      
 
     def bonnie(self):
         pass
