@@ -668,14 +668,13 @@ class parser(object):
             row['instanceID'] = self.kw['instanceID']
             row['experimentID'] = self.kw['experimentID']
             row['wallTime'] = self.kw['duration']
-            row['avg_time'] = self.string
 
             i = 0
             for line in self.string:
                 if line.find('Average') != -1:
                     avg_time = self.string[i]
                     val_1 = avg_time.split(":")[1]
-                    row['avg_time'] = 555
+                    row['avg_time'] = val_1
                 i += 1
 
             writer.writerow(row)        
@@ -714,7 +713,6 @@ class Experiment(object):
             # flush cache
             os.popen("echo 3 | sudo tee /proc/sys/vm/drop_caches").read()
             logging.info(const.command[self.benchmark]+self.options[self.benchmark])
-            print(const.command[self.benchmark]+self.options[self.benchmark])
             # time stamp that user percieved
             time1 = time.time()
             result = os.popen(const.command[self.benchmark]+self.options[self.benchmark]).read()
