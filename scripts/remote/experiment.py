@@ -6,6 +6,7 @@ run.py a experiment.py  with options;
 data should be collect every run, otherwise it will be overwrite;
 '''
 
+from cmath import log
 import re
 import csv
 import const
@@ -712,11 +713,12 @@ class Experiment(object):
         for i in range(self.cycle):
             # flush cache
             os.popen("echo 3 | sudo tee /proc/sys/vm/drop_caches").read()
+            logging.info(const.command[self.benchmark]+self.options[self.benchmark])
             print(const.command[self.benchmark]+self.options[self.benchmark])
             # time stamp that user percieved
             time1 = time.time()
-            result = os.popen(
-                const.command[self.benchmark]+self.options[self.benchmark]).read()
+            result = os.popen(const.command[self.benchmark]+self.options[self.benchmark]).read()
+            logging.info(result)
             time2 = time.time()
             duration = time2-time1  # unit in seconds
             myParser = parser(self.benchmark, result, testOption=self.options[self.benchmark],
