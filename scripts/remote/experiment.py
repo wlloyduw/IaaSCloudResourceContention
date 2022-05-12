@@ -673,7 +673,7 @@ class parser(object):
                 if line.find('Average') != -1:
                     avg_time = self.string[i]
                     val_1 = avg_time.split(":")[1]
-                    row['avg_time'] = val_1
+                    row['avg_time'] = 555
                 i += 1
 
             writer.writerow(row)        
