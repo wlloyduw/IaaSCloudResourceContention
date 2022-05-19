@@ -708,15 +708,15 @@ class parser(object):
 
             writer.writerow(row)    
 
-    def xsbench(self):
+    def compilebench(self):
         needHeader = False
-        if not os.path.isfile(const.datadir + 'xsbench.csv'):
+        if not os.path.isfile(const.datadir + 'compilebench.csv'):
             needHeader = True
         os.system("mkdir " + const.datadir)
-        with open(const.datadir+'xsbench.csv', 'a') as fout:
+        with open(const.datadir+'compilebench.csv', 'a') as fout:
             row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
                                ('wallTime', None),
-                               ('lookupsPerSecond', None)
+                               ('create', None)
                                ])
 
             writer = csv.DictWriter(fout, fieldnames=row)
@@ -732,7 +732,7 @@ class parser(object):
                 if line.find('Average') != -1:
                     avg_res = self.string[i]
                     val_1 = avg_res.split(":")[1]
-                    row['lookupsPerSecond'] = val_1
+                    row['create'] = val_1
                 i += 1
 
             writer.writerow(row)      
