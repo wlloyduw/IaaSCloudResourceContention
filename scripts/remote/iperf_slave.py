@@ -24,7 +24,7 @@ class IperfEntry:
 
         # table schema
         self.row = OrderedDict([('instanceID', None), ('instanceType', None), ('experimentID', None), 
-                                ("bandwidthSender", None), ("bandwitdhReceiver", None), ("setId", None), ("vmId", None), ("cmd", None)])
+                                ("bandwidthSender", None), ("bandwidthReceiver", None), ("setId", None), ("vmId", None), ("cmd", None)])
 
         # mkdir, create file, write header
         if not os.path.isfile(IperfEntry.DATA_PATH + 'iperf.csv'):
@@ -48,12 +48,12 @@ class IperfEntry:
         self.row["experimentID"] = experimentID
         self.row["cmd"] = cmd
 
-    def setBandwidthReciver(self, receiver):
+    def setBandwidthReceiver(self, receiver):
         self.row["bandwidthReceiver"] = receiver
         return self
 
-    def setBandwitdhSender(self, sender):
-        self.row["bandwitdhSender"] = sender
+    def setBandwidthSender(self, sender):
+        self.row["bandwidthSender"] = sender
         return self
 
     def setSetId(self, setId):
@@ -109,8 +109,8 @@ def main(argv):
         try:
             sender = re.findall(r'[0-9]+ Kbits', result[0])[0].split(' ')[0]
             receiver = re.findall(r'[0-9]+ Kbits', result[1])[0].split(' ')[0]
-            entry.setBandwitdhSender(sender)\
-                .setBandwidthReciver(receiver)
+            entry.setBandwidthSender(sender)\
+                .setBandwidthReceiver(receiver)
         except (AttributeError, IndexError):
             os.popen("mkdir RE_ERROR!!!")
 
