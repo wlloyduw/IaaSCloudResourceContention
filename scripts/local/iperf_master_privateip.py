@@ -93,8 +93,8 @@ def cronBuilder(serverAddr, clientSeq, total):
     # assume clientSeq 0 based
     def cronHelper(time):
         # CHANGE iperf-client config here, if needed
-        benchmarkCmd = "iperf -c %s --dualtest --window 416k --time %s " % (
-            serverAddr, CYCLE_DURATION)
+        benchmarkCmd = "iperf3 -c %s --window 416k --time %s -p 5201 -f k" % (serverAddr, CYCLE_DURATION)
+        
         # CHANGE crontab lines here, if needed
         crontabCmd = "%s %s %s * * ubuntu python3  ~/SCRIPT/scripts/remote/iperf_slave.py -c %s -i %s -x '%s' -s %s -v %s\n" % (
             str(time.minute), str(time.hour), str(time.day),
