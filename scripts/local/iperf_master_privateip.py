@@ -84,7 +84,7 @@ def createIperfPair():
 # set up IperfServer through pssh
 def launchIperfServer():
     print("\nlaunchIperfServer()")
-    cmd = "iperf -s --daemon &"
+    cmd = "iperf3 -s --daemon &"
     print(psshExcute('iperfServers', cmd))
 
 
