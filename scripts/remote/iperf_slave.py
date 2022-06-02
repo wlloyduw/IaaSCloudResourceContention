@@ -105,7 +105,7 @@ def main(argv):
 
         # CHANGE parsing logic here, if needed
         result = result.strip().split('\n')
-        result = result[-2:]
+        result = result[-4:-2]
         try:
             sender = re.findall(r'[0-9]+ Kbits', result[0])[0].split(' ')[0]
             receiver = re.findall(r'[0-9]+ Kbits', result[1])[0].split(' ')[0]
