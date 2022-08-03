@@ -584,7 +584,7 @@ class parser(object):
                 i += 1
 
             writer.writerow(row)
-    
+
     def pmbenchw50(self):
         needHeader = False
         if not os.path.isfile(const.datadir + 'pmbenchw50.csv'):
@@ -679,8 +679,8 @@ class parser(object):
                     row['avg_time'] = val_1
                 i += 1
 
-            writer.writerow(row)        
-    
+            writer.writerow(row)
+
     def apache_siege(self):
         needHeader = False
         if not os.path.isfile(const.datadir + 'apache_siege.csv'):
@@ -708,7 +708,7 @@ class parser(object):
                     row['transactionsPerSecond'] = val_1
                 i += 1
 
-            writer.writerow(row)    
+            writer.writerow(row)
 
     def compilebench(self):
         needHeader = False
@@ -737,7 +737,7 @@ class parser(object):
                     row['create'] = val_1
                 i += 1
 
-            writer.writerow(row)      
+            writer.writerow(row)
 
     def bonnie(self):
         pass
@@ -772,15 +772,17 @@ class Experiment(object):
         for i in range(self.cycle):
             # flush cache
             os.popen("echo 3 | sudo tee /proc/sys/vm/drop_caches").read()
-            logging.info(const.command[self.benchmark]+self.options[self.benchmark])
+            logging.info(const.command[self.benchmark] +
+                         self.options[self.benchmark])
             # time stamp that user percieved
             time1 = time.time()
-            result = os.popen(const.command[self.benchmark]+self.options[self.benchmark]).read()
+            result = os.popen(
+                const.command[self.benchmark]+self.options[self.benchmark]).read()
             logging.info(result)
             time2 = time.time()
             duration = time2-time1  # unit in seconds
             myParser = parser(self.benchmark, result, testOption=self.options[self.benchmark],
-                              duration=duration, experimentID=self.experimentID)
+                              duration=duration, time1=time1, time2=time2, experimentID=self.experimentID)
             func = myParser.getfunc()
             func()
             print(result)
