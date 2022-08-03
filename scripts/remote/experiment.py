@@ -310,9 +310,9 @@ class parser(object):
             writer.writerow(row)
 
     def cachebenchw(self):
-        n = 1000
-        start_time = time1 * n
-        end_time = time2 * n
+        #n = 1000
+        #start_time = time1 * n
+        #end_time = time2 * n
         needHeader = False
         if not os.path.isfile(const.datadir + 'cachebenchw.csv'):
             needHeader = True
