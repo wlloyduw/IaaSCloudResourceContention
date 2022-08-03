@@ -331,6 +331,8 @@ class parser(object):
             row['instanceID'] = self.kw['instanceID']
             row['experimentID'] = self.kw['experimentID']
             row['wallTime'] = self.kw['duration']
+            row['startTime'] = self.kw['time1']
+            row['endTime'] = self.kw['time2']
             row['testOption'] = self.kw['testOption']
             row['total-time'] = self.string
 
