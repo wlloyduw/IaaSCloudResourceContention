@@ -310,14 +310,16 @@ class parser(object):
             writer.writerow(row)
 
     def cachebenchw(self):
+        start_time = time1*1000
+        end_time = time2*1000
         needHeader = False
         if not os.path.isfile(const.datadir + 'cachebenchw.csv'):
             needHeader = True
         os.system("mkdir " + const.datadir)
         with open(const.datadir+'cachebenchw.csv', 'a') as fout:
             row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
-                               ('wallTime', None), ('testOption',
-                                                    None), ('1 KiB Throughput', None),
+                               ('wallTime', None), ('startTime', None), ('endTime', None), ('testOption',
+                                                                                            None), ('1 KiB Throughput', None),
                                ('1 MiB Throughput', None),
                                ('1 GiB Throughput', None),
                                ('4 GiB Throughput', None),
@@ -332,8 +334,8 @@ class parser(object):
             row['instanceID'] = self.kw['instanceID']
             row['experimentID'] = self.kw['experimentID']
             row['wallTime'] = self.kw['duration']
-            row['startTime'] = self.kw['time1']
-            row['endTime'] = self.kw['time2']
+            row['startTime'] = self.kw['start_time']
+            row['endTime'] = self.kw['end_time']
             row['testOption'] = self.kw['testOption']
             row['total-time'] = self.string
 
