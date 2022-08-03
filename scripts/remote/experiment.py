@@ -310,8 +310,6 @@ class parser(object):
             writer.writerow(row)
 
     def cachebenchw(self):
-        start_time = (time1*1000)
-        end_time = (time2*1000)
         needHeader = False
         if not os.path.isfile(const.datadir + 'cachebenchw.csv'):
             needHeader = True
@@ -334,8 +332,8 @@ class parser(object):
             row['instanceID'] = self.kw['instanceID']
             row['experimentID'] = self.kw['experimentID']
             row['wallTime'] = self.kw['duration']
-            row['startTime'] = self.kw['start_time']
-            row['endTime'] = self.kw['end_time']
+            row['startTime'] = self.kw['time1']
+            row['endTime'] = self.kw['time2']
             row['testOption'] = self.kw['testOption']
             row['total-time'] = self.string
 
