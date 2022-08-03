@@ -84,7 +84,7 @@ def createIperfPair():
 # set up IperfServer through pssh
 def launchIperfServer():
     print("\nlaunchIperfServer()")
-    cmd = "iperf -s --daemon &"
+    cmd = "iperf3 -s --daemon &"
     print(psshExcute('iperfServers', cmd))
 
 
@@ -93,8 +93,8 @@ def cronBuilder(serverAddr, clientSeq, total):
     # assume clientSeq 0 based
     def cronHelper(time):
         # CHANGE iperf-client config here, if needed
-        benchmarkCmd = "iperf -c %s --dualtest --window 416k --time %s " % (
-            serverAddr, CYCLE_DURATION)
+        benchmarkCmd = "iperf3 -c %s --window 416k --time %s -p 5201 -f k" % (serverAddr, CYCLE_DURATION)
+        
         # CHANGE crontab lines here, if needed
         crontabCmd = "%s %s %s * * ubuntu python3  ~/SCRIPT/scripts/remote/iperf_slave.py -c %s -i %s -x '%s' -s %s -v %s\n" % (
             str(time.minute), str(time.hour), str(time.day),
@@ -139,8 +139,8 @@ def configurIperfClient(C2S_MAP):
     # CHANGE initiation method here, if neeeded
     cmd = "'sudo cp ~/crontab /etc/crontab && sudo chown root.root /etc/crontab && sudo service cron reload'"
     print(psshExcute("iperfClients", cmd))  # preparations for cron
-    cmd = ''' 'eval "$(ssh-agent)" && ssh-add -k ~/.ssh/git_capstone && rm -rf IaaSCloudResourceContention SCRIPT && 
-        git clone https://github.com/wlloyduw/IaaSCloudResourceContention.git && mv IaaSCloudResourceContention SCRIPT' '''
+    cmd = ''' 'eval "$(ssh-agent)" && ssh-add -k ~/.ssh/git_capstone && rm -rf IaasCloudResourceContention_stream SCRIPT && 
+        git clone https://github.com/maddygithub123/IaasCloudResourceContention_stream.git && mv IaasCloudResourceContention_stream SCRIPT' '''
         # old
         #git clone git@github.com:khaosminded/IaaSCloudResourceContention.git && mv Capstone SCRIPT' '''
     print(psshExcute("iperfClients", cmd)

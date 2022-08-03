@@ -23,8 +23,8 @@ class IperfEntry:
     def __init__(self, experimentID, cmd):
 
         # table schema
-        self.row = OrderedDict([('instanceID', None), ('instanceType', None), ('experimentID', None), ("interval", None),
-                                ("bandwidthUpload", None), ("bandwitdhDownload", None), ("setId", None), ("vmId", None), ("cmd", None)])
+        self.row = OrderedDict([('instanceID', None), ('instanceType', None), ('experimentID', None), 
+                                ("bandwidthSender", None), ("bandwidthReceiver", None), ("setId", None), ("vmId", None), ("cmd", None)])
 
         # mkdir, create file, write header
         if not os.path.isfile(IperfEntry.DATA_PATH + 'iperf.csv'):
@@ -48,12 +48,12 @@ class IperfEntry:
         self.row["experimentID"] = experimentID
         self.row["cmd"] = cmd
 
-    def setBandwidthUpload(self, bandwidthUpload):
-        self.row["bandwidthUpload"] = bandwidthUpload
+    def setBandwidthReceiver(self, receiver):
+        self.row["bandwidthReceiver"] = receiver
         return self
 
-    def setBandwitdhDownload(self, bandwitdhDownload):
-        self.row["bandwitdhDownload"] = bandwitdhDownload
+    def setBandwidthSender(self, sender):
+        self.row["bandwidthSender"] = sender
         return self
 
     def setSetId(self, setId):
@@ -105,15 +105,12 @@ def main(argv):
 
         # CHANGE parsing logic here, if needed
         result = result.strip().split('\n')
-        result = result[-2:]
+        result = result[-4:-2]
         try:
-            upload = re.search(r'-(.*?sec)\s*(.*?Bytes)\s*(.*?sec)', result[0])
-            download = re.search(
-                r'-(.*?sec)\s*(.*?Bytes)\s*(.*?sec)', result[1])
-
-            entry.setBandwidthUpload(upload.group(3))\
-                .setBandwitdhDownload(download.group(3))\
-                .setInterval(upload.group(1))
+            sender = re.findall(r'[0-9]+ Kbits', result[0])[0].split(' ')[0]
+            receiver = re.findall(r'[0-9]+ Kbits', result[1])[0].split(' ')[0]
+            entry.setBandwidthSender(sender)\
+                .setBandwidthReceiver(receiver)
         except (AttributeError, IndexError):
             os.popen("mkdir RE_ERROR!!!")
 

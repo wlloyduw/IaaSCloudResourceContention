@@ -48,6 +48,12 @@ y_cruncherz1d = sys.modules[__name__].y_cruncherz1d = 'y_cruncherz1d'
 y_cruncherm5d = sys.modules[__name__].y_cruncherm5d = 'y_cruncherm5d'
 pgbench = sys.modules[__name__].pgbench = 'pgbench'
 sysbench_ram = sys.modules[__name__].sysbench_ram = 'sysbench_ram'
+# Zening's change ZZZ
+sklearn = sys.modules[__name__].sklearn = 'sklearn'
+apache_siege = sys.modules[__name__].apache_siege = 'apache_siege'
+compilebench = sys.modules[__name__].compilebench = 'compilebench'
+
+
 dic = sys.modules[__name__].command = dict()
 
 # running options of y_cruncher # 7.379s on c4.large
@@ -99,8 +105,18 @@ pmbench_option = sys.modules[__name__].pmbench_option = ' /home/ubuntu/SCRIPT/sc
 pmbenchw_option = sys.modules[__name__].pmbenchw_option = ' ./pmbenchw.sh'
 pmbenchw50_option = sys.modules[__name__].pmbenchw50_option = ' ./pmbenchw50.sh'
 pmbenchw20r80_option = sys.modules[__name__].pmbenchw20r80_option = ' /home/ubuntu/SCRIPT/scripts/remote/pmbenchw20r80.sh'
+
+# Zening's change ZZZ
+dic[sklearn] = 'time'
+dic[apache_siege] = 'time'
+dic[compilebench] = 'time'
+sklearn_option = sys.modules[__name__].sklearn_option = ' /home/ubuntu/SCRIPT/scripts/remote/sklearn.sh'
+apache_siege_option = sys.modules[__name__].apache_siege_option = ' /home/ubuntu/SCRIPT/scripts/remote/apache_siege.sh'
+compilebench_option = sys.modules[__name__].compilebench_option = ' /home/ubuntu/SCRIPT/scripts/remote/compilebench.sh'
+
 # 10.9424s on c4.large
 # supported bench marks
+# Zening's change ZZZ
 sys.modules[__name__].supportedBenchmarks = dict([(y_cruncher, y_cruncher_option),
                                                   (y_cruncherc3,
                                                    y_cruncherc3_option),
@@ -122,7 +138,10 @@ sys.modules[__name__].supportedBenchmarks = dict([(y_cruncher, y_cruncher_option
                                                   (pmbench, pmbench_option),
                                                   (pmbenchw, pmbenchw_option),
                                                   (pmbenchw20r80, pmbenchw20r80_option),
-                                                  (pmbenchw50, pmbenchw50_option)])
+                                                  (pmbenchw50, pmbenchw50_option),
+                                                  (sklearn, sklearn_option),
+                                                  (apache_siege, apache_siege_option),
+                                                  (compilebench, compilebench_option)])
 # dir
 sys.modules[__name__].datadir = '/home/ubuntu/SCRIPT/scripts/remote/data/'
 sys.modules[__name__].plugindir = '/home/ubuntu/SCRIPT/scripts/remote/plugin'

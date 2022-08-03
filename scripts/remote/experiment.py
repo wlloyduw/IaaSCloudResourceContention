@@ -6,6 +6,7 @@ run.py a experiment.py  with options;
 data should be collect every run, otherwise it will be overwrite;
 '''
 
+from cmath import log
 import re
 import csv
 import const
@@ -650,6 +651,94 @@ class parser(object):
 
             writer.writerow(row)
 
+    # Zening's change ZZZ
+    def sklearn(self):
+        needHeader = False
+        if not os.path.isfile(const.datadir + 'sklearn.csv'):
+            needHeader = True
+        os.system("mkdir " + const.datadir)
+        with open(const.datadir+'sklearn.csv', 'a') as fout:
+            row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
+                               ('wallTime', None),
+                               ('avg_time', None)
+                               ])
+
+            writer = csv.DictWriter(fout, fieldnames=row)
+            if needHeader:
+                writer.writeheader()
+            row['instanceType'] = self.kw['instanceType']
+            row['instanceID'] = self.kw['instanceID']
+            row['experimentID'] = self.kw['experimentID']
+            row['wallTime'] = self.kw['duration']
+
+            i = 0
+            for line in self.string:
+                if line.find('Average') != -1:
+                    avg_time = self.string[i]
+                    val_1 = avg_time.split(":")[1]
+                    row['avg_time'] = val_1
+                i += 1
+
+            writer.writerow(row)        
+    
+    def apache_siege(self):
+        needHeader = False
+        if not os.path.isfile(const.datadir + 'apache_siege.csv'):
+            needHeader = True
+        os.system("mkdir " + const.datadir)
+        with open(const.datadir+'apache_siege.csv', 'a') as fout:
+            row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
+                               ('wallTime', None),
+                               ('transactionsPerSecond', None)
+                               ])
+
+            writer = csv.DictWriter(fout, fieldnames=row)
+            if needHeader:
+                writer.writeheader()
+            row['instanceType'] = self.kw['instanceType']
+            row['instanceID'] = self.kw['instanceID']
+            row['experimentID'] = self.kw['experimentID']
+            row['wallTime'] = self.kw['duration']
+
+            i = 0
+            for line in self.string:
+                if line.find('Average') != -1:
+                    avg_res = self.string[i]
+                    val_1 = avg_res.split(":")[1]
+                    row['transactionsPerSecond'] = val_1
+                i += 1
+
+            writer.writerow(row)    
+
+    def compilebench(self):
+        needHeader = False
+        if not os.path.isfile(const.datadir + 'compilebench.csv'):
+            needHeader = True
+        os.system("mkdir " + const.datadir)
+        with open(const.datadir+'compilebench.csv', 'a') as fout:
+            row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
+                               ('wallTime', None),
+                               ('create', None)
+                               ])
+
+            writer = csv.DictWriter(fout, fieldnames=row)
+            if needHeader:
+                writer.writeheader()
+            row['instanceType'] = self.kw['instanceType']
+            row['instanceID'] = self.kw['instanceID']
+            row['experimentID'] = self.kw['experimentID']
+            row['wallTime'] = self.kw['duration']
+
+            i = 0
+            for line in self.string:
+                if line.find('Average') != -1:
+                    avg_res = self.string[i]
+                    val_1 = avg_res.split(":")[1]
+                    row['create'] = val_1
+                i += 1
+
+            writer.writerow(row)      
+
     def bonnie(self):
         pass
 
@@ -683,11 +772,11 @@ class Experiment(object):
         for i in range(self.cycle):
             # flush cache
             os.popen("echo 3 | sudo tee /proc/sys/vm/drop_caches").read()
-            print(const.command[self.benchmark]+self.options[self.benchmark])
+            logging.info(const.command[self.benchmark]+self.options[self.benchmark])
             # time stamp that user percieved
             time1 = time.time()
-            result = os.popen(
-                const.command[self.benchmark]+self.options[self.benchmark]).read()
+            result = os.popen(const.command[self.benchmark]+self.options[self.benchmark]).read()
+            logging.info(result)
             time2 = time.time()
             duration = time2-time1  # unit in seconds
             myParser = parser(self.benchmark, result, testOption=self.options[self.benchmark],
