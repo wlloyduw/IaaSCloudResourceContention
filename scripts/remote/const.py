@@ -93,9 +93,9 @@ dic[cachebenchb] = './cachebench'
 cachebench_option = sys.modules[__name__].cachebench_option = ' -r -m32 -e1 -x0 -d2'
 cachebenchw_option = sys.modules[__name__].cachebenchw_option = ' -w -m32 -e1 -x0 -d2'
 cachebenchb_option = sys.modules[__name__].cachebenchb_option = ' -b -m32 -e1 -x0 -d2'
-#stream_option = sys.modules[__name__].stream_option = ' -o -DSTREAM_ARRAY_SIZE=100000000 -fopenmp -mcmodel=medium stream.c -o stream | export OMP_NUM_THREADS=2 | time ./stream'   
+#stream_option = sys.modules[__name__].stream_option = ' -o -DSTREAM_ARRAY_SIZE=100000000 -fopenmp -mcmodel=medium stream.c -o stream | export OMP_NUM_THREADS=2 | time ./stream'
 #stream_option = sys.modules[__name__].stream_option = ' -o -DSTREAM_ARRAY_SIZE=100000000 -fopenmp -mcmodel=medium stream.c -o stream | export OMP_NUM_THREADS=2 | for i in {1..10}; do time ./stream; done'
-dic[stream] = 'time' 
+dic[stream] = 'time'
 stream_option = sys.modules[__name__].stream_option = ' /home/ubuntu/SCRIPT/scripts/remote/stream_parser2_new.sh'
 dic[pmbench] = 'time'
 dic[pmbenchw] = 'time'
@@ -137,10 +137,12 @@ sys.modules[__name__].supportedBenchmarks = dict([(y_cruncher, y_cruncher_option
                                                   (stream, stream_option),
                                                   (pmbench, pmbench_option),
                                                   (pmbenchw, pmbenchw_option),
-                                                  (pmbenchw20r80, pmbenchw20r80_option),
+                                                  (pmbenchw20r80,
+                                                   pmbenchw20r80_option),
                                                   (pmbenchw50, pmbenchw50_option),
                                                   (sklearn, sklearn_option),
-                                                  (apache_siege, apache_siege_option),
+                                                  (apache_siege,
+                                                   apache_siege_option),
                                                   (compilebench, compilebench_option)])
 # dir
 sys.modules[__name__].datadir = '/home/ubuntu/SCRIPT/scripts/remote/data/'
