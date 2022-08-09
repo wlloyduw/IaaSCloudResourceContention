@@ -1,9 +1,9 @@
 #!/usr/local/bin/python3
 # -*- coding: utf-8 -*-
 import threading
+from remote import const
 from dateutil.relativedelta import relativedelta
 import datetime
-from remote import const
 import os
 import getopt
 import sys
