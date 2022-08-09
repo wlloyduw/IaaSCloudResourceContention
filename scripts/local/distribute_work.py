@@ -195,7 +195,7 @@ def main(argv):
         print(notice)
         sys.exit()
     try:
-        opts, args = getopt.getopt(argv, "shrt:c:n:d:b:g:")
+        opts, args = getopt.getopt(argv, "shrt:1rt:c:n:d:b:g:")
     except getopt.GetoptError:
         print(notice)
         sys.exit(2)
@@ -227,7 +227,6 @@ def main(argv):
         elif opt in ("-s"):
             print('stop VM flag has been included...')
             stopFlag = True
-
         elif opt in ("-1"):
             print('single run flag has been included...')
             singleRun = True
