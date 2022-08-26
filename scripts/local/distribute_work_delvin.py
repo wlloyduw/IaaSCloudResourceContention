@@ -1,13 +1,14 @@
 #!/usr/local/bin/python3
 # -*- coding: utf-8 -*-
+import threading
+from dateutil.relativedelta import relativedelta
+import datetime
+from remote import const
 import os
 import getopt
 import sys
 sys.path.append('..')
-from remote import const
-import datetime
-from dateutil.relativedelta import relativedelta
-import threading
+
 
 def pssh(minute='*', hour='*', day='*', cycles='1', benchmark='pgbench'):
     # chaos, legacy, hard to modify, but excute fast
@@ -19,25 +20,40 @@ def pssh(minute='*', hour='*', day='*', cycles='1', benchmark='pgbench'):
 	_task='''+"'"+minute+" "+hour+" "+day+''' * * ubuntu python3  ~/SCRIPT/scripts/remote/run.py -c '''+cycles+' -t '+benchmark+''' -i '$id
 	task=\\'$_task\\'
 	psshcommand='set -f && eval "$(ssh-agent -s)" && ssh-add -k ~/.ssh/git_capstone && rm -rf IaasCloudResourceContention_stream && git clone https://github.com/maddygithub123/IaasCloudResourceContention_stream.git && mv IaasCloudResourceContention_stream SCRIPT && cd ~/SCRIPT && cp /etc/crontab . && echo '$task' >> crontab && sudo mv crontab /etc/crontab && sudo chown root.root /etc/crontab && sudo service cron reload'
-	pssh -i -h hostfile_pssh -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
+	pssh -i -h hostfile_pssh -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand                                           
 	'''
     respond = os.popen(shellscript).read()
     print(respond)
 
 
-def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cycles='10', interval=15, benchmark='pgbench', reverseFlag=False, vmgen='c3', stopFlag=False, singleRun=False):
+def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cycles='10', interval=15, benchmark='pgbench', reverseFlag=False, vmgen='c3', stopFlag=False, phantomIdle=-1, singleRun=False):
     print("in pssh2")
     # override pssh when doing 1to16 dedicated host experiment
     # copy each 'crontab' to its instance
     os.system('cp crontab.bak crontab')
     exp_id = os.popen('date -u +%s').read()
+    #phantomName = 'phantom'
+    # @TODO: add phantom flags here?
 
-    def getPsshcommand(minute, hour, day, HOST_STRING, setid, stopVM):
-        return '''
-		set -f
-		psshcommand='set -f && echo "''' + minute + " " + hour + " " + day + ''' * * ubuntu python3  ~/SCRIPT/scripts/remote/run.py -c ''' + cycles+' -t '+benchmark + stopVM + ' -i ' + str(exp_id).strip() + '-' + str(setid) + ' | logger -t testharness' + '''" >> crontab'
-		pssh -i -H "''' + HOST_STRING + '''" -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
-		'''
+    def getPsshcommand(minute, hour, day, HOST_STRING, setid, stopVM, pIdle=-1):
+        result = ''  # @TODO: REFACTOR
+        if (pIdle >= 0):
+            # @TODO:refactor..
+
+            result = '''
+            set -f
+            psshcommand='set -f && echo "''' + minute + " " + hour + " " + day + ''' * * ubuntu python3  ~/SCRIPT/scripts/remote/run.py -c ''' + cycles+' -t '+benchmark + stopVM + ' -i ' + str(exp_id).strip() + '-' + str(setid) + ' -p ' + str(phantomIdle) + ' | logger -t testharness' + '''" >> crontab'
+            pssh -i -H "''' + HOST_STRING + '''" -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
+            '''
+        else:
+            # without -p flag
+            # @TODO: given the code in run.py and experiment.py, we can refactor and pass -p = -1...test later
+            result = '''
+            set -f
+            psshcommand='set -f && echo "''' + minute + " " + hour + " " + day + ''' * * ubuntu python3  ~/SCRIPT/scripts/remote/run.py -c ''' + cycles+' -t '+benchmark + stopVM + ' -i ' + str(exp_id).strip() + '-' + str(setid) + ' | logger -t testharness' + '''" >> crontab'
+            pssh -i -H "''' + HOST_STRING + '''" -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
+            '''
+        return result
 
     def getStopcommand(minute, hour, day, HOST_STRING, setid):
         return '''
@@ -45,7 +61,7 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
 		psshcommand='set -f && echo \"''' + minute + " " + hour + " " + day + ''' * * ubuntu aws ec2 stop-instances --instance-ids $(curl http://169.254.169.254/latest/meta-data/instance-id 2>/dev/null) | logger -t testharness\" >> crontab'
 		pssh -i -H "''' + HOST_STRING + '''" -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" $psshcommand
 		'''
-    #ORIG CMD --> psshcommand='set -f && echo "''' + minute + " " + hour + " " + day + ''' * * ubuntu python3  ~/SCRIPT/scripts/remote/run.py -c ''' + cycles+' -t '+benchmark + ' -i ' + exp_id + ' | logger -t testharness' + '''" >> crontab'
+    # ORIG CMD --> psshcommand='set -f && echo "''' + minute + " " + hour + " " + day + ''' * * ubuntu python3  ~/SCRIPT/scripts/remote/run.py -c ''' + cycles+' -t '+benchmark + ' -i ' + exp_id + ' | logger -t testharness' + '''" >> crontab'
     # copy ./crontab to every instance:~/. in hostlist
     hostlist = []
     with open('hostfile_pssh', 'r') as f:
@@ -68,61 +84,64 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
         threads.join()
     # -H --host=HOST_STRING
     # No.1 instance has exactly 1 work, No.2 has 2 ... No.16 has 16 newline in crontab
-    skip=0
+    # skip=0
     for i in range(len(hostlist)):
-        if (singleRun and i > 0): #only run once for single run mode
+        if (singleRun and i > 0):  # only run once for single run mode
             break
-        
+
         HOST_STRING = ''
         if reverseFlag == True:
             for host in hostlist[:i+1]:  # reverse 1VM->16VMs
                 HOST_STRING += host+' '
         else:
-            skip=1
-            for host in hostlist[i:]:
-                if skip == 0:
-                    HOST_STRING += host+' '  # positive 16VMs->1VM
-                else:
-                    #schedule one VM to stop each time
-                    print("stop vm:" + hostlist[i]) 
-                    if stopFlag == True:
-                        shell = getPsshcommand(str(target_time.minute), str(
-                            target_time.hour), str(target_time.day), hostlist[i], i, " -s")
-                    else:
-                        shell = getPsshcommand(str(target_time.minute), str(
-                            target_time.hour), str(target_time.day), hostlist[i], i, "")
-
-                    #print(shell)
-                    #print(HOST_STRING)
+            # skip=1
+            for j, host in enumerate(hostlist[i:]):
+                if (j == len(hostlist[i:])-1):
+                    # last host in the hostlist, which is the last vm to shutdown
+                    # also the only vm that runs the benchmark, rest idle
+                    shell = getPsshcommand(str(target_time.minute), str(
+                        target_time.hour), str(target_time.day), hostlist[-1], i, "")
                     tmp = os.popen(shell).read()
                     print(tmp)
-                    skip=0
+                elif (j == 0 and (stopFlag or phantomIdle > -1)):
+                    # schedule one VM to stop each time
+                    print("stop vm:" + hostlist[i])
+                    shell = getPsshcommand(str(target_time.minute), str(
+                        target_time.hour), str(target_time.day), hostlist[i], i, " -s", phantomIdle)
+                    # print(shell)
+                    # print(HOST_STRING)
+                    tmp = os.popen(shell).read()
+                    print(tmp)
+                    # skip=0
+                else:
+                    HOST_STRING += host+' '  # positive 16VMs->1VM
 
+        # run.py on all vms except final host in hostlist and stopped vm
         shell = getPsshcommand(str(target_time.minute), str(
-            target_time.hour), str(target_time.day), HOST_STRING, i, "")
-        #print(shell)
-        #print(HOST_STRING)
+            target_time.hour), str(target_time.day), HOST_STRING, i, "", phantomIdle)
+        # print(shell)
+        # print(HOST_STRING)
         tmp = os.popen(shell).read()
         print(tmp)
 
         # Schedule instances to stop
-        #if stopFlag == True:
+        # if stopFlag == True:
         #    print('stop VM:' + hostlist[i])
         #    print(len(hostlist))
         #    print(i)
-         
+
         #    shutdown_time = target_time + relativedelta(minutes=1)
         #    shell = getStopcommand(str(shutdown_time.minute), str(
         #        shutdown_time.hour), str(shutdown_time.day), hostlist[i], i)
         #    #print(shell)
         #    tmp = os.popen(shell).read()
         #    print(tmp)
-        #else:
+        # else:
         #    print('no request to stop VMs')
 
         # add interval to each line of crontab
         target_time += relativedelta(minutes=interval)
-        skip=skip+1
+        # skip=skip+1
 
     # on each instance, mv ~/crontab to /etc/crontab & change the user to root
     shell = r'''
@@ -133,7 +152,7 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
 	'''
     respond = os.popen(shell).read()
 
-    #if True:
+    # if True:
     #    return
     if benchmark in ('pgbench'):
         print("make sure your instance type is: " + vmgen)
@@ -153,7 +172,7 @@ def pssh_v2(target_time=datetime.datetime.utcnow()+relativedelta(minutes=5), cyc
 	parallel-scp -h hostfile_pssh -t 0 -x "-o StrictHostKeyChecking=no -i ~/.ssh/as0.pem" ~/.aws/credentials /home/ubuntu/.aws/credentials
 	'''
     respond = os.popen(refresh_keys).read()
-    #print(refresh_keys)
+    # print(refresh_keys)
     print(respond)
 
 
@@ -166,6 +185,7 @@ def cloneGitRepo():
 	'''
     respond = os.popen(shell).read()
     print(respond)
+
 
 def getPublicIpPool():
     getPublicIp = r'aws ec2 describe-instances --filters "Name=instance-state-code,Values=16" | grep PublicIpAddress | cut -d":" -f 2 | cut -d"," -f 1 | cut -d"\"" -f 2 '
@@ -208,6 +228,7 @@ def main(argv):
     reverseFlag = False
     stopFlag = False
     vmgen = 'c3'
+    phantomIdle = -1
     singleRun = False
     # CLI input handler
     for opt, arg in opts:
@@ -229,7 +250,15 @@ def main(argv):
             stopFlag = True
         elif opt in ("-1"):
             print('single run flag has been included...')
-            singleRun = True    
+            singleRun = True
+
+        elif opt in ("-p"):
+            print('phantom mode active...')
+            # @TODO:
+            # if int(arg) not in range(0, 60):
+            #     print('phantom idle needs to be between 0 and 60 seconds')
+            #     sys.exit()
+            phantomIdle = int(arg)
 
         elif opt in ("-t"):
             minute = arg.strip().split(':')[0]
@@ -241,7 +270,7 @@ def main(argv):
 
         elif opt in ("-c"):
             if int(arg) not in range(360):
-                print('count down need to be less than 360 min')
+                print('count down needs to be less than 360 min')
                 sys.exit()
             utc_datetime = datetime.datetime.utcnow()
             target_time = utc_datetime+relativedelta(minutes=int(arg))
@@ -257,7 +286,7 @@ def main(argv):
             getPublicIpPool()
             cloneGitRepo()
             pssh_v2(target_time, cycles, iterative_interval,
-                    benchmark, reverseFlag, vmgen, stopFlag, singleRun)
+                    benchmark, reverseFlag, vmgen, stopFlag, phantomIdle, singleRun)
             sys.exit()
 
     getPublicIpPool()
