@@ -1,0 +1,37 @@
+instanceID,experimentID,instanceType,wallTime,clients,threads,scaleFactor,transactionsType,queryMode,duration,transactions,mountPoint
+i-0f6311702d51027e3,1532423556,c3.large,60.279462814331055,10,10,1,TPC-B (sort of),simple,60 s,79584,"data_directory = '/mnt/postgres-data9.5'
+"
+i-0f6311702d51027e3,1532423556,c3.large,60.18621516227722,10,10,1,TPC-B (sort of),simple,60 s,83474,"data_directory = '/mnt/postgres-data9.5'
+"
+i-0f6311702d51027e3,1532423556,c3.large,60.220698595047,10,10,1,TPC-B (sort of),simple,60 s,82948,"data_directory = '/mnt/postgres-data9.5'
+"
+i-09509d81195152e08,1532423556,c3.large,60.314313888549805,10,10,1,TPC-B (sort of),simple,60 s,77840,"data_directory = '/mnt/postgres-data9.5'
+"
+i-09509d81195152e08,1532423556,c3.large,60.206729888916016,10,10,1,TPC-B (sort of),simple,60 s,77447,"data_directory = '/mnt/postgres-data9.5'
+"
+i-09509d81195152e08,1532423556,c3.large,60.20251441001892,10,10,1,TPC-B (sort of),simple,60 s,78486,"data_directory = '/mnt/postgres-data9.5'
+"
+i-09509d81195152e08,1532423556,c3.large,60.26716232299805,10,10,1,TPC-B (sort of),simple,60 s,76722,"data_directory = '/mnt/postgres-data9.5'
+"
+i-09509d81195152e08,1532423556,c3.large,60.22502160072327,10,10,1,TPC-B (sort of),simple,60 s,79876,"data_directory = '/mnt/postgres-data9.5'
+"
+i-09509d81195152e08,1532423556,c3.large,60.19971966743469,10,10,1,TPC-B (sort of),simple,60 s,78544,"data_directory = '/mnt/postgres-data9.5'
+"
+i-097cdf4d7357f5dd6,1532423556,c3.large,60.36369729042053,10,10,1,TPC-B (sort of),simple,60 s,73999,"data_directory = '/mnt/postgres-data9.5'
+"
+i-097cdf4d7357f5dd6,1532423556,c3.large,60.21316194534302,10,10,1,TPC-B (sort of),simple,60 s,74468,"data_directory = '/mnt/postgres-data9.5'
+"
+i-097cdf4d7357f5dd6,1532423556,c3.large,60.28644871711731,10,10,1,TPC-B (sort of),simple,60 s,75729,"data_directory = '/mnt/postgres-data9.5'
+"
+i-097cdf4d7357f5dd6,1532423556,c3.large,60.233802318573,10,10,1,TPC-B (sort of),simple,60 s,74701,"data_directory = '/mnt/postgres-data9.5'
+"
+i-097cdf4d7357f5dd6,1532423556,c3.large,60.236838579177856,10,10,1,TPC-B (sort of),simple,60 s,75235,"data_directory = '/mnt/postgres-data9.5'
+"
+i-097cdf4d7357f5dd6,1532423556,c3.large,60.209667682647705,10,10,1,TPC-B (sort of),simple,60 s,75428,"data_directory = '/mnt/postgres-data9.5'
+"
+i-097cdf4d7357f5dd6,1532423556,c3.large,60.23855805397034,10,10,1,TPC-B (sort of),simple,60 s,75614,"data_directory = '/mnt/postgres-data9.5'
+"
+i-097cdf4d7357f5dd6,1532423556,c3.large,60.23054552078247,10,10,1,TPC-B (sort of),simple,60 s,76272,"data_directory = '/mnt/postgres-data9.5'
+"
+i-097cdf4d7357f5dd6,1532423556,c3.large,60.231213092803955,10,10,1,TPC-B (sort of),simple,60 s,76622,"data_directory = '/mnt/postgres-data9.5'
+"

@@ -1,0 +1,2 @@
+experimentID,instanceID,instanceType,wallTime,testOption,Average Page Latency,Output
+1648660517-0,i-09565efb383878d3f,m5d.large,67.05924439430237, ./pmbench.sh, 0.0612,"['Average: 0.0612', '']"

@@ -1,0 +1,19 @@
+instanceID,instanceType,experimentID,interval,bandwidthUpload,bandwitdhDownload,setId,vmId,cmd
+i-0b11c386c8a0499a7,c4.large,1538978973,15.0 sec,578 Mbits/sec,577 Mbits/sec,1,1,iperf -c 34.200.233.120 --dualtest --window 416k --time 15 
+i-0b11c386c8a0499a7,c4.large,1538978973,15.0 sec,593 Mbits/sec,587 Mbits/sec,1,1,iperf -c 34.200.233.120 --dualtest --window 416k --time 15 
+i-0b11c386c8a0499a7,c4.large,1538978973,15.0 sec,591 Mbits/sec,619 Mbits/sec,1,1,iperf -c 34.200.233.120 --dualtest --window 416k --time 15 
+i-0b11c386c8a0499a7,c4.large,1538978973,15.0 sec,597 Mbits/sec,613 Mbits/sec,2,1,iperf -c 34.200.233.120 --dualtest --window 416k --time 15 
+i-0b11c386c8a0499a7,c4.large,1538978973,15.0 sec,574 Mbits/sec,626 Mbits/sec,2,1,iperf -c 34.200.233.120 --dualtest --window 416k --time 15 
+i-0b11c386c8a0499a7,c4.large,1538978973,15.0 sec,582 Mbits/sec,614 Mbits/sec,2,1,iperf -c 34.200.233.120 --dualtest --window 416k --time 15 
+i-036c15206ad92f21e,c4.large,1538978973,15.0 sec,580 Mbits/sec,577 Mbits/sec,2,2,iperf -c 35.172.234.103 --dualtest --window 416k --time 15 
+i-036c15206ad92f21e,c4.large,1538978973,15.0 sec,581 Mbits/sec,577 Mbits/sec,2,2,iperf -c 35.172.234.103 --dualtest --window 416k --time 15 
+i-036c15206ad92f21e,c4.large,1538978973,15.0 sec,576 Mbits/sec,616 Mbits/sec,2,2,iperf -c 35.172.234.103 --dualtest --window 416k --time 15 
+i-0b11c386c8a0499a7,c4.large,1538978973,15.0 sec,591 Mbits/sec,578 Mbits/sec,3,1,iperf -c 34.200.233.120 --dualtest --window 416k --time 15 
+i-0b11c386c8a0499a7,c4.large,1538978973,15.0 sec,600 Mbits/sec,581 Mbits/sec,3,1,iperf -c 34.200.233.120 --dualtest --window 416k --time 15 
+i-0b11c386c8a0499a7,c4.large,1538978973,15.0 sec,582 Mbits/sec,594 Mbits/sec,3,1,iperf -c 34.200.233.120 --dualtest --window 416k --time 15 
+i-0951a8c307d8ced28,c4.large,1538978973,15.0 sec,579 Mbits/sec,577 Mbits/sec,3,3,iperf -c 18.235.1.175 --dualtest --window 416k --time 15 
+i-0951a8c307d8ced28,c4.large,1538978973,15.0 sec,579 Mbits/sec,578 Mbits/sec,3,3,iperf -c 18.235.1.175 --dualtest --window 416k --time 15 
+i-0951a8c307d8ced28,c4.large,1538978973,15.0 sec,577 Mbits/sec,611 Mbits/sec,3,3,iperf -c 18.235.1.175 --dualtest --window 416k --time 15 
+i-036c15206ad92f21e,c4.large,1538978973,15.0 sec,581 Mbits/sec,578 Mbits/sec,3,2,iperf -c 35.172.234.103 --dualtest --window 416k --time 15 
+i-036c15206ad92f21e,c4.large,1538978973,15.0 sec,568 Mbits/sec,569 Mbits/sec,3,2,iperf -c 35.172.234.103 --dualtest --window 416k --time 15 
+i-036c15206ad92f21e,c4.large,1538978973,15.0 sec,560 Mbits/sec,577 Mbits/sec,3,2,iperf -c 35.172.234.103 --dualtest --window 416k --time 15 

@@ -1,0 +1,2 @@
+experimentID,instanceID,instanceType,wallTime,testOption,Average Page Latency,Output
+1652276712-0,i-0c5fee3827ae32653,m5d.large,70.2080864906311, /home/ubuntu/SCRIPT/scripts/remote/pmbenchw20r80.sh, 0.1277,"['Average: 0.1277', '']"

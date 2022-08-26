@@ -1,0 +1,7 @@
+experimentID,instanceID,instanceType,wallTime,testOption,Average Page Latency,Output
+1649091272-0,i-06a31816b3a3ce166,m5d.large,67.4780254364014, ./pmbenchw50.sh,0.1227,"['Average: 0.1227', '']"
+1649091272-0,i-003e5415310e1153d,m5d.large,67.1930840015411, ./pmbenchw50.sh,0.125,"['Average: 0.125', '']"
+1649091272-0,i-09565efb383878d3f,m5d.large,67.2176516056061, ./pmbenchw50.sh,0.1134,"['Average: 0.1134', '']"
+1649091272-1,i-06a31816b3a3ce166,m5d.large,67.3811156749725, ./pmbenchw50.sh,0.1222,"['Average: 0.1222', '']"
+1649091272-1,i-003e5415310e1153d,m5d.large,67.135603427887, ./pmbenchw50.sh,0.1267,"['Average: 0.1267', '']"
+1649091272-2,i-003e5415310e1153d,m5d.large,67.1554009914398, ./pmbenchw50.sh,0.1222,"['Average: 0.1222', '']"

@@ -1,0 +1,151 @@
+{
+  "timeDiffSeconds": 60,
+  "cpuTimeDiff": 119884570592,
+  "processorStats": [
+    {
+      "CPU0TimeDiff": 59863778826
+    },
+    {
+      "CPU1TimeDiff": 60020696197
+    },
+    {
+      "numProcessors": 2
+    }
+  ],
+  "cpuTimeUserDiff": 9618,
+  "cpuTimeKernelDiff": 2391,
+  "diskSectorIODiff": 0,
+  "diskReadDiff": 0,
+  "diskWriteDiff": 65536,
+  "networkRecvdDiff": 0,
+  "networkSentDiff": 0,
+  "memUsedDiff": 2662400,
+  "memoryMaxUsedDiff": 3092480,
+  "cpuType": "Intel(R) Xeon(R) CPU E5-2680 v2 @ 2.80GHz",
+  "cpuMhz": 2800.084,
+  "containerId": "d1d188edbdbb",
+  "numCurrentProcesses": 9,
+  "numProcessesDiff": 0,
+  "processes": [
+    {
+      "pid": 1,
+      "numThreadsDiff": 0,
+      "cpuTimeUserDiff": 0,
+      "cpuTimeKernelDiff": 0,
+      "childrenUserDiff": 0,
+      "childrenKernelDiff": 0,
+      "voluntaryContextSwitchesDiff": 0,
+      "nonVoluntaryContextSwitchesDiff": 0,
+      "blkIODelaysDiff": 0,
+      "virtualMemoryDiff": 0,
+      "residentSetSizeDiff": 0
+    },
+    {
+      "pid": 34,
+      "numThreadsDiff": 0,
+      "cpuTimeUserDiff": 1,
+      "cpuTimeKernelDiff": 1,
+      "childrenUserDiff": 8540,
+      "childrenKernelDiff": 1494,
+      "voluntaryContextSwitchesDiff": 15,
+      "nonVoluntaryContextSwitchesDiff": 3,
+      "blkIODelaysDiff": 0,
+      "virtualMemoryDiff": 0,
+      "residentSetSizeDiff": 0
+    },
+    {
+      "pid": 36,
+      "numThreadsDiff": 0,
+      "cpuTimeUserDiff": 0,
+      "cpuTimeKernelDiff": 0,
+      "childrenUserDiff": 0,
+      "childrenKernelDiff": 0,
+      "voluntaryContextSwitchesDiff": 0,
+      "nonVoluntaryContextSwitchesDiff": 0,
+      "blkIODelaysDiff": 0,
+      "virtualMemoryDiff": 0,
+      "residentSetSizeDiff": 0
+    },
+    {
+      "pid": 37,
+      "numThreadsDiff": 0,
+      "cpuTimeUserDiff": 1,
+      "cpuTimeKernelDiff": 0,
+      "childrenUserDiff": 0,
+      "childrenKernelDiff": 0,
+      "voluntaryContextSwitchesDiff": 300,
+      "nonVoluntaryContextSwitchesDiff": 0,
+      "blkIODelaysDiff": 0,
+      "virtualMemoryDiff": 0,
+      "residentSetSizeDiff": 0
+    },
+    {
+      "pid": 38,
+      "numThreadsDiff": 0,
+      "cpuTimeUserDiff": 0,
+      "cpuTimeKernelDiff": 0,
+      "childrenUserDiff": 0,
+      "childrenKernelDiff": 0,
+      "voluntaryContextSwitchesDiff": 73,
+      "nonVoluntaryContextSwitchesDiff": 0,
+      "blkIODelaysDiff": 0,
+      "virtualMemoryDiff": 0,
+      "residentSetSizeDiff": 0
+    },
+    {
+      "pid": 39,
+      "numThreadsDiff": 0,
+      "cpuTimeUserDiff": 0,
+      "cpuTimeKernelDiff": 0,
+      "childrenUserDiff": 0,
+      "childrenKernelDiff": 0,
+      "voluntaryContextSwitchesDiff": 4,
+      "nonVoluntaryContextSwitchesDiff": 0,
+      "blkIODelaysDiff": 0,
+      "virtualMemoryDiff": 0,
+      "residentSetSizeDiff": 0
+    },
+    {
+      "pid": 40,
+      "numThreadsDiff": 0,
+      "cpuTimeUserDiff": 0,
+      "cpuTimeKernelDiff": 3,
+      "childrenUserDiff": 0,
+      "childrenKernelDiff": 0,
+      "voluntaryContextSwitchesDiff": 1273,
+      "nonVoluntaryContextSwitchesDiff": 9,
+      "blkIODelaysDiff": 0,
+      "virtualMemoryDiff": 0,
+      "residentSetSizeDiff": 0
+    },
+    {
+      "pid": 41,
+      "numThreadsDiff": 0,
+      "cpuTimeUserDiff": 0,
+      "cpuTimeKernelDiff": 0,
+      "childrenUserDiff": 0,
+      "childrenKernelDiff": 0,
+      "voluntaryContextSwitchesDiff": 0,
+      "nonVoluntaryContextSwitchesDiff": 0,
+      "blkIODelaysDiff": 0,
+      "virtualMemoryDiff": 0,
+      "residentSetSizeDiff": 0
+    },
+    {
+      "pid": 64,
+      "numThreadsDiff": 0,
+      "cpuTimeUserDiff": 0,
+      "cpuTimeKernelDiff": 0,
+      "childrenUserDiff": 1019,
+      "childrenKernelDiff": 912,
+      "voluntaryContextSwitchesDiff": 2,
+      "nonVoluntaryContextSwitchesDiff": 2,
+      "blkIODelaysDiff": 0,
+      "virtualMemoryDiff": 0,
+      "residentSetSizeDiff": 34
+    },
+    {
+      "numOverlappingProc": 9
+    }
+  ]
+}
