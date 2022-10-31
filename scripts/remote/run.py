@@ -11,7 +11,6 @@ from experiment import Experiment
 # Experiment(benchmark,cycle,supportedBenchmarks,experimentID):
 logging.basicConfig(level=logging.DEBUG)
 
-
 def main(argv):
 
     ID = '0'
@@ -36,7 +35,7 @@ def main(argv):
         elif opt in ("-s"):
             stopVM = True
         elif opt in ("-t"):
-            if arg in const.supportedBenchmarks.keys():
+            if arg in const.supportedBenchmarks.keys() or arg.startswith("cachebench"):
                 benchmark = arg
     # do experiment HERE!!!
     # e1=Experiment(const.y_cruncher,cycle,supportedBenchmarks,ID)

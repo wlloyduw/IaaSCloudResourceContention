@@ -756,8 +756,43 @@ class parser(object):
     y_cruncherz1d = y_cruncher
     y_cruncherm5d = y_cruncher
 
+    def cachebenchWithOptions(self):
+        needHeader = False
+        if not os.path.isfile(const.datadir + 'cachebenchWithOption.csv'):
+            needHeader = True
+        os.system("mkdir " + const.datadir)
+        memorySize = str(1 << int(self.benchmark.split("_")[1][1:]))
+        with open(const.datadir + 'cachebenchWithOption.csv', 'a') as fout:
+            row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
+                               ('wallTime', None), ('testOption', None), ('throughput', None),
+                               ('total-time', None), ('thread-num', None)
+                               ])
+
+            writer = csv.DictWriter(fout, fieldnames=row)
+            if needHeader:
+                writer.writeheader()
+            row['instanceType'] = self.kw['instanceType']
+            row['instanceID'] = self.kw['instanceID']
+            row['experimentID'] = self.kw['experimentID']
+            row['wallTime'] = self.kw['duration']
+            row['testOption'] = self.kw['testOption']
+            row['total-time'] = self.string
+
+            count = 0
+            total_time = 0
+            for line in self.string:
+                if line.find(memorySize) != -1:
+                    count += 1
+                    total_time += float(line.split(" ")[1])
+            
+            row['throughput'] = total_time / count 
+            writer.writerow(row)
+
     def getfunc(self):
-        return getattr(self, self.benchmark)
+        if self.benchmark.startsWith("cachebench") and len(self.benchmark.split("_")) == 3:
+            return getattr(self, "cachebenchWithOptions")
+        else:
+            return getattr(self, self.benchmark)
 
 
 class Experiment(object):
@@ -772,17 +807,26 @@ class Experiment(object):
         for i in range(self.cycle):
             # flush cache
             os.popen("echo 3 | sudo tee /proc/sys/vm/drop_caches").read()
-            logging.info(const.command[self.benchmark] +
-                         self.options[self.benchmark])
+            if self.benchmark.startsWith("cachebench") and len(self.benchmark.split("_")) == 3:
+                command, options = self.getCachebenchCommand()
+            else:
+                command = const.command[self.benchmark] + self.options[self.benchmark]
+                options = self.options[self.benchmark]
+            logging.info(command)
             # time stamp that user percieved
             time1 = time.time()
-            result = os.popen(
-                const.command[self.benchmark]+self.options[self.benchmark]).read()
+            result = os.popen(command).read()
             logging.info(result)
             time2 = time.time()
             duration = time2-time1  # unit in seconds
-            myParser = parser(self.benchmark, result, testOption=self.options[self.benchmark],
+            myParser = parser(self.benchmark, result, testOption=options,
                               duration=duration, time1=time1, time2=time2, experimentID=self.experimentID)
             func = myParser.getfunc()
             func()
             print(result)
+
+    def getCachebenchOption(self) -> str:
+        benchmark, memorySize, repetion = self.benchmark.split("_")
+        command = const.command[benchmark] + self.options[benchmark] + "-" + memorySize + "-" + repetion
+        option = self.options[benchmark] + "-" + memorySize + "-" + repetion
+        return command, option
