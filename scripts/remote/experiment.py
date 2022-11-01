@@ -789,7 +789,7 @@ class parser(object):
             writer.writerow(row)
 
     def getfunc(self):
-        if self.benchmark.startsWith("cachebench") and len(self.benchmark.split("_")) == 3:
+        if self.benchmark.startswith("cachebench") and len(self.benchmark.split("_")) == 3:
             return getattr(self, "cachebenchWithOptions")
         else:
             return getattr(self, self.benchmark)
@@ -807,7 +807,7 @@ class Experiment(object):
         for i in range(self.cycle):
             # flush cache
             os.popen("echo 3 | sudo tee /proc/sys/vm/drop_caches").read()
-            if self.benchmark.startsWith("cachebench") and len(self.benchmark.split("_")) == 3:
+            if self.benchmark.startswith("cachebench") and len(self.benchmark.split("_")) == 3:
                 command, options = self.getCachebenchCommand()
             else:
                 command = const.command[self.benchmark] + self.options[self.benchmark]
