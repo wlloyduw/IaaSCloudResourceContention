@@ -215,7 +215,7 @@ def main(argv):
             benchmark = arg
         if opt in ("-r"):
             reverseFlag = True
-    if benchmark not in const.supportedBenchmarks.keys():
+    if benchmark not in const.supportedBenchmarks.keys() and not benchmark.startswith("cachebench"):
         print('illegal benchmark\n'+notice)
         sys.exit()
 
