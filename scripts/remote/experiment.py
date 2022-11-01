@@ -784,8 +784,12 @@ class parser(object):
                 if line.find(memorySize) != -1:
                     count += 1
                     total_time += float(line.split(" ")[1])
-            
-            row['throughput'] = total_time / count 
+                logging.debug(line)
+            if count != 0:
+                row['throughput'] = str(total_time / count)
+            else:
+                row['throughput'] = "0"
+            logging.debug("total_time " + str(total_time))
             writer.writerow(row)
 
     def getfunc(self):
