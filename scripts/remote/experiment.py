@@ -825,7 +825,7 @@ class Experiment(object):
             func()
             print(result)
 
-    def getCachebenchOption(self) -> str:
+    def getCachebenchCommand(self) -> str:
         benchmark, memorySize, repetion = self.benchmark.split("_")
         command = const.command[benchmark] + self.options[benchmark] + "-" + memorySize + "-" + repetion
         option = self.options[benchmark] + "-" + memorySize + "-" + repetion
