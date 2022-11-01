@@ -765,7 +765,7 @@ class parser(object):
         with open(const.datadir + 'cachebenchWithOption.csv', 'a') as fout:
             row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
                                ('wallTime', None), ('testOption', None), ('throughput', None),
-                               ('total-time', None), ('thread-num', None)
+                               ('output', None), ('thread-num', None)
                                ])
 
             writer = csv.DictWriter(fout, fieldnames=row)
@@ -776,7 +776,7 @@ class parser(object):
             row['experimentID'] = self.kw['experimentID']
             row['wallTime'] = self.kw['duration']
             row['testOption'] = self.kw['testOption']
-            row['total-time'] = self.string
+            row['output'] = self.string
 
             count = 0
             total_time = 0
@@ -784,12 +784,10 @@ class parser(object):
                 if line.find(memorySize) != -1:
                     count += 1
                     total_time += float(line.split(" ")[1])
-                logging.debug(line)
             if count != 0:
                 row['throughput'] = str(total_time / count)
             else:
                 row['throughput'] = "0"
-            logging.debug("total_time " + str(total_time))
             writer.writerow(row)
 
     def getfunc(self):
