@@ -836,7 +836,7 @@ class Experiment(object):
             res.append(os.popen(command).read())
         time2 = time.time()
         duration = time2 - time1
-        result = "\n".join(res)
+        result = "".join(res)
         myParser = parser(self.benchmark, result, testOption=options,
                             duration=duration, time1=time1, time2=time2, experimentID=self.experimentID)
         func = myParser.getfunc()
@@ -847,15 +847,3 @@ class Experiment(object):
         option = self.options[benchmark] + " -" + memorySize + " -" + repetion
         command = const.command[benchmark] + option
         return command, option
-
-res = []
-time1 = time.time()
-for i in range(12):
-    command = "./cachebench -r -x0 -d2 -e1 -m20"
-    res.append(os.popen(command).read())
-time2 = time.time()
-duration = time2 - time1
-result = "\n".join(res)
-myParser = parser("cachebench", result, duration=duration, time1=time1, time2=time2)
-func = myParser.getfunc()
-func()
