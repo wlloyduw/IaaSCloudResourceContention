@@ -774,7 +774,6 @@ class parser(object):
             row['instanceID'] = self.kw['instanceID']
             row['experimentID'] = self.kw['experimentID']
             row['wallTime'] = self.kw['duration']
-            row['testOption'] = self.kw['testOption']
             row['output'] = self.string
 
             count = 0
@@ -783,6 +782,7 @@ class parser(object):
                 if line.find(memorySize) != -1:
                     count += 1
                     total_time += float(line.split(" ")[1])
+            row['testOption'] = self.kw['testOption'] + " -n" + str(count)
             if count != 0:
                 row['throughput'] = str(total_time / count)
             else:
@@ -790,7 +790,7 @@ class parser(object):
             writer.writerow(row)
 
     def getfunc(self):
-        if self.benchmark.startswith("cachebench") and len(self.benchmark.split("_")) == 3:
+        if self.benchmark.startswith("cachebench") and len(self.benchmark.split("_")) > 1:
             return getattr(self, "cachebenchWithOptions")
         else:
             return getattr(self, self.benchmark)
@@ -805,7 +805,7 @@ class Experiment(object):
         self.experimentID = experimentID
 
     def run(self):
-        if self.benchmark.startswith("cachebench") and len(self.benchmark.split("_")) == 3:
+        if self.benchmark.startswith("cachebench") and len(self.benchmark.split("_")) > 1:
             self.runCachebench()
             return 
         for i in range(self.cycle):
@@ -843,7 +843,7 @@ class Experiment(object):
         func()
 
     def getCachebenchCommand(self) -> str:
-        benchmark, memorySize, repetion = self.benchmark.split("_")
-        option = self.options[benchmark] + " -" + memorySize + " -" + repetion
+        benchmark, memorySize = self.benchmark.split("_")
+        option = self.options[benchmark] + " -" + memorySize
         command = const.command[benchmark] + option
         return command, option
