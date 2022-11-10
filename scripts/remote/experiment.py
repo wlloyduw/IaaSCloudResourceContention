@@ -827,8 +827,6 @@ class Experiment(object):
 
     def runCachebench(self):
         command, options = self.getCachebenchCommand()
-        command = const.command[self.benchmark] + self.options[self.benchmark]
-        options = self.options[self.benchmark]
         res = []
         time1 = time.time()
         for i in range(self.cycle):
