@@ -767,7 +767,6 @@ class parser(object):
                                ('wallTime', None), ('testOption', None), ('throughput', None),
                                ('output', None), ('thread-num', None)
                                ])
-
             writer = csv.DictWriter(fout, fieldnames=row)
             if needHeader:
                 writer.writeheader()
@@ -806,14 +805,14 @@ class Experiment(object):
         self.experimentID = experimentID
 
     def run(self):
+        if self.benchmark.startswith("cachebench") and len(self.benchmark.split("_")) == 3:
+            self.runCachebench()
+            return 
         for i in range(self.cycle):
             # flush cache
             os.popen("echo 3 | sudo tee /proc/sys/vm/drop_caches").read()
-            if self.benchmark.startswith("cachebench") and len(self.benchmark.split("_")) == 3:
-                command, options = self.getCachebenchCommand()
-            else:
-                command = const.command[self.benchmark] + self.options[self.benchmark]
-                options = self.options[self.benchmark]
+            command = const.command[self.benchmark] + self.options[self.benchmark]
+            options = self.options[self.benchmark]
             logging.info(command)
             # time stamp that user percieved
             time1 = time.time()
@@ -821,14 +820,42 @@ class Experiment(object):
             logging.info(result)
             time2 = time.time()
             duration = time2-time1  # unit in seconds
-            myParser = parser(self.benchmark, result, testOption=options,
+            myParser = parser(self.benchmark, result, testOption=options + " n" + self.cycle,
                               duration=duration, time1=time1, time2=time2, experimentID=self.experimentID)
             func = myParser.getfunc()
             func()
-            print(result)
+
+    def runCachebench(self):
+        command, options = self.getCachebenchCommand()
+        command = const.command[self.benchmark] + self.options[self.benchmark]
+        options = self.options[self.benchmark]
+        res = []
+        time1 = time.time()
+        for i in range(self.cycle):
+            os.popen("echo 3 | sudo tee /proc/sys/vm/drop_caches").read()
+            res.append(os.popen(command).read())
+        time2 = time.time()
+        duration = time2 - time1
+        result = "\n".join(res)
+        myParser = parser(self.benchmark, result, testOption=options,
+                            duration=duration, time1=time1, time2=time2, experimentID=self.experimentID)
+        func = myParser.getfunc()
+        func()
 
     def getCachebenchCommand(self) -> str:
         benchmark, memorySize, repetion = self.benchmark.split("_")
         option = self.options[benchmark] + " -" + memorySize + " -" + repetion
         command = const.command[benchmark] + option
         return command, option
+
+res = []
+time1 = time.time()
+for i in range(12):
+    command = "./cachebench -r -x0 -d2 -e1 -m20"
+    res.append(os.popen(command).read())
+time2 = time.time()
+duration = time2 - time1
+result = "\n".join(res)
+myParser = parser("cachebench", result, duration=duration, time1=time1, time2=time2)
+func = myParser.getfunc()
+func()
