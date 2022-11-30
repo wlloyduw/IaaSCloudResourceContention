@@ -765,7 +765,7 @@ class parser(object):
         with open(const.datadir + 'cachebenchWithOption.csv', 'a') as fout:
             row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
                                ('wallTime', None), ('testOption', None), ('throughput', None),
-                               ('output', None), ('thread-num', None)
+                               ('output', None), ('thread-num', None), ('startTime', None), ('endTime', None)
                                ])
             writer = csv.DictWriter(fout, fieldnames=row)
             if needHeader:
@@ -775,6 +775,8 @@ class parser(object):
             row['experimentID'] = self.kw['experimentID']
             row['wallTime'] = self.kw['duration']
             row['output'] = self.string
+            row['startTime'] = datetime.fromtimestamp(self.kw['time1'])
+            row['endTime'] = datetime.fromtimestamp(self.kw['time2'])
 
             count = 0
             total_time = 0
