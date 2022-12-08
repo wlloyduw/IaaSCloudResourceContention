@@ -176,7 +176,7 @@ class parser(object):
             for line in self.string:
                 if line.find('events per second:') != -1:
                     target = self.string[i]
-                    avg = re.search(r'\s*(.*)', target).group(1)
+                    avg = re.search(r'(\d+(\.\d+)?)', target).group(0)
                     row['events pre second'] = avg
                 if line.find('total time:') != -1:
                     totalTime = re.search(r'total time:\s*(.*)', line).group(1)
