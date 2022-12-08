@@ -80,7 +80,7 @@ pgbench_option = sys.modules[__name__].pgbench_option = ' --client=10 --jobs=10 
 # running options of sysbench # 8.480s on c4.large
 # sysbench do not need <cycle> option, already has built-in mechanism to calculate avg
 dic[sysbench] = 'sysbench'
-sysbench_option = sys.modules[__name__].sysbench_option = ' --test=cpu --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run'
+sysbench_option = sys.modules[__name__].sysbench_option = ' --cpu-max-prime=2000000 --num-threads=2 --max-requests=10 run'
 # sysbench --test=memory --memory-block-size=1K --num-threads=2 --memory-total-size=10G run
 dic[sysbench_ram] = 'sysbench'
 sysbench_ram_option = sys.modules[__name__].sysbench_ram_option = ' --num-threads=2 --test=memory --memory-block-size=1M --memory-total-size=100G run'

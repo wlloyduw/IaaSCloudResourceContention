@@ -822,7 +822,7 @@ class Experiment(object):
             logging.info(result)
             time2 = time.time()
             duration = time2-time1  # unit in seconds
-            myParser = parser(self.benchmark, result, testOption=options + " n" + self.cycle,
+            myParser = parser(self.benchmark, result, testOption=options + " n" + str(self.cycle),
                               duration=duration, time1=time1, time2=time2, experimentID=self.experimentID)
             func = myParser.getfunc()
             func()
