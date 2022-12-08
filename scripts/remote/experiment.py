@@ -159,7 +159,7 @@ class parser(object):
         with open(const.datadir+'sysbench1.csv', 'a') as fout:
             row = OrderedDict([('experimentID', None), ('instanceID', None), ('instanceType', None),
                                ('wallTime', None), ('testOption',
-                                                    None), ('per-request-avg-time', None),
+                                                    None), ('events pre second', None),
                                ('total-time', None), ('thread-num', None)
                                ])
 
@@ -174,10 +174,10 @@ class parser(object):
 
             i = 0
             for line in self.string:
-                if line.find('per-request statistics:') != -1:
-                    target = self.string[i + 2]
-                    avg = re.search(r'avg:\s*(.*)', target).group(1)
-                    row['per-request-avg-time'] = avg
+                if line.find('events per second:') != -1:
+                    target = self.string[i]
+                    avg = re.search(r'\s*(.*)', target).group(1)
+                    row['events pre second'] = avg
                 if line.find('total time:') != -1:
                     totalTime = re.search(r'total time:\s*(.*)', line).group(1)
                     row['total-time'] = totalTime
